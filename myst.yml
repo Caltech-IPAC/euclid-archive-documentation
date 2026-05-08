@@ -1,0 +1,30 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  title: Euclid Archive at IRSA
+  subject: Euclid Archive at IRSA
+  date: 2026-04-27
+  # description:
+  # keywords: []
+  authors: [Caltech/IPAC-IRSA]
+  github: https://github.com/Caltech-IPAC/euclidarchive-documentation
+  license:
+    id: BSD-3-Clause
+    url: https://github.com/Caltech-IPAC/euclid-archive-documentation/blob/main/LICENSE
+  toc:
+    - file: documentation/index.md
+    - file: documentation/euclid_q1_data_products.md
+    - file: documentation/euclid_q1_data_access.md
+    - file: documentation/euclid_q1_browsable_directories.md
+    - file: documentation/euclid_q1_apis.md
+    - file: documentation/euclid_q1_python.md
+    - file: documentation/euclid_q1_euclid_data_explorer.md
+    - file: documentation/euclid_q1_cloud_access.md
+    - file: documentation/euclid_q1_bulk_downloads.md
+    - file: documentation/euclid_q1_acronyms.md
+
+site:
+  template: book-theme
+  options:
+    favicon: _static/irsa-favicon.ico
+    logo: _static/irsa_logo.png
