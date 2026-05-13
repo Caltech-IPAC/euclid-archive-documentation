@@ -10,7 +10,7 @@ jobs:
         uses: scientific-python/circleci-artifacts-redirector-action@6b0ee99678fb003bba8202536e861f74ab6ff364  # v1.2.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          api-token: ${{ secrets.SPHEREX_DOCUMENTATION_CIRCLE_TOKEN }}
+          api-token: ${{ secrets.EUCLID_DOCUMENTATION_CIRCLE_TOKEN }}
           artifact-path: 0/_build/html/index.html
           circleci-jobs: build-docs
           domain: circle.scientific-python.dev
