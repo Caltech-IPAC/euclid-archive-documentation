@@ -101,7 +101,7 @@ The VIS directory contains imaging data (DpdVisCalibratedFrame) taken with the V
 
 This directory contains a number of “Visibility Mask Photo-Z” products (DpdHealpixBitMaskVMPZ, DpdHealpixFootprintMaskVMPZ, DpdHealpixCoverageVMPZ, DpdHealpixDepthMapVMPZ, DpdHealpixInfoMapVMPZ), each organized in its own subdirectory, then by tile ID.
 
-## catalogs
+## Catalogs
 
 The catalogs directory contains Euclid Q1 catalogs from the MER, PHZ, SPE, NIR, and VIS PFs. Subdirectories are:
 - MER_FINAL_CATALOG – This directory contains multiple catalogs, organized by TILE_ID and packaged as FITS tables:
