@@ -1,8 +1,9 @@
-### Bulk Downloads
+(bulk-downloads)=
+# Bulk Downloads
 
 The entire Q1 data set is approximately 35 TB. Users interested in downloading significant fractions of the data set should plan for long download times and substantial local storage.  IRSA has staged Euclid Q1 data both on premises at IPAC and in the cloud using AWS. IRSA’s synchronous data services, including the SIA and TAP APIs and the Euclid Data Explorer, rely on the on-premises copy of the Q1 data. To avoid interfering with the use of these synchronous services, we recommend that users download large amounts of data from the AWS copy.
 
-First, users should browse the on-premises directory structure here to understand the directory structure, which is identical in the cloud.
+First, users should browse the on-premises directory structure here to understand the directory structure (which is identical in the cloud):
 
 https://irsa.ipac.caltech.edu/ibe/data/euclid/q1/
 

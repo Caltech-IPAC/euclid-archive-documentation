@@ -1,4 +1,6 @@
-## Acronym List
+(acronyms)=
+# Acronym List
+
 ADQL – Astronomical Data Query Language
 
 API – Application Program Interface
@@ -37,7 +39,7 @@ LE3 – Level 3
 
 MEF – Multi-Extension FITS
 
-NASA -- National Aeronautics and Space Administration
+NASA – National Aeronautics and Space Administration
 
 NISP – Near-Infrared Spectrometer and Photometer
 
