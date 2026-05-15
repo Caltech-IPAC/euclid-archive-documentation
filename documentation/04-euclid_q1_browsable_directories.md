@@ -67,10 +67,10 @@ The individual segmentation maps are about 2.7 GB and adhere to the following fi
 ## NIR
 
 The NIR directory contains the near-infrared imaging data taken by the Euclid NISP instrument, specifically the DpdNirCalibratedFrame and DpdNirCalibratedFrameCatalog data products. These are organized by observation ID. The NIR data products are:
-- `EUC_NIR_W-CAL-IMAGE_[band]-[obs]-*_[timestamp].fits` -- a multi-extension FITS (MEF) file with three extensions for each of 16 detectors: calibrated science image (SCI), RMS, and Data Quality flags (DQ).
-- `EUC_NIR_W-CAL-IMAGE-BKG_[band]-[obs]-*_[timestamp].fits` -- a MEF file with the same structure as EUC_NIR_W-CAL-IMAGE*.fits, containing the estimated background.
-- `EUC_NIR_W-CAL-PSF-I_[band]-[obs]-*_[timestamp].fits` -- PSF image associated with the science image.
-- `EUC_NIR_W-CAL-PSF-M_[band]-[obs]-*_[timestamp].psf` -- PSF model created by combining all the pipeline input images, as provided by PSFEx software (.psf).
+- `EUC_NIR_W-CAL-IMAGE_[band]-[obs]-*_[timestamp].fits` – a multi-extension FITS (MEF) file with three extensions for each of 16 detectors: calibrated science image (SCI), RMS, and Data Quality flags (DQ).
+- `EUC_NIR_W-CAL-IMAGE-BKG_[band]-[obs]-*_[timestamp].fits` – a MEF file with the same structure as EUC_NIR_W-CAL-IMAGE*.fits, containing the estimated background.
+- `EUC_NIR_W-CAL-PSF-I_[band]-[obs]-*_[timestamp].fits` – PSF image associated with the science image.
+- `EUC_NIR_W-CAL-PSF-M_[band]-[obs]-*_[timestamp].psf` – PSF model created by combining all the pipeline input images, as provided by PSFEx software (.psf).
 
 ## RAW
 
@@ -104,25 +104,37 @@ This directory contains a number of “Visibility Mask Photo-Z” products (DpdH
 ## Catalogs
 
 The catalogs directory contains Euclid Q1 catalogs from the MER, PHZ, SPE, NIR, and VIS PFs. Subdirectories are:
-- MER_FINAL_CATALOG – This directory contains multiple catalogs, organized by TILE_ID and packaged as FITS tables:
+
+MER_FINAL_CATALOG
+ : This directory contains multiple catalogs, organized by TILE_ID and packaged as FITS tables:
 	- `EUC_MER_FINAL-CAT_TILE[tile]-*_[timestamp]_*.fits` – This is the main MER catalog. It contains 469 columns, including position, flux, and morphology measurements of detected sources.
 	- `EUC_MER_FINAL-MORPH_CAT_TILE[tile]-*_[timestamp]_*.fits` –  This table has 104 columns, including morphology measurements such as concentration, asymmetry, smoothness, Gini, moment, Sersic indices, bulge sizes, clump counts, orientation, Hubble type, and more.
 	- `EUC_MER_FINAL-CUTOUTS-CAT_TILE[tile]-*_[timestamp]_*.fits` – This table has 25 columns, including the coordinates of the corners of the source cutouts for each object detected in the MER Final Catalog.
-- NIR_CAL_CATALOG – organized by OBS_ID and packaged as FITS tables:
+
+NIR_CAL_CATALOG
+ : This direcotry is organized by OBS_ID and packaged as FITS tables:
 	- `EUC_NIR_W-CALIB-CAT_[obs]-[band]-[dithobs]*_[timestamp].fits` – This catalog is extracted from the NIR Calibrated Frames. The main header contains metadata that applies to all 16 NIR detectors. An additional 16 extensions represent catalogs extracted from each detector. The catalogs have 43 columns including position, photometry, and morphology measurements.
-- PHZ_PF_OUTPUT_CATALOG – organized by TILE_ID and packaged as FITS tables:
+
+PHZ_PF_OUTPUT_CATALOG
+ : This directory is organized by TILE_ID and packaged as FITS tables:
 	- `EUC_PHZ_PHZCAT_[timestamp]*.fits` – This file contains two tables. The first is the PHOTOZ CATALOG, which contains 61 columns describing the photometric redshift probability distribution, fluxes, and classification. The second is the ZERO_POINT table, which contains the correction for each filter.
 	- `EUC_PHZ_GALAXYSED_[timestamp]*.fits` – This catalog contains 120 columns describing the spectral energy distributions for MER objects classified as galaxies.
 	- `EUC_PHZ_STARSED_[timestamp]*.fits` – This catalog contains 120 columns describing the spectral energy distributions for MER objects classified as stars.
-- PHZ_PF_OUTPUT_FOR_L3 – organized by TILE_ID and organized as FITS tables:
+
+PHZ_PF_OUTPUT_FOR_L3
+ : This directory is organized by TILE_ID and organized as FITS tables:
 	- `EUC_PHZ_CLASSCAT_[timestamp]_*.fits` – The Classification Catalog contains 13 columns describing the object classification (star, galaxy, QSO, globular cluster).
 	- `EUC_PHZ_PHYSPARAM_[timestamp]_*fits` – The Physical Parameters Catalog contains 93 columns describing physical parameters such as redshift, luminosity, extinction, dust law parameters, absolute magnitudes, stellar mass, metallicity.
 	- `EUC_PHZ_PHYSPARAMQSO_[timestamp]_*.fits` – The QSO Physical Parameters Catalog contains 56 columns describing physical parameters for objects classified as QSOs. Parameters include the best-fit SED, reddening, redshift, and corrected fluxes.
 	- `EUC_PHZ_PHYSPARAMNIR_[timestamp]_*.fits` – The NIR Physical Parameters Catalog contains 57 columns.
 	- `EUC_PHZ_STARCLASS_[timestamp]_*.fits` – The Star Template Catalog contains 55 columns describing physical parameters for objects classified as stars. Parameters include the best-fit SED, reddening, redshift, and corrected fluxes.
-- SPE_PF_OUTPUT_CATALOG – organized by TILE_ID and organized as FITS tables:
+
+SPE_PF_OUTPUT_CATALOG
+ : This directory is organized by TILE_ID and organized as FITS tables:
 	- `EUC_SPE_WIDE-CAT-Z_[tile]_N_[timestamp]_*.fits` – This file has 5 table extensions: SP_QUALITY (25 columns, including data quality flags), SPE_CLASSIFICATION (5 columns, including the probabilities of an object being classified as a star, galaxy, or QSO), SPE_GALAXY_CANDIDATES (12 columns, including the spectroscopic redshift estimate, uncertainty, and reliability), SPE_STAR_CANDIDATES (8 columns, including the radial velocity estimate, uncertainty, and reliability), SPE_QSO_CANDIDATES (12 columns, including the spectroscopic redshift estimate, uncertainty, and reliability).
 	- `EUC_SPE_WIDE-CAT-LIN_[tile]_N_[timestamp]_*.fits` – This file has 4 extensions:
 	- `EUC_SPE_WIDE-CAT-MOD_[tile]_N_[timestamp]_*.fits`
-- VIS_CAL_CATALOG – organized by OBS_ID and packaged as FITS tables:
+
+VIS_CAL_CATALOG
+ : This directory is organized by OBS_ID and packaged as FITS tables:
 	- `EUC_VIS_SWL-CAT-[obs]-*_[timestamp]*.fits`
