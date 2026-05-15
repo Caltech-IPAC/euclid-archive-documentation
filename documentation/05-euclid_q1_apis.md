@@ -22,18 +22,18 @@ See the following section on Python packages to learn how to use Python wrappers
 IRSA provides API access to Euclid Q1catalogs through the VO Table Access Protocol (TAP). This allows users to query for the subset of catalog rows that satisfies user constraints specified in Astronomical Data Query Language (ADQL). 
 
 The available catalogs are:
-- euclid_q1_mer_catalogue
-- euclid_q1_mer_morphology
-- euclid_q1_phz_photo_z
-- euclid_q1_spectro_zcatalog_spe_quality
-- euclid_q1_spectro_zcatalog_spe_classification
-- euclid_q1_spectro_zcatalog_spe_galaxy_candidates
-- euclid_q1_spectro_zcatalog_spe_star_candidates
-- euclid_q1_spectro_zcatalog_spe_qso_candidates
-- euclid_q1_spe_lines_line_features
-- euclid_q1_spe_lines_continuum_features
-- euclid_q1_spe_lines_atomic_indices
-- euclid_q1_spe_lines_molecular_indices
+- `euclid_q1_mer_catalogue`
+- `euclid_q1_mer_morphology`
+- `euclid_q1_phz_photo_z`
+- `euclid_q1_spectro_zcatalog_spe_quality`
+- `euclid_q1_spectro_zcatalog_spe_classification`
+- `euclid_q1_spectro_zcatalog_spe_galaxy_candidates`
+- `euclid_q1_spectro_zcatalog_spe_star_candidates`
+- `euclid_q1_spectro_zcatalog_spe_qso_candidates`
+- `euclid_q1_spe_lines_line_features`
+- `euclid_q1_spe_lines_continuum_features`
+- `euclid_q1_spe_lines_atomic_indices`
+- `euclid_q1_spe_lines_molecular_indices`
 
 IRSA provides two additional tables that are not part of the official Euclid Q1 release, but provide metadata associations that may be helpful to users:
 
