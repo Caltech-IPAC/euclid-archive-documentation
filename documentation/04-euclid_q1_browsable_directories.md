@@ -91,7 +91,7 @@ The SIR directory contains the spectroscopy data (DpdSirScienceFrame and DpdSirC
 
 ## VIS
 
-The VIS directory contains imaging data (DpdVisCalibratedFrame) taken with the VIS instrument, organized by observation ID. The VIS data products are:
+The VIS directory contains imaging data (DpdVisCalibratedQuadFrame) taken with the VIS instrument, organized by observation ID. The VIS data products are:
 - `EUC_VIS_SWL-DET-[obs]-[dither]_[timestamp]*.fits` – calibrated VIS individual exposure
 - `EUC_VIS_SWL-BKG-[obs]-[dither]_[timestamp]*.fits` – background map for calibrated VIS individual exposure
 - `EUC_VIS_SWL_WGT-[obs]-[dither]_[timestamp]*.fits` – weight map for calibrated VIS individual exposure
