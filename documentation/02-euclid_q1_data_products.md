@@ -1,4 +1,5 @@
-## Data Products in Euclid Quick Release 1
+(data-products)=
+# Data Products in Euclid Quick Release 1
 
 The first release of Euclid data occurred in March 2025 and is known as Euclid Quick Release 1 (Q1). It consists of data in four fields, together covering about 60 square degrees. Table 1 provides a summary of these fields.
 
@@ -10,8 +11,8 @@ Additional information about the data products are provided in {ref}`browsable-d
 
 **Table 1. Euclid Q1 Release: Fields Overview**
 | Field | Acronym | Field Center (RA Dec) | Q1 coverage (sq deg) | Q1 Data Products |
-| --- | --- | --- | --- | ---|
-| Euclid Deep Field North | EDF-N | 17:58:55.9 +66:01:03.7 | 22.9 | Space-based imaging, spectra, catalogs at single-visit depth; and External images matching space-based single-visit depth|
+| --- | --- | --- | --- | --- |
+| Euclid Deep Field North | EDF-N | 17:58:55.9 +66:01:03.7 | 22.9 | Space-based imaging, spectra, catalogs at single-visit depth; External images matching space-based single-visit depth|
 | Euclid Deep Field Fornax | EDF-F | 04:04:57.84 -48:25:22.8 | 12.1 | see above |
 | Euclid Deep Field South | EDF-S | 03:31:43.6 -28:05:18.6 | 28.1 | see above |
 | Lynds Dark Nebula | LDN1641 | 85.74 -8.39 | | Space-based: 6 Reference Observation Sequences; No external data |

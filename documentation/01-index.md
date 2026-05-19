@@ -1,3 +1,4 @@
+(index)=
 # Euclid Archive at IRSA User Guide
 Last updated 16 July 2025
 
@@ -9,9 +10,9 @@ The purpose of this document is to facilitate science with Euclid data by provid
 ## Euclid Overview
 Euclid launched in July 2023 as a European Space Agency (ESA) mission with contributions by the National Aeronautics and Space Administration (NASA). The primary science goals of Euclid are to better understand the composition and evolution of the dark Universe. The Euclid mission will provide space-based imaging and spectroscopy as well as supporting ground-based imaging to achieve these goals. These data will be archived in multiple global repositories, including IRSA, where they will support transformational work in many areas of astrophysics.
 
-During its nominal 6 year mission, the Euclid space telescope will conduct (1) a Wide Survey resulting in imaging and spectroscopy over about 14,000 square degrees; and 2) a Deep Survey covering about 50 square degrees. Euclid public data releases will occur approximately annually from 2025 through 2031.
+During its nominal 6-year mission, the Euclid space telescope will conduct (1) a Wide Survey resulting in imaging and spectroscopy over about 14,000 square degrees; and 2) a Deep Survey covering about 50 square degrees. Euclid public data releases will occur approximately annually from 2025 through 2031.
 
-The Euclid Space Telescope carries two instruments: the VISible instrument (VIS) and the Near-Infrared Spectrometer and Photometer (NISP). The Euclid data set will include data collected with these space-based instruments as well as “external” (EXT) images collected by ground-based telescopes, processed with the same tiling scheme and pixel scale as the Euclid space-based images.
+The Euclid space telescope carries two instruments: the VISible instrument (VIS) and the Near-Infrared Spectrometer and Photometer (NISP). The Euclid data set will include data collected with these space-based instruments as well as “external” (EXT) images collected by ground-based telescopes, processed with the same tiling scheme and pixel scale as the Euclid space-based images.
 
 
 ## Euclid Data at IRSA
