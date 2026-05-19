@@ -25,7 +25,7 @@ If a user can identify a full directory to download, they can use the AWS Comman
 | NIR| 	2.35 TB| 	23 hours| 	6 hours| 
 | RAW| 	1.47 TB| 	14 hours| 	4 hours| 
 | SIR| 	848 GB| 	8 hours| 	2 hours| 
-| VIZ| 	9.27 TB| 	4 days| 	23 hours| 
+| VIS| 	9.27 TB| 	4 days| 	23 hours| 
 | VMPZ| 	5 GB| 	3 minutes| 	1 minute| 
 | catalogs| 	573 GB| 	6 hours| 	1 hour| 
 | Total Q1| 	34.9 TB| 	14 days| 	3 days| 
