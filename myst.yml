@@ -11,6 +11,10 @@ project:
   license:
     id: BSD-3-Clause
     url: https://github.com/Caltech-IPAC/euclid-archive-documentation/blob/main/LICENSE
+  error_rules:
+    - rule: reference-target-resolves
+      severity: error
+
   toc:
     - file: documentation/01-index.md
     - file: documentation/02-euclid_q1_data_products.md
