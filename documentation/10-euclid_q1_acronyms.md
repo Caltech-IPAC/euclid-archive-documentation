@@ -1,62 +1,96 @@
 (acronyms)=
 # Acronym List
 
-ADQL – Astronomical Data Query Language
+:::{glossary}
 
-API – Application Program Interface
+ADQL
+: Astronomical Data Query Language
 
-AWS – Amazon Web Services
+API
+: Application Program Interface
 
-DECAM – Dark Energy Camera
+AWS
+: Amazon Web Services
 
-EDF – Euclid Deep Field
+DECAM
+: Dark Energy Camera
 
-ENSCI – Euclid NASA Science Center
+EDF
+: Euclid Deep Field
 
-ESA – European Space Agency
+ENSCI
+: Euclid NASA Science Center
 
-EXT – External images collected by ground-based telescopes and served alongside the Euclid images 
+ESA
+: European Space Agency
 
-FITS – Flexible Image Transport System
+EXT
+: External images collected by ground-based telescopes and served alongside the Euclid images
 
-GPC - GigaPixel Camera
+FITS
+: Flexible Image Transport System
 
-GUI – Graphical User Interface
+GPC
+: GigaPixel Camera
 
-HSC – Hyper Suprime Cam
+GUI
+: Graphical User Interface
 
-IRSA – NASA/IPAC Infrared Science Archive
+HSC
+: Hyper Suprime Cam
 
-IVOA – International Virtual Observatory Alliance
+IRSA
+: NASA/IPAC Infrared Science Archive
 
-LDN – Lynds Dark Nebula
+IVOA
+: International Virtual Observatory Alliance
 
-LE1 – Level 1
+LDN
+: Lynds Dark Nebula
 
-LE2 – Level 2
+LE1
+: Level 1
 
-LE3 – Level 3
+LE2
+: Level 2
 
-MEF – Multi-Extension FITS
+LE3
+: Level 3
 
-NASA – National Aeronautics and Space Administration
+MEF
+: Multi-Extension FITS
 
-NISP – Near-Infrared Spectrometer and Photometer
+NASA
+: National Aeronautics and Space Administration
 
-ODR – Open Data Repository
+NISP
+: Near-Infrared Spectrometer and Photometer
 
-PF – Processing Function
+ODR
+: Open Data Repository
 
-PSF – Point Spread Function
+PF
+: Processing Function
 
-Q1 – Quick Release 1
+PSF
+: Point Spread Function
 
-SED – Spectral Energy Distribution
+Q1
+: Quick Release 1
 
-SIA2 – Simple Image Access version 2
+SED
+: Spectral Energy Distribution
 
-TAP – Table Access Protocol
+SIA2
+: Simple Image Access version 2
 
-VIS – VISible instrument
+TAP
+: Table Access Protocol
 
-VO – Virtual Observatory
+VIS
+: VISible instrument
+
+VO
+: Virtual Observatory
+
+:::
