@@ -134,7 +134,7 @@ MER_FINAL_CATALOG
 	- `EUC_MER_FINAL-CUTOUTS-CAT_TILE[tile]-*_[timestamp]_*.fits` – This table has 25 columns, including the coordinates of the corners of the source cutouts for each object detected in the MER Final Catalog.
 
 NIR_CAL_CATALOG
- : This direcotry is organized by OBS_ID and packaged as FITS tables:
+ : This directory is organized by OBS_ID and packaged as FITS tables:
 	- `EUC_NIR_W-CALIB-CAT_[obs]-[band]-[dithobs]*_[timestamp].fits` – This catalog is extracted from the NIR Calibrated Frames.
 	  The main header contains metadata that applies to all 16 NIR detectors.
 	  An additional 16 extensions represent catalogs extracted from each detector.
