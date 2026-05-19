@@ -1,7 +1,9 @@
 (data-access)=
 # Access to Euclid Quick Release 1 Data Served by IRSA
 
-IRSA serves the Q1 products both on premises at IPAC and on the cloud via Amazon Web Services (AWS). IRSA provides layered access to these data to support a variety of use cases and users, as summarized in Table 4. Each data access layer is described in greater detail in the subsections below.
+IRSA serves the Q1 products both on premises at IPAC and on the cloud via Amazon Web Services (AWS).
+IRSA provides layered access to these data to support a variety of use cases and users, as summarized in Table 4.
+Each data access layer is described in greater detail in the subsections below.
 
 **Table 4. Euclid Q1 Release: Data Access Overview**
 

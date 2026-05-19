@@ -1,15 +1,20 @@
 (data-products)=
 # Data Products in Euclid Quick Release 1
 
-The first release of Euclid data occurred in March 2025 and is known as Euclid Quick Release 1 (Q1). It consists of data in four fields, together covering about 60 square degrees. Table 1 provides a summary of these fields.
+The first release of Euclid data occurred in March 2025 and is known as Euclid Quick Release 1 (Q1).
+It consists of data in four fields, together covering about 60 square degrees.
+Table 1 provides a summary of these fields.
 
 Although the three Euclid Deep Fields are included, the Q1 data in these fields is at the depth planned for the Wide Field Survey.
 
-The data products released as part of Euclid Q1 include images, catalogs, and spectroscopy, as listed in [Euclid Science Team Memo EUCL-EST-ME-8-018](https://www.cosmos.esa.int/documents/10647/12245842/EUCL-EST-ME-8-018_v1_Q1_fields_definition_2024-09-30.pdf). Euclid data products are processed and produced by different pipeline Processing Functions (PF). Table 2 summarizes these PFs, as they can be useful for understanding the organization and names of the data products, which are listed in Table 3.
+The data products released as part of Euclid Q1 include images, catalogs, and spectroscopy, as listed in [Euclid Science Team Memo EUCL-EST-ME-8-018](https://www.cosmos.esa.int/documents/10647/12245842/EUCL-EST-ME-8-018_v1_Q1_fields_definition_2024-09-30.pdf).
+Euclid data products are processed and produced by different pipeline Processing Functions (PF).
+Table 2 summarizes these PFs, as they can be useful for understanding the organization and names of the data products, which are listed in Table 3.
 
 Additional information about the data products are provided in {ref}`browsable-directories`.
 
 **Table 1. Euclid Q1 Release: Fields Overview**
+
 | Field | Acronym | Field Center (RA Dec) | Q1 coverage (sq deg) | Q1 Data Products |
 | --- | --- | --- | --- | --- |
 | Euclid Deep Field North | EDF-N | 17:58:55.9 +66:01:03.7 | 22.9 | Space-based imaging, spectra, catalogs at single-visit depth; External images matching space-based single-visit depth|
@@ -19,6 +24,7 @@ Additional information about the data products are provided in {ref}`browsable-d
 
 
 **Table 2. Euclid Pipeline Processing Functions**
+
 | Euclid Processing Function (PF)| Brief Description|
 | --- | --- |
 | LE1 | Produces Level 1 (raw) images from the VIS and NISP instruments   |
@@ -33,8 +39,8 @@ Additional information about the data products are provided in {ref}`browsable-d
 | LE3 | Produces Level 3 data products   |
 | SIM | Produces simulated data (not included in Q1)   |
 
-
 **Table 3. Euclid Q1 Release: Data Products Overview**
+
 | Level | Processing Function | Data Product Name | Data Product Description |
 | --- | --- | --- | --- |
 |LE1 | VIS | [DpdVisRawFrame](https://euclid.esac.esa.int/dr/q1/dpdd/le1dpd/dpcards/le1_visrawframe.html) | Raw VIS images |
