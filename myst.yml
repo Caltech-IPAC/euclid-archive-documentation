@@ -16,9 +16,9 @@ project:
       severity: error
 
   toc:
-    - file: documentation/01-index.md
-    - file: documentation/02-euclid_q1_data_products.md
-    - file: documentation/03-euclid_q1_data_access.md
+    - file: documentation/index.md
+    - file: documentation/euclid_q1_data_products.md
+    - file: documentation/euclid_q1_data_access.md
 
 site:
   template: book-theme
