@@ -1,9 +1,5 @@
 (index)=
 # Euclid Archive at IRSA User Guide
-Last updated 16 July 2025
-
-
-
 ## Document Purpose and Scope
 
 The purpose of this document is to facilitate science with Euclid data by providing users with an overview of the Euclid Quick Release 1 (Q1) data that are available at the NASA/IPAC Infrared Science Archive (IRSA) at Caltech, as well as instructions for accessing and downloading it.
