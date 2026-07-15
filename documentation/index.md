@@ -71,24 +71,6 @@ Each data access layer is described in greater detail in the following sections.
 [Browsable Directories](https://irsa.ipac.caltech.edu/ibe/data/euclid/q1/) | All Q1 image products | All Q1 catalog products | All Q1 spectral products |
 |[Cloud Access](https://irsa.ipac.caltech.edu/cloud_access/#euclid)| All Q1 image products | All Q1 catalog products | All Q1 spectral products |
 
-## Euclid Data at IRSA
-
-```{toctree}
----
-maxdepth: 2
----
-
-euclid_q1_data_products
-euclid_q1_data_access
-euclid_q1_browsable_directories
-euclid_q1_apis
-euclid_q1_python
-euclid_q1_euclid_data_explorer
-euclid_q1_cloud_access
-euclid_q1_bulk_downloads
-euclid_q1_acronyms
-```
-
 ## Additional Resources
 
 Below we provide a list of webpages that you may find useful as you access and analyze Euclid Q1 data.
