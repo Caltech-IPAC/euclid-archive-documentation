@@ -1,25 +1,30 @@
-(browsable-directories)=
-# Browsable Directories
+(data-products)=
+# Data Products in Euclid Quick Release 1
 
 Euclid data products curated by IRSA are laid out in directories that can be navigated with standard web browsers.
 This is convenient for users to get a quick sense of the types of data products that are available, to quickly download some examples by clicking through the directory tree, and to script bulk downloads using wget or curl.
 
-The root of the Euclid data directories for Q1 is:
+**Table 4. Euclid Q1 Release: Data Products Overview**
 
-https://irsa.ipac.caltech.edu/ibe/data/euclid/q1/
-
-The data are organized into 8 subdirectories:
-
-- MER – 19.4 TB
-- MER_SEG – 970 GB
-- NIR – 2.35 TB
-- RAW – 1.47 TB
-- SIR – 848 GB
-- VIS – 9.27 TB
-- VMPZ – 5 GB
-- catalogs – 573 GB
-
-The content of each subdirectory is described in greater detail in the subsections below.
+| Level | Processing Function | Data Product Name | Data Product Description |
+| --- | --- | --- | --- |
+|LE1 | VIS | [DpdVisRawFrame](https://euclid.esac.esa.int/dr/q1/dpdd/le1dpd/dpcards/le1_visrawframe.html) | Raw VIS images |
+|LE1|NIR|[DpdNispRawFrame](https://euclid.esac.esa.int/dr/q1/dpdd/le1dpd/dpcards/le1_nisprawframe.html) | Raw NISP images|
+|LE2|VIS|[DpdVisCalibratedQuadFrame](https://euclid.esac.esa.int/dr/q1/dpdd/visdpd/dpcards/vis_calibratedquadframe.html)|Calibrated VIS exposures, background maps, weight maps, and PSF files|
+|LE2|VIS|[DpdVisCalibratedFrameCatalog](https://euclid.esac.esa.int/dr/q1/dpdd/visdpd/dpcards/vis_calibratedframecatalog.html)|Catalog measured on calibrated VIS images|
+|LE2|SIR|[DpdSirScienceFrame](https://euclid.esac.esa.int/dr/q1/dpdd/sirdpd/dpcards/sir_scienceframe.html)|2D SIR spectra|
+|LE2|SIR|[DpdSirCombinedSpectra](https://euclid.esac.esa.int/dr/q1/dpdd/sirdpd/dpcards/sir_combinedspectra.html)|For each object in the MER final catalog single, this product includes spectra extracted from individual dithers as well as the combined spectra.|
+|LE2|MER|[DpdMerBksMosaic](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_bksmosaic.html)|MER mosaics, including EXT ground-based UGRIZ images|
+|LE2|MER|[DpdMerSegmentationMap](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_segmentationmap.html)|Maps of MER image pixels assigned to detected objects|
+|LE2|MER|[DpdMerFinalCatalog](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_finalcatalog.html)|Main MER catalog containing photometric and morphological information for detected sources|
+|LE2|PHZ|[DpdPhzPfOutputForL3](https://euclid.esac.esa.int/dr/q1/dpdd/phzdpd/dpcards/phz_phzpfoutputforl3.html)|Photometric redshift catalogs|
+|LE2|PHZ|[DpdPhzPfOutputCatalog](https://euclid.esac.esa.int/dr/q1/dpdd/phzdpd/dpcards/phz_phzpfoutputcatalog.html)|Photometric redshift catalogs|
+|LE2|SPE|[DpdSpePfOutputCatalog](https://euclid.esac.esa.int/dr/q1/dpdd/spedpd/dpcards/spe_spepfoutputcatalog.html)|Spectroscopy catalogs|
+|LE3|Visibility Masks|[DpdHealpixBitMaskVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_bitmask.html)|Bitmask maps|
+|LE3|Visibility Masks|[DpdHealpixFootprintMaskVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_footprint.html)|Survey footprint masks for each band |
+|LE3|Visibility Masks|[DpdHealpixCoverageVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_coverage.html)|Coverage masks for each band |
+|LE3|Visibility Masks|[DpdHealpixDepthMapVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_depthmap.html)|MER depth maps|
+|LE3|Visibility Masks|[DpdHealpixInfoMapVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_infomap.html)|Environment and instrument information for each band|
 
 ## MER
 
@@ -56,7 +61,6 @@ These include:
 | `EUC_MER_GRID-PSF-[VIS or NIR]_TILE[tile]-*_[timestamp]_*.fits` | Grid of point spread functions (PSFs) for sources in the MER Final Catalog|
 
 For the above table, possible values of `[instrument]` are given in Table 5, `[band]` can be one of CAW, `[tile]` is the tile id, and `[timestamp]` is broken down as `[DATE]T[TIME]Z` where `[DATE]` is broken down as `[YYYYMMDD]` (when YYYY is the year, MM is the month, and DD is the day) and `[TIME]` (when HH is the hour, MM is the minutes, and SS.SSSSSS is the seconds).
-
 
 | field | description |
 | --- | --- |
