@@ -1,5 +1,23 @@
 (data-access)=
-# Access to Euclid Quick Release 1 Data Served by IRSA
+# Data Access
+
+IRSA serves the Q1 data products from both on premises and on the cloud ({term}`AWS S3 <S3>` bucket).
+The data is provided in layered access to support a variety of use cases and users, as summarized in [](#table-data-access-overview).
+Each data access layer is described in greater detail in the following subsections.
+
+:::{table} Data access overview
+:label: table-data-access-overview
+
+| Data Access Mechanism | Images Available | Catalogs Available | Spectra Available |
+| --- | --- | --- | --- |
+| [Browsable Directories](#browsable-directories) | All Q1 | All Q1 and HATS | All Q1 |
+| [Euclid Data Explorer](#euclid-data-explorer) | MER mosaics via direct image search, associated NIR and VIS calibrated frames upon download. | All Q1 | All Q1 |
+| [Catalog Search Tool](#catalog-search-tool) | N/A | All Q1 | N/A |
+| [Application Program Interfaces (APIs)](#apis) | MER mosaics | All Q1 | Coming soon! |
+| [Python Libraries](#python-libraries) | MER mosaics | All Q1 and HATS | Coming Soon! |
+| [Cloud Access](#cloud-access) | All Q1 | All Q1 and HATS | All Q1 |
+| [Bulk Downloads](#bulk-downloads) | All Q1 | All Q1 and HATS | All Q1 |
+:::
 
 ## Browsable Directories
 The root of the Euclid data directories for Q1 is:
