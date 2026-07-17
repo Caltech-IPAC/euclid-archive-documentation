@@ -19,6 +19,7 @@ project:
     - file: documentation/index.md
     - file: documentation/euclid_q1_data_products.md
     - file: documentation/euclid_q1_data_access.md
+    - file: documentation/glossary.md
 
 site:
   template: book-theme

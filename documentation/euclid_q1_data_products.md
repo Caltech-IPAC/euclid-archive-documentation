@@ -35,18 +35,6 @@ Within each TILE ID subdirectory are instrument subdirectories.
 All tiles have VIS and NISP subdirectories, corresponding to the two instruments on board the Euclid spacecraft.
 Some tiles have additional subdirectories representing external (EXT) ground-based observations.
 All mosaics share the same pixel scale (0.1 arcsec) for all bands.
-The full list of possible Q1 instrument subdirectories is:
-
-**Table 5. Euclid Q1: List of instruments**
-
-| Q1 instrument subdirectory name | Description |
-| -------- | -------- |
-| VIS | mosaics produced from data taken with the VIS instrument on board the Euclid spacecraft|
-| NISP | mosaics produced from data taken with the NISP instrument on board the Euclid spacecraft|
-| DECAM | mosaics produced from data taken with the Dark Energy Camera (DECam) on the Blanco 4-meter telescope at the Cerro Tololo Inter-American Observatory in Chile|
-| MEGACAM | mosaics produced from data taken with the MegaCam instrument on the 3.6 meter Canada France Hawaii Telescope (CFHT) in Hawaii|
-| HSC | mosaics produced from data taken with the Hyper Suprime-Cam instrument on the 8.2 meter Subaru Telescope in Hawaii|
-| GPC | mosaics produced from data taken with the GigaPixel Camera (GPC) on the 1.8 meter PanSTARRS telescope in Hawaii|
 
 Within each instrument subdirectory are the individual MER data products.
 These include:

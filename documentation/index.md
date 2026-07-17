@@ -18,6 +18,7 @@ Euclid public data releases will occur approximately annually from 2025 through 
 
 The Euclid space telescope carries two instruments: the VISible instrument (VIS) and the Near-Infrared Spectrometer and Photometer (NISP).
 The Euclid data set will include data collected with these space-based instruments as well as “external” (EXT) images collected by ground-based telescopes, processed with the same tiling scheme and pixel scale as the Euclid space-based images.
+For the complete list, see [](#instruments).
 
 The first release of Euclid data occurred in March 2025 and is known as Euclid Quick Release 1 (Q1).
 It consists of data in four fields, together covering about 60 square degrees.
@@ -38,22 +39,6 @@ Additional information about the data products (including their organization and
 | Euclid Deep Field Fornax | EDF-F | 04:04:57.84 -48:25:22.8 | 12.1 | see above |
 | Euclid Deep Field South | EDF-S | 03:31:43.6 -28:05:18.6 | 28.1 | see above |
 | Lynds Dark Nebula | LDN1641 | 85.74 -8.39 | | Space-based: 6 Reference Observation Sequences; No external data |
-
-**Table 2. Euclid Pipeline Processing Functions**
-
-| Euclid Processing Function (PF)| Brief Description|
-| --- | --- |
-| LE1 | Produces Level 1 (raw) images from the VIS and NISP instruments   |
-| VIS | Produces calibrated Level 2 images from raw Level 1 VIS images   |
-| NIR | Produces calibrated Level 2 images from raw Level 1 NISP images   |
-| SIR | Produces calibrated Level 2 spectral images from the raw Level 1 NISP spectral data and extracts 1D spectra from the Level 2 spectral images   |
-| MER | Merges all Level 2 information to provide mosaics, catalogs, and photometric redshifts based on photometric and spectroscopic data   |
-| EXT | Provides external imaging and spectroscopic data   |
-| SPE |  Measures spectroscopic redshifts from the Level 2 spectra  |
-| PHZ | Computes photometric redshifts from the multiwavelength imaging data   |
-| SHE | Measures shapes on the VIS imaging data (not included in Q1)   |
-| LE3 | Produces Level 3 data products   |
-| SIM | Produces simulated data (not included in Q1)   |
 
 IRSA serves the Q1 products both on premises at IPAC and on the cloud via Amazon Web Services (AWS).
 The data is provided in layered access to support a variety of use cases and users, as summarized in Table 3.
