@@ -1,30 +1,37 @@
 (data-products)=
-# Data Products in Euclid Quick Release 1
+# Data Products
 
-Euclid data products curated by IRSA are laid out in directories that can be navigated with standard web browsers.
-This is convenient for users to get a quick sense of the types of data products that are available, to quickly download some examples by clicking through the directory tree, and to script bulk downloads using wget or curl.
+[](#table-data-products) gives an overview of the Euclid data products, including the Euclid pipeline level and PF (see [Processing Function (PF)](#processing-functions)), product name, root directory, and a brief description.
+[](#table-filename-fields) describes the fields that are used to construct filenames.
+The subsections that follow provide more information about the data products and how they are organized at IRSA.
+There is one subsection per directory listed in [](#table-data-products).
+Information about how to browse the directories and other ways to access the data is given in [](#data-access).
 
-**Table 4. Euclid Q1 Release: Data Products Overview**
+:::{table} Data products overview
+:label: table-data-products
 
-| Level | Processing Function | Data Product Name | Data Product Description |
-| --- | --- | --- | --- |
-|LE1 | VIS | [DpdVisRawFrame](https://euclid.esac.esa.int/dr/q1/dpdd/le1dpd/dpcards/le1_visrawframe.html) | Raw VIS images |
-|LE1|NIR|[DpdNispRawFrame](https://euclid.esac.esa.int/dr/q1/dpdd/le1dpd/dpcards/le1_nisprawframe.html) | Raw NISP images|
-|LE2|VIS|[DpdVisCalibratedQuadFrame](https://euclid.esac.esa.int/dr/q1/dpdd/visdpd/dpcards/vis_calibratedquadframe.html)|Calibrated VIS exposures, background maps, weight maps, and PSF files|
-|LE2|VIS|[DpdVisCalibratedFrameCatalog](https://euclid.esac.esa.int/dr/q1/dpdd/visdpd/dpcards/vis_calibratedframecatalog.html)|Catalog measured on calibrated VIS images|
-|LE2|SIR|[DpdSirScienceFrame](https://euclid.esac.esa.int/dr/q1/dpdd/sirdpd/dpcards/sir_scienceframe.html)|2D SIR spectra|
-|LE2|SIR|[DpdSirCombinedSpectra](https://euclid.esac.esa.int/dr/q1/dpdd/sirdpd/dpcards/sir_combinedspectra.html)|For each object in the MER final catalog single, this product includes spectra extracted from individual dithers as well as the combined spectra.|
-|LE2|MER|[DpdMerBksMosaic](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_bksmosaic.html)|MER mosaics, including EXT ground-based UGRIZ images|
-|LE2|MER|[DpdMerSegmentationMap](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_segmentationmap.html)|Maps of MER image pixels assigned to detected objects|
-|LE2|MER|[DpdMerFinalCatalog](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_finalcatalog.html)|Main MER catalog containing photometric and morphological information for detected sources|
-|LE2|PHZ|[DpdPhzPfOutputForL3](https://euclid.esac.esa.int/dr/q1/dpdd/phzdpd/dpcards/phz_phzpfoutputforl3.html)|Photometric redshift catalogs|
-|LE2|PHZ|[DpdPhzPfOutputCatalog](https://euclid.esac.esa.int/dr/q1/dpdd/phzdpd/dpcards/phz_phzpfoutputcatalog.html)|Photometric redshift catalogs|
-|LE2|SPE|[DpdSpePfOutputCatalog](https://euclid.esac.esa.int/dr/q1/dpdd/spedpd/dpcards/spe_spepfoutputcatalog.html)|Spectroscopy catalogs|
-|LE3|Visibility Masks|[DpdHealpixBitMaskVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_bitmask.html)|Bitmask maps|
-|LE3|Visibility Masks|[DpdHealpixFootprintMaskVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_footprint.html)|Survey footprint masks for each band |
-|LE3|Visibility Masks|[DpdHealpixCoverageVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_coverage.html)|Coverage masks for each band |
-|LE3|Visibility Masks|[DpdHealpixDepthMapVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_depthmap.html)|MER depth maps|
-|LE3|Visibility Masks|[DpdHealpixInfoMapVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_infomap.html)|Environment and instrument information for each band|
+| Level | PF | Data Product Name | Directory | Data Product Description |
+| --- | --- | --- | --- | --- |
+| 1 | LE1 | DpdVisRawFrame | [RAW](#raw) | Raw VIS images |
+| 1 | LE1 | DpdNispRawFrame | [RAW](#raw) | Raw NISP images |
+| 2 | VIS | DpdVisCalibratedQuadFrame | [VIS](#vis) | Calibrated VIS exposures, background maps, weight maps, and PSF files |
+| 2 | VIS | DpdVisCalibratedFrameCatalog | [Catalogs](#catalogs) | Catalog measured on calibrated VIS images |
+| 2 | NIR | DpdNirCalibratedFrame | [NIR](#nir) | Calibrated NISP images, background models, and PSF files. |
+| 2 | NIR | DpdNirCalibratedFrameCatalog | [Catalogs](#catalogs) | Catalog extracted from NIR Calibrated Frame containing information on pointings and detectors. |
+| 2 | SIR | DpdSirScienceFrame | [SIR](#sir) | 2D SIR spectra |
+| 2 | SIR | DpdSirCombinedSpectra | [SIR](#sir) | For each object in the MER final catalog single, this product includes spectra extracted from individual dithers as well as the combined spectra. |
+| 2 | MER | DpdMerBksMosaic | [MER](#mer) | MER mosaics, including EXT ground-based UGRIZ images |
+| 2 | MER | DpdMerSegmentationMap | [MER_SEG](#mer-seg) | Maps of MER image pixels assigned to detected objects |
+| 2 | MER | DpdMerFinalCatalog | [Catalogs](#catalogs) | Main MER catalog containing photometric and morphological information for detected sources |
+| 2 | PHZ | DpdPhzPfOutputForL3 | [Catalogs](#catalogs) | Photometric redshift catalogs |
+| 2 | PHZ | DpdPhzPfOutputCatalog | [Catalogs](#catalogs) | Photometric redshift catalogs |
+| 2 | SPE | DpdSpePfOutputCatalog | [Catalogs](#catalogs) | Spectroscopy catalogs |
+| 3 | VMPZ-ID | DpdHealpixBitMaskVMPZ | [VMPZ](#vmpz) | Bitmask maps |
+| 3 | VMPZ-ID | DpdHealpixFootprintMaskVMPZ | [VMPZ](#vmpz) | Survey footprint masks for each band |
+| 3 | VMPZ-ID | DpdHealpixCoverageVMPZ | [VMPZ](#vmpz) | Coverage masks for each band |
+| 3 | VMPZ-ID | DpdHealpixDepthMapVMPZ | [VMPZ](#vmpz) | MER depth maps |
+| 3 | VMPZ-ID | DpdHealpixInfoMapVMPZ | [VMPZ](#vmpz) | Environment and instrument information for each band |
+:::
 
 ## MER
 
