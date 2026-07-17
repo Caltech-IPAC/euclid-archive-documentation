@@ -90,7 +90,7 @@ The path syntax is `MER/[tile]/[instrument]/[filename]`, where `[filename]` for 
 ## MER_SEG
 
 The `MER_SEG` directory contains the [DpdMerSegmentationMap](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_segmentationmap.html) data products.
-Each MER segmentation map shows the connected pixels of the detected objects in a {term}`tile <Euclid Tile>`, and is a combination of the associated VIS and NIR segmentation maps.
+Each MER segmentation map shows the connected pixels of the detected objects in a {term}`tile`, and is a combination of the associated VIS and NIR segmentation maps.
 The Object IDs in the MER segmentation maps correspond to the `SEGMENTATION_MAP_ID` column values in the [MER Final Catalog](#catalogs).
 
 This directory is organized by {term}`TILE ID`.
