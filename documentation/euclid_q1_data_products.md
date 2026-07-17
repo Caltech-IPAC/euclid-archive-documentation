@@ -33,6 +33,32 @@ Information about how to browse the directories and other ways to access the dat
 | 3 | VMPZ-ID | DpdHealpixInfoMapVMPZ | [VMPZ](#vmpz) | Environment and instrument information for each band |
 :::
 
+The fields used to construct filenames and their possible values are:
+
+:::{list-table} Filename field descriptions
+:header-rows: 1
+:label: table-filename-fields
+
+* - Field
+  - Possible Values
+* - `tile`
+  - {term}`TILE ID`
+* - `obs`
+  - {term}`Observation ID`
+* - `instrument`
+  - `VIS`, `NISP`, `DECAM`, `MEGACAM`, `HSC`, `GPC` (see [](#instruments))
+* - `band`
+  - `Y`, `H`, `J`
+* - `gwa_pos`
+  - Grism Wheel Assembly position
+* - `sca_id`
+  - Sensor Chip Assembly ID
+* - `dithobs`
+  - [FIXME] need a description
+* - `timestamp`
+  - Year, month, day, and time of the observation (UTC) using the syntax `[YYYYMMDD]T[HHMMSS.SSSSSS]Z`
+:::
+
 ## MER
 
 This directory contains the [DpdMerBksMosaic](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_bksmosaic.html) data products.
