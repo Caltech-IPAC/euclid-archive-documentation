@@ -242,3 +242,8 @@ SPE_PF_OUTPUT_CATALOG
 VIS_CAL_CATALOG
 : The `VIS_CAL_CATALOG` product ([DpdVisCalibratedFrameCatalog](https://euclid.esac.esa.int/dr/q1/dpdd/visdpd/dpcards/vis_calibratedframecatalog.html)) directory is organized by observation ID.
   - `EUC_VIS_SWL-CAT-[obs]-*_[timestamp]*.fits`
+
+(enhanced-catalogs)=
+### Enhanced Contributed Catalogs
+
+[FIXME] add HATS
