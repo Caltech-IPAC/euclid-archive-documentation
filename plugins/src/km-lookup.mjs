@@ -21,27 +21,30 @@ async function read(relativePath) {
   if (/^https?:\/\//.test(SOURCE)) {
     const response = await fetch(new URL(relativePath, SOURCE.replace(/\/?$/, '/')));
     if (!response.ok) throw new Error(`HTTP ${response.status} for ${relativePath}`);
-    return YAML.parse(await response.text());
+    return response.text();
   }
-  return YAML.parse(fs.readFileSync(path.resolve(SOURCE, relativePath), 'utf8'));
+  return fs.readFileSync(path.resolve(SOURCE, relativePath), 'utf8');
 }
 
 // Each file is fetched once per process: the promise is cached (created, not awaited) so that
 // concurrent callers, e.g. MyST transforms for several pages, all await the same download.
+// The raw text is kept too, to find the line an id is on.
 const cache = new Map();
 function readOnce(relativePath) {
-  if (!cache.has(relativePath)) cache.set(relativePath, read(relativePath));
+  if (!cache.has(relativePath)) {
+    cache.set(relativePath, read(relativePath).then(text => ({ text, data: YAML.parse(text) })));
+  }
   return cache.get(relativePath);
 }
 
 /** One mission file, e.g. await load('euclid'). */
-export function load(mission) {
-  return readOnce(`missions/${mission}.yaml`);
+export async function load(mission) {
+  return (await readOnce(`missions/${mission}.yaml`)).data;
 }
 
 /** The shared services from irsa.yaml, keyed by `via` (e.g. 'sia', 'tap', 's3'). */
 export async function services() {
-  return (await readOnce('irsa.yaml')).services;
+  return (await readOnce('irsa.yaml')).data.services;
 }
 
 /** [id, kind, status] of each collection, optionally only one kind, e.g. kind='release'. */
@@ -80,4 +83,51 @@ export function collectionNames(missionData, collectionKey, via, datasetType = n
     .flatMap(d => (d.access ?? [])
       .filter(entry => entry.via === via && entry.name)
       .map(entry => [entry.name, d]));
+}
+
+/**
+ * The collection or dataset with this id (e.g. 'euclid.q1' or 'euclid.q1.mer-catalog'), or null.
+ * No km_lookup.py equivalent yet.
+ */
+export function find(missionData, id) {
+  const [, collectionKey, product] = id.split('.');
+  return product ? dataset(missionData, collectionKey, product) : collection(missionData, collectionKey);
+}
+
+/**
+ * Values of one field of a collection or dataset: the names it's served under if `field` is a
+ * service key it has access entries for (e.g. 'tap'), else the field itself (e.g. 'doi').
+ * [] if it has the service without a name; null if it has no such field. No km_lookup.py
+ * equivalent yet.
+ */
+export function values(entity, field) {
+  const entries = (entity.access ?? []).filter(entry => entry.via === field);
+  if (entries.length) return entries.filter(entry => entry.name).map(entry => entry.name);
+  const value = entity[field];
+  if (value === undefined || value === null || typeof value === 'object') return null;
+  return [String(value)];
+}
+
+/** The fields values() can read for a collection or dataset. No km_lookup.py equivalent yet. */
+export function fieldNames(entity) {
+  const services = (entity.access ?? []).map(entry => entry.via);
+  const scalars = Object.keys(entity).filter(key => entity[key] !== null && typeof entity[key] !== 'object');
+  return [...new Set([...services, ...scalars])];
+}
+
+/**
+ * Where an id is defined in a mission file, as a link a writer can open: a GitHub page at that
+ * line when the map is read from GitHub, else `path:line` in the local checkout.
+ */
+export async function sourceLink(mission, id) {
+  const relativePath = `missions/${mission}.yaml`;
+  const { text } = await readOnce(relativePath);
+  const escaped = id.replace(/[.]/g, '\\.');
+  const index = text.search(new RegExp(`id: ${escaped}(?=[\\s,}])`));
+  const line = index < 0 ? null : text.slice(0, index).split('\n').length;
+  const anchor = line ? `#L${line}` : '';
+  const github = SOURCE.match(/^https:\/\/raw\.githubusercontent\.com\/([^/]+\/[^/]+)\/(.+?)\/?$/);
+  if (github) return `https://github.com/${github[1]}/blob/${github[2]}/${relativePath}${anchor}`;
+  if (/^https?:\/\//.test(SOURCE)) return new URL(relativePath, SOURCE.replace(/\/?$/, '/')).href;
+  return `${path.resolve(SOURCE, relativePath)}${line ? `:${line}` : ''}`;
 }

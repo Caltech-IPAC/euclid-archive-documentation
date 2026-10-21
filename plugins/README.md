@@ -24,17 +24,29 @@ project:
 
 ---
 
-## Plugin: `knowledge-map` directives
+## Plugin: `knowledge-map`
 
-Render facts from the [IRSA knowledge map](https://github.com/jaladh-singhal/irsa-knowledge-map) (collection and table names, how each product can be accessed), so these pages stay in step with what IRSA serves instead of being hand-copied.
+Puts facts from the [IRSA knowledge map](https://github.com/jaladh-singhal/irsa-knowledge-map) (collection and table names, paths, links, DOIs, release dates) into the pages' own prose and tables, so they stay in step with what IRSA serves instead of being hand-copied.
+
+### For writers
+
+| You want | Write |
+| --- | --- |
+| A value in a sentence or table cell | `` {km}`tap euclid.q1.mer-catalog` `` |
+| A list of all of something | `:::{km-list} euclid.q1` |
+| A table of them, optionally with your own columns | `:::{km-table} euclid.q1` |
+
+**See the examples page** for every option, what to take from the map vs. write yourself, and what mistakes look like: run `jupyter-book start` and open <http://localhost:3000/km-examples> (it's hidden from the site's navigation; source: [`km_examples.md`](km_examples.md)).
 
 ### How it works
 
-Directives can't wait for network requests, so each one leaves a placeholder that an async [transform](https://mystmd.org/guide/javascript-plugins#implementing-a-custom-transform) fills in, following the [community plugins](https://github.com/jupyter-book/myst-plugins) such as `github-issue-table`. The map itself is read by `src/km-lookup.mjs`, the JavaScript counterpart of the map's [`km_lookup.py`](https://github.com/jaladh-singhal/irsa-knowledge-map/blob/main/km_lookup.py), with the same function names.
+Directives and roles can't wait for network requests, so each one leaves a placeholder that an async [transform](https://mystmd.org/guide/javascript-plugins#implementing-a-custom-transform) fills in, following the [community plugins](https://github.com/jupyter-book/myst-plugins) such as `github-issue-table`. The map itself is read by `src/km-lookup.mjs`, the JavaScript counterpart of the map's [`km_lookup.py`](https://github.com/jaladh-singhal/irsa-knowledge-map/blob/main/km_lookup.py), with the same function names.
+
+Errors (an unreadable map, or an unknown id, field, service, type or column) show on the page and as ⛔️ build errors, which stop `--strict` builds as in `tox.ini`; they're raised in the transform so that they count. Two exceptions: rows a `km-table` body doesn't cover are only a ⚠️ warning, and errors inside a `{myst:demo}` box are examples, so they aren't logged. `myst.yml`'s `error_rules` make MyST's own unknown-directive and unknown-role messages (e.g. `{km-lst}`) stop the build too.
 
 ### Where the map comes from
 
-Each file (`irsa.yaml`, and each mission's YAML the first time a directive asks for it) is read once per build, from:
+Each file (`irsa.yaml`, and each mission's YAML the first time a page asks for it) is read once per build, from:
 
 | Environment variable | Default | Use |
 | --- | --- | --- |
@@ -46,43 +58,3 @@ To preview the site locally, with live reload of page edits:
 jupyter-book start                                        # map from GitHub main
 KM_SOURCE=/path/to/irsa-knowledge-map jupyter-book start  # try map changes before pushing them
 ```
-
-### Directive: `km-names`
-
-Lists the names a collection's datasets are served under for one service, sorted.
-
-````markdown
-```{km-names} euclid.q1
-:via: tap
-:type: table
-:describe:
-```
-````
-
-- The **argument** is a collection id from the map, e.g. `euclid.q1`.
-- `via` (required) is a service key from the map's `irsa.yaml`, e.g. `sia`, `ssa`, `tap`.
-- `type` (optional) keeps only datasets of that type, e.g. `catalog`, `table`.
-- `describe` (optional) adds each dataset's name after the service name.
-
-### Directive: `km-access`
-
-For each listed product, says how it can be accessed: the services the map lists for it, with the query name for SIA, SSA, TAP and SCS.
-
-````markdown
-```{km-access} euclid.q1
-sir-spectra
-sir-frames
-```
-````
-
-- The **argument** is a collection id, e.g. `euclid.q1`.
-- The **body** lists one product key per line (the last part of a dataset id in the map).
-
-### Error handling
-
-| Situation | Rendered output |
-| --- | --- |
-| Map can't be read (`KM_SOURCE` wrong, network down) | An `{error}` admonition on the page, and a ⛔️ build error |
-| Collection or product not in the map, or no matching entries | Same |
-
-The errors are raised in the transform, so `--strict` builds (as in `tox.ini`) stop on them.

@@ -14,16 +14,27 @@ project:
   error_rules:
     - rule: reference-target-resolves
       severity: error
+    # Typos in directive and role names, e.g. {km-lst}, fail --strict builds too
+    - rule: directive-known
+      severity: error
+    - rule: role-known
+      severity: error
 
   plugins:
     # Built bundle: run `cd plugins && npm install && npm run build` after changes to plugins/src/
     - plugins/dist/knowledge-map.mjs
+    # {myst:demo} shows source next to output in plugins/km_examples.md, rendered at build time
+    # so our knowledge-map plugin runs on it (the built-in {myst} doesn't);
+    # pinned to a commit of https://github.com/jupyter-book/myst-plugins/tree/main/plugins/demo
+    - https://raw.githubusercontent.com/jupyter-book/myst-plugins/95626532ae6609acb4ef7af4fc6968850309c41c/plugins/demo/src/index.mjs
 
   toc:
     - file: documentation/index.md
     - file: documentation/data_products.md
     - file: documentation/data_access.md
     - file: documentation/glossary.md
+    - file: plugins/km_examples.md
+      hidden: true
 
 site:
   template: book-theme

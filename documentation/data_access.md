@@ -79,9 +79,9 @@ https://irsa.ipac.caltech.edu/SIA?
 
 The Euclid Q1 data collections available from this endpoint are:
 
-```{km-names} euclid.q1
+:::{km-list} euclid.q1
 :via: sia
-```
+:::
 
 The list returned by the SIA2 service includes data access URLs and URIs, which can be used to retrieve some or all of the images in the list using `wget` or `curl` (URLs) or `aws s3 cp` (URIs; see [](#cloud-access)).
 
@@ -100,19 +100,19 @@ https://irsa.ipac.caltech.edu/SCS?
 
 The available catalogs are:
 
-```{km-names} euclid.q1
+:::{km-list} euclid.q1
 :via: tap
 :type: catalog
-```
+:::
 
 IRSA also provides additional tables that are not part of the official Euclid data release.
 These provide metadata associations that may be helpful to users.
 
-```{km-names} euclid.q1
+:::{km-list} euclid.q1
 :via: tap
 :type: table
 :describe:
-```
+:::
 
 ### Spectra
 
@@ -121,12 +121,8 @@ The spectral products included in Euclid Q1 include:
 - DpdSirScienceFrame
 - DpdSirCombinedSpectra
 
-The SIR Combined Spectra are multi-object packages of 1D spectra. They can be accessed through:
-
-```{km-access} euclid.q1
-sir-spectra
-sir-frames
-```
+The SIR science frames are 2D images, available from the [browsable directories](#browsable-directories) and [cloud](#cloud-access).
+The SIR Combined Spectra are multi-object packages of 1D spectra, queryable via the VO [Simple Spectral Access (SSA)](https://irsa.ipac.caltech.edu/ibe/ssa.html) protocol as the {km}`ssa euclid.q1.sir-spectra` collection.
 
 (python-libraries)=
 ## Python Packages
