@@ -1,0 +1,14 @@
+{
+  "name": "euclid-docs-myst-plugins",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/knowledge-map.mjs --bundle --platform=node --format=esm --external:yaml --outfile=dist/knowledge-map.mjs"
+  },
+  "dependencies": {
+    "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

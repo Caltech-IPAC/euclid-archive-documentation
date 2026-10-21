@@ -79,7 +79,9 @@ https://irsa.ipac.caltech.edu/SIA?
 
 The Euclid Q1 data collections available from this endpoint are:
 
-- `euclid_DpdMerBksMosaic`
+```{km-names} euclid.q1
+:via: sia
+```
 
 The list returned by the SIA2 service includes data access URLs and URIs, which can be used to retrieve some or all of the images in the list using `wget` or `curl` (URLs) or `aws s3 cp` (URIs; see [](#cloud-access)).
 
@@ -98,36 +100,19 @@ https://irsa.ipac.caltech.edu/SCS?
 
 The available catalogs are:
 
-- `euclid_q1_mer_catalogue`
-- `euclid_q1_mer_cutouts`
-- `euclid_q1_mer_morphology`
-- `euclid_q1_phz_classification`
-- `euclid_q1_phz_galaxy_sed`
-- `euclid_q1_phz_nir_physical_parameters`
-- `euclid_q1_phz_photo_z`
-- `euclid_q1_phz_qso_physical_parameters`
-- `euclid_q1_phz_star_sed`
-- `euclid_q1_phz_star_template`
-- `euclid_q1_spe_lines_atomic_indices`
-- `euclid_q1_spe_lines_continuum_features`
-- `euclid_q1_spe_lines_line_features`
-- `euclid_q1_spe_lines_molecular_indices`
-- `euclid_q1_spectro_model_catalog_spe_lines_catalog`
-- `euclid_q1_spectro_model_catalog_spe_star_models`
-- `euclid_q1_spectro_zcatalog_spe_classification`
-- `euclid_q1_spectro_zcatalog_spe_galaxy_candidates`
-- `euclid_q1_spectro_zcatalog_spe_qso_candidates`
-- `euclid_q1_spectro_zcatalog_spe_quality`
-- `euclid_q1_spectro_zcatalog_spe_star_candidates`
+```{km-names} euclid.q1
+:via: tap
+:type: catalog
+```
 
 IRSA also provides additional tables that are not part of the official Euclid data release.
 These provide metadata associations that may be helpful to users.
 
-- `euclid.tileid_association_q1`: Euclid Q1 TILEID to Observation ID Association Table
-- `euclid.objectid_spectrafile_association_q1`: Euclid Q1 Object ID to Spectral File Association Table
-- `euclid.observation_euclid_q1`: Euclid Q1 CAOM Observation Table
-- `euclid.plane_euclid_q1`: Euclid Q1 CAOM Plane Table
-- `euclid.artifact_euclid_q1`: Euclid Q1 CAOM Artifact Table
+```{km-names} euclid.q1
+:via: tap
+:type: table
+:describe:
+```
 
 ### Spectra
 
@@ -136,8 +121,12 @@ The spectral products included in Euclid Q1 include:
 - DpdSirScienceFrame
 - DpdSirCombinedSpectra
 
-The SIR science frames will eventually be available through SIA2, as they are 2D images.
-The SIR Combined Spectra are multi-object packages of 1D spectra, which will eventually be queryable via the VO Simple Spectral Access (SSA) protocol.
+The SIR Combined Spectra are multi-object packages of 1D spectra. They can be accessed through:
+
+```{km-access} euclid.q1
+sir-spectra
+sir-frames
+```
 
 (python-libraries)=
 ## Python Packages

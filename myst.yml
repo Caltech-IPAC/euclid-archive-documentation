@@ -15,6 +15,10 @@ project:
     - rule: reference-target-resolves
       severity: error
 
+  plugins:
+    # Built bundle: run `cd plugins && npm install && npm run build` after changes to plugins/src/
+    - plugins/dist/knowledge-map.mjs
+
   toc:
     - file: documentation/index.md
     - file: documentation/data_products.md
