@@ -13,8 +13,8 @@ Each data access layer is described in greater detail in the following subsectio
 | [Browsable Directories](#browsable-directories) | All Q1 | All Q1 and HATS | All Q1 |
 | [Euclid Data Explorer](#euclid-data-explorer) | MER mosaics via direct image search, associated NIR and VIS calibrated frames upon download. | All Q1 | All Q1 |
 | [Catalog Search Tool](#catalog-search-tool) | N/A | All Q1 | N/A |
-| [Application Program Interfaces (APIs)](#apis) | MER mosaics | All Q1 | Coming soon! |
-| [Python Libraries](#python-libraries) | MER mosaics | All Q1 and HATS | Coming Soon! |
+| [Application Program Interfaces (APIs)](#apis) | MER mosaics, VIS and NISP calibrated frames | All Q1 | SIR 1D combined spectra (SSA) |
+| [Python Libraries](#python-libraries) | MER mosaics, VIS and NISP calibrated frames | All Q1 and HATS | SIR 1D combined spectra (SSA) |
 | [Cloud Access](#cloud-access) | All Q1 | All Q1 and HATS | All Q1 |
 | [Bulk Downloads](#bulk-downloads) | All Q1 | All Q1 and HATS | All Q1 |
 :::
@@ -27,11 +27,11 @@ This is convenient for users to get a quick sense of the types of data products 
 
 URLs to the root directories are:
 
-- IRSA Q1: https://irsa.ipac.caltech.edu/ibe/data/euclid/q1/
-- IRSA HATS: https://irsa.ipac.caltech.edu/data/download/parquet/euclid/q1/merged_objects/hats/
-- S3: https://nasa-irsa-euclid-q1.s3.us-east-1.amazonaws.com/index.html
+- IRSA Q1: {km}`browse euclid.q1`
+- IRSA HATS: {km}`browse euclid.q1.merged-objects`
+- S3: {km}`s3_browser euclid.q1`
 
-Users can also browse the S3 bucket in Python, as demonstrated in the [Euclid Q1: Cloud Access](https://caltech-ipac.github.io/irsa-tutorials/euclid-cloud-access/) tutorial.
+Users can also browse the S3 bucket in Python, as demonstrated in the {km}`url euclid.tutorials.euclid-cloud-access` tutorial.
 
 The contents and organization relative to the root directory is described in [](#data-products).
 It is the same at IRSA and S3.
@@ -39,7 +39,7 @@ It is the same at IRSA and S3.
 (euclid-data-explorer)=
 ## Euclid Data Explorer
 
-Users who prefer an interactive graphical user interface (GUI) for specifying search constraints, submitting queries, and visualizing the results should consider the [Euclid Data Explorer](https://irsa.ipac.caltech.edu/applications/euclid).
+Users who prefer an interactive graphical user interface (GUI) for specifying search constraints, submitting queries, and visualizing the results should consider the {km}`url euclid.tools.data-explorer`.
 The tool includes its own context-sensitive help, but we summarize the main functionality below.
 
 The “**Images**” search provides access to the multiwavelength MER mosaics.
@@ -58,7 +58,7 @@ The “**Euclid Catalogs**” search allows users to search select Q1 catalogs v
 
 [FIXME] this needs a description.
 
-https://irsa.ipac.caltech.edu/applications/Gator
+{km}`url euclid.tools.gator`
 
 (apis)=
 ## Application Program Interfaces (APIs)
@@ -67,7 +67,7 @@ IRSA provides Virtual Observatory (VO) compliant APIs to access Euclid images, c
 
 ### Images
 
-IRSA provides API access to Euclid images through the VO [Simple Image Access v2 (SIA2)](https://irsa.ipac.caltech.edu/ibe/sia.html) protocol.
+IRSA provides API access to Euclid images through the VO {km}`Simple Image Access v2 (SIA2) <docs irsa.sia>` protocol.
 The SIA2 service can also be [accessed in Python](#python-libraries).
 The service allows users to query for a list of images that satisfy constraints such as position(s) on the sky, band, time, ID, and instrument.
 
@@ -79,13 +79,15 @@ https://irsa.ipac.caltech.edu/SIA?
 
 The Euclid Q1 data collections available from this endpoint are:
 
-- `euclid_DpdMerBksMosaic`
+:::{km-list} euclid.q1
+:via: sia
+:::
 
 The list returned by the SIA2 service includes data access URLs and URIs, which can be used to retrieve some or all of the images in the list using `wget` or `curl` (URLs) or `aws s3 cp` (URIs; see [](#cloud-access)).
 
 ### Catalogs
 
-IRSA provides API access to Euclid catalogs through the VO [Table Access Protocol (TAP)](https://irsa.ipac.caltech.edu/docs/program_interface/TAP.html) and [Simple Cone Search (SCS)](https://irsa.ipac.caltech.edu/docs/vo_scs.html) protocol.
+IRSA provides API access to Euclid catalogs through the VO {km}`Table Access Protocol (TAP) <docs irsa.tap>` and {km}`Simple Cone Search (SCS) <docs irsa.scs>` protocol.
 The TAP and SCS services can also be [accessed in Python](#python-libraries).
 
 IRSA’s TAP and SCS endpoints are:
@@ -98,36 +100,19 @@ https://irsa.ipac.caltech.edu/SCS?
 
 The available catalogs are:
 
-- `euclid_q1_mer_catalogue`
-- `euclid_q1_mer_cutouts`
-- `euclid_q1_mer_morphology`
-- `euclid_q1_phz_classification`
-- `euclid_q1_phz_galaxy_sed`
-- `euclid_q1_phz_nir_physical_parameters`
-- `euclid_q1_phz_photo_z`
-- `euclid_q1_phz_qso_physical_parameters`
-- `euclid_q1_phz_star_sed`
-- `euclid_q1_phz_star_template`
-- `euclid_q1_spe_lines_atomic_indices`
-- `euclid_q1_spe_lines_continuum_features`
-- `euclid_q1_spe_lines_line_features`
-- `euclid_q1_spe_lines_molecular_indices`
-- `euclid_q1_spectro_model_catalog_spe_lines_catalog`
-- `euclid_q1_spectro_model_catalog_spe_star_models`
-- `euclid_q1_spectro_zcatalog_spe_classification`
-- `euclid_q1_spectro_zcatalog_spe_galaxy_candidates`
-- `euclid_q1_spectro_zcatalog_spe_qso_candidates`
-- `euclid_q1_spectro_zcatalog_spe_quality`
-- `euclid_q1_spectro_zcatalog_spe_star_candidates`
+:::{km-list} euclid.q1
+:via: tap
+:type: catalog
+:::
 
 IRSA also provides additional tables that are not part of the official Euclid data release.
 These provide metadata associations that may be helpful to users.
 
-- `euclid.tileid_association_q1`: Euclid Q1 TILEID to Observation ID Association Table
-- `euclid.objectid_spectrafile_association_q1`: Euclid Q1 Object ID to Spectral File Association Table
-- `euclid.observation_euclid_q1`: Euclid Q1 CAOM Observation Table
-- `euclid.plane_euclid_q1`: Euclid Q1 CAOM Plane Table
-- `euclid.artifact_euclid_q1`: Euclid Q1 CAOM Artifact Table
+:::{km-list} euclid.q1
+:via: tap
+:type: table
+:describe:
+:::
 
 ### Spectra
 
@@ -136,14 +121,14 @@ The spectral products included in Euclid Q1 include:
 - DpdSirScienceFrame
 - DpdSirCombinedSpectra
 
-The SIR science frames will eventually be available through SIA2, as they are 2D images.
-The SIR Combined Spectra are multi-object packages of 1D spectra, which will eventually be queryable via the VO Simple Spectral Access (SSA) protocol.
+The SIR science frames are 2D images, available from the [browsable directories](#browsable-directories) and [cloud](#cloud-access).
+The SIR Combined Spectra are multi-object packages of 1D spectra, queryable via the VO {km}`Simple Spectral Access (SSA) <docs irsa.ssa>` protocol as the {km}`ssa euclid.q1.sir-spectra` collection.
 
 (python-libraries)=
 ## Python Packages
 
 For Python access to IRSA’s VO-compliant [API services](#apis), we recommend the following libraries.
-IRSA’s [Python Tutorial Notebooks: Euclid](https://caltech-ipac.github.io/irsa-tutorials/euclid) contain many examples.
+IRSA’s {km}`Python Tutorial Notebooks: Euclid <url euclid.docs.tutorials-index>` contain many examples.
 
 [FIXME] the descriptions below were just copied from pyvo and astroquery docs and should be rewritten to blend with the rest of this page better.
 
@@ -154,9 +139,9 @@ IRSA’s [Python Tutorial Notebooks: Euclid](https://caltech-ipac.github.io/irsa
 For Python access to the [Merged Objects HATS Catalog](#enhanced-catalogs), we recommend:
 
 - [LSDB](https://docs.lsdb.io/en/latest/index.html): LSDB is a bespoke library for HATS catalogs and is especially good for spatial searches and cross matches or users who prefer parallelizing with Dask.
-  See the tutorial [Access HATS Collections Using LSDB: Euclid Q1 and ZTF DR24](https://caltech-ipac.github.io/irsa-tutorials/irsa-hats-with-lsdb/) for examples.
+  See the tutorial {km}`Access HATS Collections Using LSDB: Euclid Q1 and ZTF DR24 <url euclid.tutorials.irsa-hats-with-lsdb>` for examples.
 - [PyArrow](https://arrow.apache.org/docs/python/index.html): PyArrow is a powerful library for Parquet (the HATS file format) datasets and can be used to perform a wide variety of queries efficiently.
-  See the [Merged Objects HATS Catalog tutorial series](https://caltech-ipac.github.io/irsa-tutorials/euclid-q1-hats-intro/) for examples.
+  See the {km}`Merged Objects HATS Catalog tutorial series <url euclid.tutorials.euclid-q1-hats-intro>` for examples.
 
 (cloud-access)=
 ## Cloud Access
@@ -168,7 +153,7 @@ Several access methods are available, including:
 
 - [Browse the bucket](#browsable-directories)
 - Python libraries can be used to browse the bucket and read data without downloading it first.
-  IRSA's [Euclid Q1: Cloud Access](https://caltech-ipac.github.io/irsa-tutorials/euclid-cloud-access/) tutorial gives more in-depth information and examples.
+  IRSA's {km}`url euclid.tutorials.euclid-cloud-access` tutorial gives more in-depth information and examples.
 - [AWS Command Line Interface (CLI)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
   - Example: `aws s3 ls --no-sign-request s3://nasa-irsa-euclid-q1/q1/`
 

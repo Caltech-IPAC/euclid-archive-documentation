@@ -47,6 +47,8 @@ The fields used to construct filenames and their possible values are:
   - {term}`Observation ID`
 * - `instrument`
   - `VIS`, `NISP`, `DECAM`, `MEGACAM`, `HSC`, `GPC` (see [](#instruments))
+* - `filter`
+  - `VIS`, `NIR-Y`, `NIR-J`, `NIR-H`, and EXT bands such as `DES-G`
 * - `band`
   - `Y`, `H`, `J`
 * - `gwa_pos`
@@ -72,17 +74,17 @@ Some tiles have additional subdirectories representing external (EXT) ground-bas
 The path syntax is `MER/[tile]/[instrument]/[filename]`, where `[filename]` for individual products is given below and the other fields are described in [](#table-filename-fields).
 
 - [Background-subtracted mosaic image](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_bksmosaic.html#image-fits-file)
-  - `EUC_MER_BGSUB-MOSAIC-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
+  - `EUC_MER_BGSUB-MOSAIC-[filter]_TILE[tile]-*_[timestamp]_*.fits`
 - [Root Mean Square](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_bksmosaic.html#rms-fits-file) associated with the background-subtracted mosaic
-  - `EUC_MER_MOSAIC-[instrument]-RMS_TILE[tile]-*_[timestamp]_*.fits`
+  - `EUC_MER_MOSAIC-[filter]-RMS_TILE[tile]-*_[timestamp]_*.fits`
 - [Bit flags](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_bksmosaic.html#flag-fits-file) associated with the background-subtracted mosaic
-  - `EUC_MER_MOSAIC-[instrument]-FLAG_TILE[tile]-*_[timestamp]_*.fits`
+  - `EUC_MER_MOSAIC-[filter]-FLAG_TILE[tile]-*_[timestamp]_*.fits`
 - [Background model](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_bksmosaic.html#background-fits-file). Backgrounds are subtracted from the input images prior to coaddition. Once the mosaics are produced, any remaining background is subtracted.  The model used for this secondary background subtraction is provided here.
-  - `EUC_MER_BGMOD-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
+  - `EUC_MER_BGMOD-[filter]_TILE[tile]-*_[timestamp]_*.fits`
 - [Catalog point spread function](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file)
-  - `EUC_MER_CATALOG-PSF-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
+  - `EUC_MER_CATALOG-PSF-[filter]_TILE[tile]-*_[timestamp]_*.fits`
 - [Grid of point spread functions](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file) (PSFs) for sources in the MER Final Catalog
-  - `EUC_MER_GRID-PSF-[VIS or NIR]_TILE[tile]-*_[timestamp]_*.fits`
+  - `EUC_MER_GRID-PSF-[filter]_TILE[tile]-*_[timestamp]_*.fits`
   - [FIXME] there's two PSF files on disk (ie, in this list) but only one PSF file in the euclid docs, so I currently have both files linked to the same euclid url.
     is this wrong or are the euclid docs wrong?
 
@@ -167,15 +169,15 @@ This directory is organized by data product and then {term}`TILE ID`.
 Fields in the paths below are described in [](#table-filename-fields).
 
 - [DpdHealpixBitMaskVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_bitmask.html)
-  - Path syntax: `VMPZ/VMPZ_HEALPIX_BIT_MASK/[tile]/EUC_LE3_VMPZ-ID_HPBITMASK-[tile]_[timestamp].fits`
+  - Path syntax: `VMPZ/VMPZ_HEALPIX_BIT_MASK/[tile]/EUC_LE3_VMPZ-ID_HPBITMASK-[tile]_[timestamp]_*.fits`
 - [DpdHealpixFootprintMaskVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_footprint.html)
-  - Path syntax: `VMPZ/VMPZ_HEALPIX_FOOTPRINT_MASK/[tile]/EUC_LE3_VMPZ-ID_HPFOOTPRINTMASK-[tile]_[timestsamp].fits`
+  - Path syntax: `VMPZ/VMPZ_HEALPIX_FOOTPRINT_MASK/[tile]/EUC_LE3_VMPZ-ID_HPFOOTPRINTMASK-[tile]_[timestamp]_*.fits`
 - [DpdHealpixCoverageVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_coverage.html)
-  - Path syntax: `VMPZ/VMPZ_HEALPIX_COVERAGE_MASK/[tile]/EUC_LE3_VMPZ-ID_HPCOVERAGE-[tile]_[timestamp].fits`
+  - Path syntax: `VMPZ/VMPZ_HEALPIX_COVERAGE_MASK/[tile]/EUC_LE3_VMPZ-ID_HPCOVERAGE-[tile]_[timestamp]_*.fits`
 - [DpdHealpixDepthMapVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_depthmap.html)
-  - Path syntax: `VMPZ/VMPZ_HEALPIX_DEPTH_MAP/[tile]/EUC_LE3_VMPZ-ID_HPDEPTHMAP-[tile]_[timestamp].fits`
+  - Path syntax: `VMPZ/VMPZ_HEALPIX_DEPTH_MAP/[tile]/EUC_LE3_VMPZ-ID_HPDEPTHMAP-[tile]_[timestamp]_*.fits`
 - [DpdHealpixInfoMapVMPZ](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_infomap.html))
-  - Path syntax: `VMPZ/VMPZ_HEALPIX_INFO_MAP/[tile]/EUC_LE3_VMPZ-ID_HPEXPOSURES-[tile]_[timestamp].fits`
+  - Path syntax: `VMPZ/VMPZ_HEALPIX_INFO_MAP/[tile]/EUC_LE3_VMPZ-ID_HP*-[tile]_[timestamp]_*.fits`
 
 (catalogs)=
 ## Catalogs
@@ -191,7 +193,7 @@ MER_FINAL_CATALOG
   - [Main MER catalog](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_finalcatalog.html#main-catalog-fits-file) contains 469 columns, including position, flux, and morphology measurements of detected sources.
     - `EUC_MER_FINAL-CAT_TILE[tile]-*_[timestamp]_*.fits`
   - [Morphology catalog](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_finalcatalog.html#morphology-catalog-fits-file) has 104 columns, including morphology measurements such as concentration, asymmetry, smoothness, Gini, moment, Sersic indices, bulge sizes, clump counts, orientation, Hubble type, and more.
-    - `EUC_MER_FINAL-MORPH_CAT_TILE[tile]-*_[timestamp]_*.fits`
+    - `EUC_MER_FINAL-MORPH-CAT_TILE[tile]-*_[timestamp]_*.fits`
   - [Cutouts catalog](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/dpcards/mer_finalcatalog.html#cutouts-catalog-fits-file) has 25 columns, including the coordinates of the corners of the source cutouts for each object detected in the MER Final Catalog.
     - `EUC_MER_FINAL-CUTOUTS-CAT_TILE[tile]-*_[timestamp]_*.fits`
 
