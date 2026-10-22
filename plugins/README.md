@@ -58,3 +58,7 @@ To preview the site locally, with live reload of page edits:
 jupyter-book start                                        # map from GitHub main
 KM_SOURCE=/path/to/irsa-knowledge-map jupyter-book start  # try map changes before pushing them
 ```
+
+### `llms.txt`
+
+`tox -e buildhtml` also downloads the site's [`llms.txt`](https://llmstxt.org), a summary for AI assistants of where Euclid data lives and how to query it. The knowledge map generates it from `main` and publishes it to its [`generated` branch](https://github.com/jaladh-singhal/irsa-knowledge-map/blob/generated/euclid.md); it doesn't follow `KM_SOURCE`, so unmerged map changes show up there only once merged.
