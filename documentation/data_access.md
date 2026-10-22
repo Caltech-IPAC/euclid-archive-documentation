@@ -13,8 +13,8 @@ Each data access layer is described in greater detail in the following subsectio
 | [Browsable Directories](#browsable-directories) | All Q1 | All Q1 and HATS | All Q1 |
 | [Euclid Data Explorer](#euclid-data-explorer) | MER mosaics via direct image search, associated NIR and VIS calibrated frames upon download. | All Q1 | All Q1 |
 | [Catalog Search Tool](#catalog-search-tool) | N/A | All Q1 | N/A |
-| [Application Program Interfaces (APIs)](#apis) | MER mosaics | All Q1 | Coming soon! |
-| [Python Libraries](#python-libraries) | MER mosaics | All Q1 and HATS | Coming Soon! |
+| [Application Program Interfaces (APIs)](#apis) | MER mosaics, VIS and NISP calibrated frames | All Q1 | SIR 1D combined spectra (SSA) |
+| [Python Libraries](#python-libraries) | MER mosaics, VIS and NISP calibrated frames | All Q1 and HATS | SIR 1D combined spectra (SSA) |
 | [Cloud Access](#cloud-access) | All Q1 | All Q1 and HATS | All Q1 |
 | [Bulk Downloads](#bulk-downloads) | All Q1 | All Q1 and HATS | All Q1 |
 :::
