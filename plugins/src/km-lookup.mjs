@@ -85,13 +85,19 @@ export function collectionNames(missionData, collectionKey, via, datasetType = n
       .map(entry => [entry.name, d]));
 }
 
+// Mission-file sections of entries with an id like a dataset's, e.g. euclid.tutorials.euclid-cloud-access
+export const SECTIONS = ['tutorials', 'tools', 'identifiers', 'docs'];
+
 /**
- * The collection or dataset with this id (e.g. 'euclid.q1' or 'euclid.q1.mer-catalog'), or null.
- * No km_lookup.py equivalent yet.
+ * The part of a mission file an id points to, or null: the mission block ('euclid'), a section
+ * entry ('euclid.tutorials.euclid-cloud-access'), a collection ('euclid.q1') or a dataset
+ * ('euclid.q1.mer-catalog'). No km_lookup.py equivalent yet.
  */
 export function find(missionData, id) {
-  const [, collectionKey, product] = id.split('.');
-  return product ? dataset(missionData, collectionKey, product) : collection(missionData, collectionKey);
+  const [, second, third] = id.split('.');
+  if (!second) return missionData.mission;
+  if (SECTIONS.includes(second)) return (missionData[second] ?? []).find(entry => entry.id === id) ?? null;
+  return third ? dataset(missionData, second, third) : collection(missionData, second);
 }
 
 /**
@@ -116,15 +122,15 @@ export function fieldNames(entity) {
 }
 
 /**
- * Where an id is defined in a mission file, as a link a writer can open: a GitHub page at that
- * line when the map is read from GitHub, else `path:line` in the local checkout.
+ * Where a map file mentions `text` (e.g. 'id: euclid.q1', 'tools:'), as a link a writer can
+ * open: a GitHub page at that line when the map is read from GitHub, else `path:line` in the
+ * local checkout. `relativePath` is e.g. 'missions/euclid.yaml' or 'irsa.yaml'.
  */
-export async function sourceLink(mission, id) {
-  const relativePath = `missions/${mission}.yaml`;
-  const { text } = await readOnce(relativePath);
-  const escaped = id.replace(/[.]/g, '\\.');
-  const index = text.search(new RegExp(`id: ${escaped}(?=[\\s,}])`));
-  const line = index < 0 ? null : text.slice(0, index).split('\n').length;
+export async function sourceLink(relativePath, text = null) {
+  const { text: contents } = await readOnce(relativePath);
+  const escaped = text?.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const index = text ? contents.search(new RegExp(`${escaped}(?=[\\s,}:])`)) : -1;
+  const line = index < 0 ? null : contents.slice(0, index).split('\n').length;
   const anchor = line ? `#L${line}` : '';
   const github = SOURCE.match(/^https:\/\/raw\.githubusercontent\.com\/([^/]+\/[^/]+)\/(.+?)\/?$/);
   if (github) return `https://github.com/${github[1]}/blob/${github[2]}/${relativePath}${anchor}`;

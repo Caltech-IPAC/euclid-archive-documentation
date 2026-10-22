@@ -36,8 +36,8 @@ const cell = (children, header = false) => ({ type: 'tableCell', ...(header && {
 const joined = nodes => nodes.flatMap((node, index) => index ? [text(', '), node] : [node]);
 
 /** A value as an inline node: a link for URLs and DOIs, code for service names, else text. */
-function valueNode(field, value, serviceKeys) {
-  if (/^https?:\/\//.test(value)) return link(value);
+function valueNode(field, value, serviceKeys, linkText) {
+  if (/^https?:\/\//.test(value)) return linkText ? link(value, [text(linkText)]) : link(value);
   if (field === 'doi') return link(`https://doi.org/${value}`, [text(value)]);
   return serviceKeys.has(field) ? code(value) : text(value);
 }
@@ -77,7 +77,9 @@ function closest(word, candidates) {
   const [best] = candidates
     .map(candidate => [candidate, distance(word, candidate)])
     .sort((x, y) => x[1] - y[1]);
-  return best && best[1] <= Math.max(2, word.length / 3) ? best[0] : null;
+  if (best && best[1] <= Math.max(2, word.length / 3)) return best[0];
+  // Else a candidate containing the word, e.g. `cloud-access` -> `euclid-cloud-access`
+  return word ? candidates.find(candidate => candidate.includes(word)) ?? null : null;
 }
 
 const didYouMean = (word, candidates) => {
@@ -85,40 +87,72 @@ const didYouMean = (word, candidates) => {
   return suggestion ? ` Did you mean \`${suggestion}\`?` : '';
 };
 const codeList = items => items.map(item => `\`${item}\``).join(', ');
-const seeInMap = async (mission, id) => `[See \`${id}\` in the map](${await km.sourceLink(mission, id)}).`;
+// Where an id lives in the map: { id, file, anchor }, for links in error messages
+const place = (id, file, anchor) => ({ id, file, anchor });
+const idPlace = (mission, id) => place(id, `missions/${mission}.yaml`, `id: ${id}`);
+const seeInMap = async ({ id, file, anchor }) => `[See \`${id}\` in the map](${await km.sourceLink(file, anchor)}).`;
 
-/** Load a collection or dataset by id: { mission, missionData, entity }, or throw a teaching error. */
+/**
+ * Load what an id points to: { mission, entity, where }, or throw a teaching error. Ids are paths
+ * into the map: 'irsa.<service>', '<mission>', '<mission>.<section>.<name>' for tutorials, tools,
+ * identifiers and docs, '<mission>.<collection>' or '<mission>.<collection>.<product>'.
+ */
 async function resolve(id) {
-  const [mission, collectionKey, product, ...extra] = id.split('.');
+  const [first, second, third, ...extra] = id.split('.');
+
+  if (first === 'irsa') {
+    const services = await km.services();
+    if (!services[second] || third) {
+      const ids = Object.keys(services).map(key => `irsa.${key}`);
+      throw new Error(`No service \`${id}\` in the knowledge map.${didYouMean(`irsa.${second ?? ''}`, ids)} Services: ${codeList(ids)}.`);
+    }
+    return { entity: services[second], where: place(id, 'irsa.yaml', `  ${second}`) };
+  }
+
+  const mission = first;
   let missionData;
   try {
     missionData = await km.load(mission);
   } catch (error) {
     throw new Error(`Could not read mission \`${mission}\` from the knowledge map at ${km.SOURCE}: ${error.message}`);
   }
-  const collection = km.collection(missionData, collectionKey);
+  const file = `missions/${mission}.yaml`;
+  if (!second) return { mission, entity: missionData.mission, where: place(id, file, 'mission:') };
+
+  if (km.SECTIONS.includes(second)) {
+    const ids = (missionData[second] ?? []).map(entry => entry.id);
+    const entity = km.find(missionData, id);
+    if (!entity) {
+      const problem = third ? `No \`${id}\` in the knowledge map.` : `\`${id}\` is a section; add an entry's name, e.g. \`${ids[0]}\`.`;
+      throw new Error(`${problem}${third ? didYouMean(id, ids) : ''} Entries: ${codeList(ids)}. ${await seeInMap(place(`${mission}.${second}`, file, `${second}:`))}`);
+    }
+    return { mission, entity, where: idPlace(mission, id) };
+  }
+
+  const collection = km.collection(missionData, second);
   if (!collection || extra.length) {
     const ids = missionData.collections.map(c => c.id);
-    throw new Error(`No collection \`${mission}.${collectionKey}\` in the knowledge map.${didYouMean(`${mission}.${collectionKey}`, ids)} Collections: ${codeList(ids)}.`);
+    const sections = km.SECTIONS.map(section => `${mission}.${section}`);
+    throw new Error(`No collection \`${mission}.${second}\` in the knowledge map.${didYouMean(`${mission}.${second}`, [...ids, ...sections])} Collections: ${codeList(ids)}; or \`${mission}\` itself, or an entry under ${codeList(sections)}.`);
   }
-  if (!product) return { mission, missionData, entity: collection };
-  const entity = km.dataset(missionData, collectionKey, product);
+  if (!third) return { mission, entity: collection, where: idPlace(mission, collection.id) };
+  const entity = km.dataset(missionData, second, third);
   if (!entity) {
     const products = (collection.datasets ?? []).map(d => d.id.split('.')[2]);
-    throw new Error(`No dataset \`${id}\`.${didYouMean(product, products)} ${await seeInMap(mission, collection.id)}`);
+    throw new Error(`No dataset \`${id}\`.${didYouMean(third, products)} ${await seeInMap(idPlace(mission, collection.id))}`);
   }
-  return { mission, missionData, entity };
+  return { mission, entity, where: idPlace(mission, id) };
 }
 
 /** The values of one field, or throw a teaching error listing the fields it has. */
-async function fieldValues(mission, entity, field) {
+async function fieldValues(entity, field, where) {
   const found = km.values(entity, field);
   const fields = km.fieldNames(entity);
   if (found === null) {
-    throw new Error(`\`${entity.id}\` has no \`${field}\`.${didYouMean(field, fields)} Fields: ${codeList(fields)}. ${await seeInMap(mission, entity.id)}`);
+    throw new Error(`\`${where.id}\` has no \`${field}\`.${didYouMean(field, fields)} Fields: ${codeList(fields)}. ${await seeInMap(where)}`);
   }
   if (!found.length) {
-    throw new Error(`\`${entity.id}\` lists \`${field}\` without a name to show. ${await seeInMap(mission, entity.id)}`);
+    throw new Error(`\`${where.id}\` lists \`${field}\` without a name to show. ${await seeInMap(where)}`);
   }
   return found;
 }
@@ -141,7 +175,7 @@ async function selectDatasets({ collectionId, via, datasetType, products }) {
   const productOf = dataset => dataset.id.split('.')[2];
   for (const product of products ?? []) {
     if (!datasets.some(d => productOf(d) === product)) {
-      throw new Error(`No dataset \`${collectionId}.${product}\`.${didYouMean(product, datasets.map(productOf))} ${await seeInMap(mission, collectionId)}`);
+      throw new Error(`No dataset \`${collectionId}.${product}\`.${didYouMean(product, datasets.map(productOf))} ${await seeInMap(idPlace(mission, collectionId))}`);
     }
   }
   const selected = datasets
@@ -149,7 +183,7 @@ async function selectDatasets({ collectionId, via, datasetType, products }) {
     .filter(d => !via || (d.access ?? []).some(entry => entry.via === via && entry.name))
     .filter(d => !products || products.includes(productOf(d)));
   if (!selected.length) {
-    throw new Error(`No datasets in \`${collectionId}\` match ${codeList([via && `via: ${via}`, datasetType && `type: ${datasetType}`].filter(Boolean))}. ${await seeInMap(mission, collectionId)}`);
+    throw new Error(`No datasets in \`${collectionId}\` match ${codeList([via && `via: ${via}`, datasetType && `type: ${datasetType}`].filter(Boolean))}. ${await seeInMap(idPlace(mission, collectionId))}`);
   }
   return { mission, collection, selected, productOf };
 }
@@ -160,14 +194,18 @@ async function selectDatasets({ collectionId, via, datasetType, products }) {
 // page. `messages` collects warnings to log.
 
 async function renderRole({ request }) {
-  const [field, id, ...extra] = request.trim().split(/\s+/);
+  // `<field> <id>`, or `text <field> <id>` to choose a link's text, as in MyST's {ref} and {doc}
+  const match = request.trim().match(/^(?:(.*?)\s*<([^<>]+)>|([^<>]+))$/s);
+  const [field, id, ...extra] = (match?.[2] ?? match?.[3] ?? '').trim().split(/\s+/);
   if (!id || extra.length) {
-    throw new Error(`Expected \`<field> <id>\`, e.g. \`\`{km}\`tap euclid.q1.mer-catalog\` \`\`, got \`${request}\`.`);
+    throw new Error(`Expected \`<field> <id>\` or \`text <field> <id>\`, e.g. \`\`{km}\`tap euclid.q1.mer-catalog\` \`\`, got \`${request}\`.`);
   }
-  const { mission, entity } = await resolve(id);
+  const { entity, where } = await resolve(id);
   const serviceKeys = new Set(Object.keys(await km.services()));
-  const found = await fieldValues(mission, entity, field);
-  return joined(found.map(value => valueNode(field, value, serviceKeys)));
+  const found = await fieldValues(entity, field, where);
+  // A link's text: the writer's, else an entry's title or name for its own `url`, else the URL
+  const linkText = match[1] || (field === 'url' ? entity.title ?? entity.name : undefined);
+  return joined(found.map(value => valueNode(field, value, serviceKeys, linkText)));
 }
 
 async function renderList({ collectionId, via, datasetType, products, describe }) {
@@ -212,7 +250,7 @@ async function renderTable({ collectionId, via, datasetType, products, columns, 
       const inCollection = (collection.datasets ?? []).some(d => productOf(d) === key);
       throw new Error(inCollection
         ? `Body row \`${key}\` isn't among the datasets this table selects (${codeList([via && `via: ${via}`, datasetType && `type: ${datasetType}`].filter(Boolean))}).`
-        : `Body row \`${key}\`: no dataset \`${collectionId}.${key}\`.${didYouMean(key, selectedKeys)} ${await seeInMap(mission, collectionId)}`);
+        : `Body row \`${key}\`: no dataset \`${collectionId}.${key}\`.${didYouMean(key, selectedKeys)} ${await seeInMap(idPlace(mission, collectionId))}`);
     }
   }
 
