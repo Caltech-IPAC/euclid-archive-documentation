@@ -27,9 +27,9 @@ This is convenient for users to get a quick sense of the types of data products 
 
 URLs to the root directories are:
 
-- IRSA Q1: https://irsa.ipac.caltech.edu/ibe/data/euclid/q1/
+- IRSA Q1: {km}`browse euclid.q1`
 - IRSA HATS: {km}`browse euclid.q1.merged-objects`
-- S3: https://nasa-irsa-euclid-q1.s3.us-east-1.amazonaws.com/index.html
+- S3: {km}`s3_browser euclid.q1`
 
 Users can also browse the S3 bucket in Python, as demonstrated in the {km}`url euclid.tutorials.euclid-cloud-access` tutorial.
 
@@ -58,7 +58,7 @@ The “**Euclid Catalogs**” search allows users to search select Q1 catalogs v
 
 [FIXME] this needs a description.
 
-https://irsa.ipac.caltech.edu/applications/Gator
+{km}`url euclid.tools.gator`
 
 (apis)=
 ## Application Program Interfaces (APIs)
