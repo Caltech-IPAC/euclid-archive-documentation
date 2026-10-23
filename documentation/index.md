@@ -40,9 +40,17 @@ Although the three Euclid Deep Fields are included, the Q1 data in these fields 
 | Lynds Dark Nebula | LDN1641 | 85.74 -8.39 | | Space-based: 6 Reference Observation Sequences; No external data |
 :::
 
+(dr1)=
+## Data Release 1 (DR1)
+
+Euclid Data Release 1 (DR1) occurred in November 2026.
+It consists of data taken during the first year of survey operations, together covering about 1,900 square degrees (about 500 square degrees in the north and 1,400 square degrees in the south).
+DR1 includes the Wide Survey, observed between 14 February 2024 and 21 May 2025, as well as the Deep Survey, calibration observations, and Performance Verification data.
+The [data products](#data-products) are similar to Q1 and include images, catalogs, and spectroscopy.
+
 ## Additional Resources
 
-Below we provide a list of webpages that you may find useful as you access and analyze Euclid Q1 data.
+Below we provide a list of webpages that you may find useful as you access and analyze Euclid Q1 and DR1 data.
 
 - [Euclid Archive at IRSA](https://irsa.ipac.caltech.edu/Missions/euclid.html)
 - [IRSA Helpdesk](https://irsa.ipac.caltech.edu/docs/help_desk.html)
@@ -50,4 +58,5 @@ Below we provide a list of webpages that you may find useful as you access and a
 - [ESA's Euclid webpage](https://www.cosmos.esa.int/web/euclid/home)
 - [Euclid Archive at ESA](https://eas.esac.esa.int/sas)
 - [Euclid Science Team Memo EUCL-EST-ME-8-018](https://www.cosmos.esa.int/documents/10647/12245842/EUCL-EST-ME-8-018_v1_Q1_fields_definition_2024-09-30.pdf)
-- [ESA's Euclid Data Product Description Document](https://euclid.esac.esa.int/dr/q1/dpdd/)
+- [ESA's Euclid Data Product Description Document for Q1](https://euclid.esac.esa.int/dr/q1/dpdd/)
+- [Euclid Data Product Description Document](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/)
