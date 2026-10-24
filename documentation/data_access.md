@@ -2,6 +2,7 @@
 # Data Access
 
 IRSA serves the Q1 data products from both on premises and on the cloud ({term}`AWS S3 <S3>` bucket).
+The DR1 data products are served from the cloud ({term}`AWS S3 <S3>` bucket).
 The data is provided in layered access to support a variety of use cases and users, as summarized in [](#table-data-access-overview).
 Each data access layer is described in greater detail in the following subsections.
 
@@ -10,14 +11,16 @@ Each data access layer is described in greater detail in the following subsectio
 
 | Data Access Mechanism | Images Available | Catalogs Available | Spectra Available |
 | --- | --- | --- | --- |
-| [Browsable Directories](#browsable-directories) | All Q1 | All Q1 and HATS | All Q1 |
+| [Browsable Directories](#browsable-directories) | All Q1 and DR1 | All Q1 and DR1, Q1 HATS | All Q1 and DR1 |
 | [Euclid Data Explorer](#euclid-data-explorer) | MER mosaics via direct image search, associated NIR and VIS calibrated frames upon download. | All Q1 | All Q1 |
 | [Catalog Search Tool](#catalog-search-tool) | N/A | All Q1 | N/A |
 | [Application Program Interfaces (APIs)](#apis) | MER mosaics | All Q1 | Coming soon! |
 | [Python Libraries](#python-libraries) | MER mosaics | All Q1 and HATS | Coming Soon! |
-| [Cloud Access](#cloud-access) | All Q1 | All Q1 and HATS | All Q1 |
-| [Bulk Downloads](#bulk-downloads) | All Q1 | All Q1 and HATS | All Q1 |
+| [Cloud Access](#cloud-access) | All Q1 and DR1 | All Q1 and DR1, Q1 HATS | All Q1 and DR1 |
+| [Bulk Downloads](#bulk-downloads) | All Q1 and DR1 | All Q1 and DR1, Q1 HATS | All Q1 and DR1 |
 :::
+
+[FIXME] add DR1 to the Euclid Data Explorer, Catalog Search Tool, APIs, and Python Libraries rows once DR1 is available from IRSA's public services.
 
 (browsable-directories)=
 ## Browsable Directories
@@ -29,7 +32,8 @@ URLs to the root directories are:
 
 - IRSA Q1: https://irsa.ipac.caltech.edu/ibe/data/euclid/q1/
 - IRSA HATS: https://irsa.ipac.caltech.edu/data/download/parquet/euclid/q1/merged_objects/hats/
-- S3: https://nasa-irsa-euclid-q1.s3.us-east-1.amazonaws.com/index.html
+- S3 Q1: https://nasa-irsa-euclid-q1.s3.us-east-1.amazonaws.com/index.html
+- S3 DR1: https://nasa-irsa-euclid-dr1.s3.us-east-1.amazonaws.com/index.html
 
 Users can also browse the S3 bucket in Python, as demonstrated in the [Euclid Q1: Cloud Access](https://caltech-ipac.github.io/irsa-tutorials/euclid-cloud-access/) tutorial.
 
@@ -81,6 +85,10 @@ The Euclid Q1 data collections available from this endpoint are:
 
 - `euclid_DpdMerBksMosaic`
 
+The Euclid DR1 data collections available from this endpoint are:
+
+- [FIXME] add the DR1 collection names once they are available from the public endpoint
+
 The list returned by the SIA2 service includes data access URLs and URIs, which can be used to retrieve some or all of the images in the list using `wget` or `curl` (URLs) or `aws s3 cp` (URIs; see [](#cloud-access)).
 
 ### Catalogs
@@ -120,6 +128,10 @@ The available catalogs are:
 - `euclid_q1_spectro_zcatalog_spe_quality`
 - `euclid_q1_spectro_zcatalog_spe_star_candidates`
 
+The available DR1 catalogs are:
+
+- [FIXME] add the DR1 catalog table names once they are finalized and available from the public endpoints
+
 IRSA also provides additional tables that are not part of the official Euclid data release.
 These provide metadata associations that may be helpful to users.
 
@@ -128,6 +140,7 @@ These provide metadata associations that may be helpful to users.
 - `euclid.observation_euclid_q1`: Euclid Q1 CAOM Observation Table
 - `euclid.plane_euclid_q1`: Euclid Q1 CAOM Plane Table
 - `euclid.artifact_euclid_q1`: Euclid Q1 CAOM Artifact Table
+- [FIXME] add the DR1 association and CAOM tables once they are available from the public endpoints
 
 ### Spectra
 
@@ -138,6 +151,7 @@ The spectral products included in Euclid Q1 include:
 
 The SIR science frames will eventually be available through SIA2, as they are 2D images.
 The SIR Combined Spectra are multi-object packages of 1D spectra, which will eventually be queryable via the VO Simple Spectral Access (SSA) protocol.
+[FIXME] describe how to access the DR1 spectra once they are available from the public endpoints.
 
 (python-libraries)=
 ## Python Packages
@@ -171,6 +185,7 @@ Several access methods are available, including:
   IRSA's [Euclid Q1: Cloud Access](https://caltech-ipac.github.io/irsa-tutorials/euclid-cloud-access/) tutorial gives more in-depth information and examples.
 - [AWS Command Line Interface (CLI)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
   - Example: `aws s3 ls --no-sign-request s3://nasa-irsa-euclid-q1/q1/`
+  - Example: `aws s3 ls --no-sign-request s3://nasa-irsa-euclid-dr1/dr1/`
 
 The data are provided in the AWS S3 standard storage class, which is their general purpose storage for frequently accessed data.
 
@@ -183,6 +198,7 @@ Note that the data can be [read from S3](#cloud-access) without downloading it f
 
 We recommend users download full directories or a large number of files from S3 to avoid interfering with IRSA's data services (which rely on the on-premises copy of the data).
 Download scripts for both `wget` and the [AWS Command Line Interface (CLI)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) are provided in the bucket.
+[FIXME] DR1 download scripts are not in the bucket yet; update this once they are added.
 The AWS CLI will be faster.
 An example command that downloads all Q1 SIR data is:
 
@@ -191,7 +207,7 @@ An example command that downloads all Q1 SIR data is:
 aws s3 cp --recursive --no-sign-request "s3://nasa-irsa-euclid-q1/q1/SIR/" .
 ```
 
-The entire Q1 data set is approximately 35 TB.
+The entire Q1 data set is approximately 35 TB, and the entire DR1 data set is approximately 1.6 PB.
 Users interested in downloading significant fractions should plan for long download times and substantial local storage.
 Download times will depend on many factors.
 One factor is the networking capability available to the user, which can vary substantially.
@@ -218,4 +234,15 @@ IRSA is in the process of measuring download speeds over time, and will update t
 | Q1 catalogs                  | 573 GB  |          6 hours          |         1 hour          |
 | contributed                  | 355 GB  |          4 hours          |         1 hour          |
 | Total Q1 and contributed     | 35.2 TB |          15 days          |         3 days          |
+| DR1 MER                      | 745 TB  |         303 days          |         76 days         |
+| DR1 MER_SEG                  | 34.9 TB |          14 days          |         4 days          |
+| DR1 NIR                      | 121 TB  |          49 days          |         12 days         |
+| DR1 RAW                      | 107 TB  |          43 days          |         11 days         |
+| DR1 SIR_COMBINED_SPECTRA     | 42.3 TB |          17 days          |         4 days          |
+| DR1 SIR_SCIENCE_FRAME        | 19.3 TB |          8 days           |         2 days          |
+| DR1 VIS                      | 38.8 TB |          16 days          |         4 days          |
+| DR1 VIS_QUAD                 | 467 TB  |         190 days          |         48 days         |
+| DR1 VMPZ_*                   | 248 GB  |          2 hours          |       36 minutes        |
+| DR1 catalogs                 | 40.0 TB |          16 days          |         4 days          |
+| Total DR1                    | 1.6 PB  |         1.8 years         |        164 days         |
 :::
