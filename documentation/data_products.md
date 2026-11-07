@@ -15,7 +15,9 @@ The directory layout described here is that of DR1; where the Q1 layout differs,
 | --- | --- | --- | --- | --- |
 | 1 | LE1 | DpdVisRawFrame | [RAW](#raw) | Raw VIS images |
 | 1 | LE1 | DpdNispRawFrame | [RAW](#raw) | Raw NISP images |
+[FIXME] dr1 has both VIS and VIS_QUAD. what's the difference? q1 only has VIS.
 | 2 | VIS | DpdVisCalibratedQuadFrame | [VIS_QUAD](#vis-quad) | Calibrated VIS exposures, background maps, weight maps, and PSF files |
+| 2 | VIS | DpdVisCalibratedQuadFrame | [VIS](#vis) | Calibrated VIS exposures, background maps, weight maps, and point spread function (PSF) files |
 | 2 | VIS | DpdVisCalibratedFrameCatalog | [Catalogs](#catalogs) | Catalog measured on calibrated VIS images |
 | 2 | VIS | DpdVisStackedFrame | [VIS](#vis) | Stacked VIS images, weight maps, and PSF files |
 | 2 | VIS | DpdVisStackedFrameCatalog | [Catalogs](#catalogs) | Catalog measured on stacked VIS images |
@@ -62,7 +64,7 @@ The fields used to construct filenames and their possible values are:
 * - `sca_id`
   - Sensor Chip Assembly ID
 * - `dithobs`
-  - [FIXME] need a description
+  - Dither number
 * - `timestamp`
   - Year, month, day, and time of the observation (UTC) using the syntax `[YYYYMMDD]T[HHMMSS.SSSSSS]Z`
 :::
@@ -87,9 +89,10 @@ The path syntax is `MER/[tile]/[instrument]/[filename]`, where `[filename]` for 
   - `EUC_MER_MOSAIC-[instrument]-FLAG_TILE[tile]-*_[timestamp]_*.fits`
 - [Background model](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/merdpd/dpcards/mer_bksmosaic.html#background-fits-file). Backgrounds are subtracted from the input images prior to coaddition. Once the mosaics are produced, any remaining background is subtracted.  The model used for this secondary background subtraction is provided here.
   - `EUC_MER_BGMOD-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
-- [Catalog point spread function](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file)
+- [Catalog PSFs](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file) evaluated at the positions of sources in the MER Final Catalog
   - `EUC_MER_CATALOG-PSF-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
-- [Grid of point spread functions](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file) (PSFs) for sources in the MER Final Catalog
+- [Grid of PSFs](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file) evaluated at fixed positions in the image on a regular grid with 12" spacing.
+  Only produced for VIS and NISP bands.
   - `EUC_MER_GRID-PSF-[VIS or NIR]_TILE[tile]-*_[timestamp]_*.fits`
   - [FIXME] there's two PSF files on disk (ie, in this list) but only one PSF file in the euclid docs, so I currently have both files linked to the same euclid url.
     is this wrong or are the euclid docs wrong?

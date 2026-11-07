@@ -21,6 +21,14 @@ The Euclid space telescope carries two instruments: the VISible instrument (VIS)
 The Euclid data set will include data collected with these space-based instruments as well as “external” (EXT) images collected by ground-based telescopes, processed with the same tiling scheme and pixel scale as the Euclid space-based images.
 For the complete list, see [](#instruments).
 
+(dr1)=
+## Data Release 1 (DR1)
+
+Euclid Data Release 1 (DR1) occurred in November 2026.
+It consists of data taken during the first year of survey operations, together covering about 1,900 square degrees (about 500 square degrees in the north and 1,400 square degrees in the south).
+DR1 includes the Wide Survey, observed between 14 February 2024 and 21 May 2025, as well as the Deep Survey, calibration observations, and Performance Verification data.
+The [data products](#data-products) are similar to Q1 and include images, catalogs, and spectroscopy.
+
 (q1)=
 ## Quick Release 1 (Q1)
 
@@ -40,13 +48,9 @@ Although the three Euclid Deep Fields are included, the Q1 data in these fields 
 | Lynds Dark Nebula | LDN1641 | 85.74 -8.39 | | Space-based: 6 Reference Observation Sequences; No external data |
 :::
 
-(dr1)=
-## Data Release 1 (DR1)
+## Quick Release 2 (Q2) and Early Release Observations
 
-Euclid Data Release 1 (DR1) occurred in November 2026.
-It consists of data taken during the first year of survey operations, together covering about 1,900 square degrees (about 500 square degrees in the north and 1,400 square degrees in the south).
-DR1 includes the Wide Survey, observed between 14 February 2024 and 21 May 2025, as well as the Deep Survey, calibration observations, and Performance Verification data.
-The [data products](#data-products) are similar to Q1 and include images, catalogs, and spectroscopy.
+[FIXME] add short blurb describing both and linking back to irsa webpages, plus a note that those are not described in this doc.
 
 ## Additional Resources
 
@@ -54,9 +58,16 @@ Below we provide a list of webpages that you may find useful as you access and a
 
 - [Euclid Archive at IRSA](https://irsa.ipac.caltech.edu/Missions/euclid.html)
 - [IRSA Helpdesk](https://irsa.ipac.caltech.edu/docs/help_desk.html)
-- [Euclid NASA Science Center (ENSCI)](https://euclid.caltech.edu)
+- [ENSCI: Euclid NASA Science Center](https://euclid.caltech.edu/)
+
+### ESA Euclid DR1 Resources
+
+- [DR1 Explanatory Supplement](https://euclid.esac.esa.int/dr/dr1/expsup/)
+- [DR1 Data Product Definition Document (DPDD)](https://euclid.esac.esa.int/dr/dr1/dpdd/)
+- [Euclid Science Team Memo: Content of DR1](https://www.cosmos.esa.int/documents/10647/12245842/DR1-memo_260922.pdf/3d879dc6-d5e0-9125-54a7-f68d1b4971d8?t=1790090418174)
+- [List of Data Products in the Euclid Science Archive](https://www.cosmos.esa.int/documents/10647/19912696/EUCL-ESAC-RP-8-017+-+List+of+supported+data+products-v42-20260730_080821.pdf/78a3e6c0-49fd-ffab-5327-05c7ba7931a7?t=1790090299001)
 - [ESA's Euclid webpage](https://www.cosmos.esa.int/web/euclid/home)
 - [Euclid Archive at ESA](https://eas.esac.esa.int/sas)
 - [Euclid Science Team Memo EUCL-EST-ME-8-018](https://www.cosmos.esa.int/documents/10647/12245842/EUCL-EST-ME-8-018_v1_Q1_fields_definition_2024-09-30.pdf)
-- [ESA's Euclid Data Product Description Document for Q1](https://euclid.esac.esa.int/dr/q1/dpdd/)
 - [Euclid Data Product Description Document](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/)
+- [ESA's Euclid Data Product Description Document for Q1](https://euclid.esac.esa.int/dr/q1/dpdd/)

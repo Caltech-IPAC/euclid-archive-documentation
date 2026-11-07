@@ -60,9 +60,8 @@ The “**Euclid Catalogs**” search allows users to search select Q1 catalogs v
 (catalog-search-tool)=
 ## Catalog Search Tool
 
-[FIXME] this needs a description.
-
-https://irsa.ipac.caltech.edu/applications/Gator
+IRSA’s [Catalog Search Tool](https://irsa.ipac.caltech.edu/applications/Gator) enables users to search hundreds of astronomical catalogs by position, object name, or other catalog properties.
+Search results can be explored through interactive tables, plots, and image overlays, or accessed programmatically through an API for use in scripts and automated workflows.
 
 (apis)=
 ## Application Program Interfaces (APIs)
@@ -213,8 +212,6 @@ Download times will depend on many factors.
 One factor is the networking capability available to the user, which can vary substantially.
 [](#table-download-times) shows computed download times given representative download speeds, neglecting all other factors.
 These times are meant to provide users with a sense of scale, and do not represent actual measured download times, which may also depend on the activities of other users and on whether the on-premises or cloud copies are being accessed.
-IRSA is in the process of measuring download speeds over time, and will update the nominal estimates as measurements are collected.
-[FIXME] can we remove that last sentence?
 
 :::{table} Download time estimates
 :label: table-download-times
