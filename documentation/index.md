@@ -3,60 +3,68 @@
 
 ## Document Purpose and Scope
 
-The purpose of this document is to facilitate science with Euclid data by providing users with an overview of the Euclid data that are available at the NASA/IPAC Infrared Science Archive (IRSA) at Caltech, as well as instructions for accessing and downloading it.
-We also provide tips for exploring the data and getting help with any questions you may have.
-This User Guide is expected to evolve as IRSA adds functionality to its Euclid exploration tools.
+The purpose of this document is to help users work with Euclid data available at the NASA/IPAC Infrared Science Archive ([IRSA](https://irsa.ipac.caltech.edu)) at Caltech.
+It provides an overview of the available data products, guidance on discovering and accessing the data, information about using [Fornax](https://docs.fornax.sciencecloud.nasa.gov/quick-start/) for cloud-based analysis, and instructions for [getting help](https://irsa.ipac.caltech.edu/docs/help_desk.html).
 
 ## Euclid Overview
 
-Euclid launched in July 2023 as a European Space Agency (ESA) mission with contributions by the National Aeronautics and Space Administration (NASA).
-The primary science goals of Euclid are to better understand the composition and evolution of the dark Universe.
-The Euclid mission will provide space-based imaging and spectroscopy as well as supporting ground-based imaging to achieve these goals.
-These data will be archived in multiple global repositories, including IRSA, where they will support transformational work in many areas of astrophysics.
-
-During its nominal 6-year mission, the Euclid space telescope will conduct (1) a Wide Survey resulting in imaging and spectroscopy over about 14,000 square degrees; and 2) a Deep Survey covering about 50 square degrees.
-Euclid public data releases will occur approximately annually from 2025 through 2031.
+Euclid is a European Space Agency (ESA) mission, launched in July 2023, with contributions from the National Aeronautics and Space Administration (NASA).
+Its primary science goals are to investigate dark matter, dark energy, and the evolution of cosmic structure.
 
 The Euclid space telescope carries two instruments: the VISible instrument (VIS) and the Near-Infrared Spectrometer and Photometer (NISP).
-The Euclid data set will include data collected with these space-based instruments as well as “external” (EXT) images collected by ground-based telescopes, processed with the same tiling scheme and pixel scale as the Euclid space-based images.
-For the complete list, see [](#instruments).
+Euclid data products include space-based imaging and spectroscopy from these instruments, as well as supporting ground-based imaging known as external (EXT) data.
+For the complete list of instruments contributing to Euclid data products, see [](#instruments).
 
-(dr1)=
-## Data Release 1 (DR1)
+(surveys)=
+## Euclid Surveys
 
-Euclid Data Release 1 (DR1) occurred in November 2026.
-It consists of data taken during the first year of survey operations, together covering about 1,900 square degrees (about 500 square degrees in the north and 1,400 square degrees in the south).
-DR1 includes the Wide Survey, observed between 14 February 2024 and 21 May 2025, as well as the Deep Survey, calibration observations, and Performance Verification data.
-The [data products](#data-products) are similar to Q1 and include images, catalogs, and spectroscopy.
+Euclid’s primary observing program consists of two surveys: the Wide Survey and the Deep Survey.
 
-(q1)=
-## Quick Release 1 (Q1)
+The Euclid Wide Survey is designed to cover approximately 14,000 square degrees of the extragalactic sky over the mission’s six-year duration.
+It provides imaging and spectroscopy across a large fraction of the sky to support studies of dark energy, dark matter, and galaxy evolution.
 
-The first release of Euclid data occurred in March 2025 and is known as Euclid Quick Release 1 (Q1).
-It consists of data in four fields ([](#table-fields-overview)), together covering about 60 square degrees.
-The [data products](#data-products) include images, catalogs, and spectroscopy.
-Although the three Euclid Deep Fields are included, the Q1 data in these fields is at the depth planned for the Wide Field Survey.
+The Euclid Deep Survey covers approximately 50 square degrees across three fields, which are observed repeatedly throughout the mission to achieve greater depth than the Wide Survey.
 
-:::{table} Euclid Q1 Release: Fields Overview
+:::{table} Euclid Deep Fields
 :label: table-fields-overview
-
-| Field | Acronym | Field Center (RA Dec) | Q1 coverage (sq deg) | Q1 Data Products |
-| --- | --- | --- | --- | --- |
-| Euclid Deep Field North | EDF-N | 17:58:55.9 +66:01:03.7 | 22.9 | Space-based imaging, spectra, catalogs at single-visit depth; External images matching space-based single-visit depth |
-| Euclid Deep Field Fornax | EDF-F | 04:04:57.84 -48:25:22.8 | 12.1 | see above |
-| Euclid Deep Field South | EDF-S | 03:31:43.6 -28:05:18.6 | 28.1 | see above |
-| Lynds Dark Nebula | LDN1641 | 85.74 -8.39 | | Space-based: 6 Reference Observation Sequences; No external data |
+| Field | Acronym | Field Center (RA, Dec) |
+| --- | --- | --- |
+| Euclid Deep Field North | EDF-N | 17:58:55.9 +66:01:03.7 |
+| Euclid Deep Field Fornax | EDF-F | 04:04:57.84 -48:25:22.8 |
+| Euclid Deep Field South | EDF-S | 03:31:43.6 -28:05:18.6 |
 :::
 
-## Quick Release 2 (Q2) and Early Release Observations
+In addition to carrying out the Wide and Deep surveys, Euclid conducts calibration observations, Performance Verification observations, and other specialized observing programs.
+Data from these observations may also be included in public releases.
 
-[FIXME] add short blurb describing both and linking back to irsa webpages, plus a note that those are not described in this doc.
+(dr1)=
+## Euclid Data Release 1 (DR1)
+
+The first stage of DR1, released in November 2026, includes approximately 1.8 PB of images, catalogs, and spectra from the first year of survey operations.
+The release covers approximately 1,900 square degrees of the Euclid Wide Survey, as well as observations of the Euclid Deep Fields, calibration fields, and Performance Verification data.
+
+Additional DR1 data products for galaxy clustering and weak lensing studies are expected in mid-2027.
+
+## Other Euclid Data Releases
+
+IRSA also provides access to three earlier Euclid data releases:
+
+- **Quick Release 1 (Q1)**, released in March 2025, contains images, catalogs, and spectra covering approximately 60 square degrees across the three Euclid Deep Fields and the Lynds Dark Nebula 1641 field.
+The observations of the Deep Fields are at approximately the depth planned for the Wide Survey.
+
+- **Quick Release 2 (Q2)**, released in June 2026, contains VIS images and stellar photometry and astrometry catalogs from the Euclid Galactic Bulge Survey.
+Q2 focuses on a specialized observing program rather than the Wide and Deep Surveys covered by DR1.
+
+- **Early Release Observations (ERO)**, released in May 2024, include observations of selected astronomical targets intended to demonstrate Euclid's scientific capabilities.
 
 ## Additional Resources
 
-Below we provide a list of webpages that you may find useful as you access and analyze Euclid Q1 and DR1 data.
+The following resources provide additional information about Euclid data products, documentation, and data access.
+
+### IPAC/IRSA Euclid Resources
 
 - [Euclid Archive at IRSA](https://irsa.ipac.caltech.edu/Missions/euclid.html)
+- [Python Tutorials for Euclid Data Access at IRSA](https://caltech-ipac.github.io/irsa-tutorials/euclid/)
 - [IRSA Helpdesk](https://irsa.ipac.caltech.edu/docs/help_desk.html)
 - [ENSCI: Euclid NASA Science Center](https://euclid.caltech.edu/)
 
@@ -68,6 +76,3 @@ Below we provide a list of webpages that you may find useful as you access and a
 - [List of Data Products in the Euclid Science Archive](https://www.cosmos.esa.int/documents/10647/19912696/EUCL-ESAC-RP-8-017+-+List+of+supported+data+products-v42-20260730_080821.pdf/78a3e6c0-49fd-ffab-5327-05c7ba7931a7?t=1790090299001)
 - [ESA's Euclid webpage](https://www.cosmos.esa.int/web/euclid/home)
 - [Euclid Archive at ESA](https://eas.esac.esa.int/sas)
-- [Euclid Science Team Memo EUCL-EST-ME-8-018](https://www.cosmos.esa.int/documents/10647/12245842/EUCL-EST-ME-8-018_v1_Q1_fields_definition_2024-09-30.pdf)
-- [Euclid Data Product Description Document](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/)
-- [ESA's Euclid Data Product Description Document for Q1](https://euclid.esac.esa.int/dr/q1/dpdd/)

@@ -1,12 +1,27 @@
 (data-products)=
-# Data Products
+# Euclid Data Products
 
-[](#table-data-products) gives an overview of the Euclid data products, including the Euclid pipeline level and PF (see [Processing Function (PF)](#processing-functions)), product name, root directory, and a brief description.
-[](#table-filename-fields) describes the fields that are used to construct filenames.
-The subsections that follow provide more information about the data products and how they are organized at IRSA.
-There is one subsection per directory listed in [](#table-data-products).
-Information about how to browse the directories and other ways to access the data is given in [](#data-access).
-The directory layout described here is that of DR1; where the Q1 layout differs, this is noted in the relevant subsection.
+This page describes the Euclid data products available at IRSA, including their contents, directory organization, and filename conventions.
+
+[](#table-data-products) summarizes the available products by Processing Level and Processing Function (PF).
+The Processing Level indicates the stage of data processing, from raw observations (Level 1) to calibrated and derived science products (Level 2) and higher-level science products (Level 3).
+A Processing Function is a component of the Euclid data processing system responsible for producing specific data products.
+[](#table-processing-functions) describes the Processing Functions used in the table.
+
+[](#table-filename-fields) describes the fields used in filenames.
+The following sections describe each product directory in detail.
+The directory organization shown is for DR1; differences for Q1 are noted where applicable.
+
+Euclid DR1 data products are stored in the cloud and are accessible via HTTPS or Amazon S3.
+The directory paths and filename patterns on this page are relative to the following locations:
+
+- **HTTPS:** `https://nasa-irsa-euclid-dr1.s3.amazonaws.com/dr1/`
+- **S3:** `s3://nasa-irsa-euclid-dr1/dr1/`
+
+Both access methods use the same directory structure.
+You can also [browse the DR1 directories](https://nasa-irsa-euclid-dr1.s3.us-east-1.amazonaws.com/index.html#dr1/).
+
+See [](#data-access) for additional ways to discover and access Euclid data.
 
 :::{table} Data products overview
 :label: table-data-products
@@ -15,32 +30,45 @@ The directory layout described here is that of DR1; where the Q1 layout differs,
 | --- | --- | --- | --- | --- |
 | 1 | LE1 | DpdVisRawFrame | [RAW](#raw) | Raw VIS images |
 | 1 | LE1 | DpdNispRawFrame | [RAW](#raw) | Raw NISP images |
-[FIXME] dr1 has both VIS and VIS_QUAD. what's the difference? q1 only has VIS.
 | 2 | VIS | DpdVisCalibratedQuadFrame | [VIS_QUAD](#vis-quad) | Calibrated VIS exposures, background maps, weight maps, and PSF files |
-| 2 | VIS | DpdVisCalibratedQuadFrame | [VIS](#vis) | Calibrated VIS exposures, background maps, weight maps, and point spread function (PSF) files |
-| 2 | VIS | DpdVisCalibratedFrameCatalog | [Catalogs](#catalogs) | Catalog measured on calibrated VIS images |
+| 2 | VIS | DpdVisCalibratedFrameCatalog | [Catalogs](#catalogs) | Source catalog extracted from calibrated VIS exposures |
 | 2 | VIS | DpdVisStackedFrame | [VIS](#vis) | Stacked VIS images, weight maps, and PSF files |
-| 2 | VIS | DpdVisStackedFrameCatalog | [Catalogs](#catalogs) | Catalog measured on stacked VIS images |
-| 2 | NIR | DpdNirCalibratedFrame | [NIR](#nir) | Calibrated NISP images, background models, and PSF files. |
-| 2 | NIR | DpdNirCalibratedFrameCatalog | [Catalogs](#catalogs) | Catalog extracted from NIR Calibrated Frame containing information on pointings and detectors. |
+| 2 | VIS | DpdVisStackedFrameCatalog | [Catalogs](#catalogs) | Source catalog extracted from stacked VIS images |
+| 2 | NIR | DpdNirCalibratedFrame | [NIR](#nir) | Calibrated NISP images, background models, and PSF files |
+| 2 | NIR | DpdNirCalibratedFrameCatalog | [Catalogs](#catalogs) | Source catalog extracted from calibrated NISP images |
 | 2 | NIR | DpdNirStackedFrame | [NIR](#nir) | Stacked NISP images and PSF files |
-| 2 | NIR | DpdNirStackedFrameCatalog | [Catalogs](#catalogs) | Catalog extracted from NIR Stacked Frames |
-| 2 | SIR | DpdSirScienceFrame | [SIR_SCIENCE_FRAME](#sir) | 2D SIR spectra |
-| 2 | SIR | DpdSirCombinedSpectra | [SIR_COMBINED_SPECTRA](#sir) | For each object in the MER final catalog single, this product includes spectra extracted from individual dithers as well as the combined spectra. |
-| 2 | MER | DpdMerBksMosaic | [MER](#mer) | MER mosaics, including EXT ground-based UGRIZ images |
+| 2 | NIR | DpdNirStackedFrameCatalog | [Catalogs](#catalogs) | Source catalog extracted from stacked NISP images |
+| 2 | SIR | DpdSirScienceFrame | [SIR_SCIENCE_FRAME](#sir) | 2D slitless spectroscopic images from NISP |
+| 2 | SIR | DpdSirCombinedSpectra | [SIR_COMBINED_SPECTRA](#sir) | Extracted 1D spectra from individual dithers and combined spectra for selected sources in the MER final catalog |
+| 2 | MER | DpdMerBksMosaic | [MER](#mer) | VIS, NISP, and external ground-based image mosaics |
 | 2 | MER | DpdMerSegmentationMap | [MER_SEG](#mer-seg) | Maps of MER image pixels assigned to detected objects |
 | 2 | MER | DpdMerFinalCatalog | [Catalogs](#catalogs) | Main MER catalog containing photometric and morphological information for detected sources |
-| 2 | PHZ | DpdPhzPfOutputForL3 | [Catalogs](#catalogs) | Photometric redshift catalogs |
-| 2 | PHZ | DpdPhzPfOutputCatalog | [Catalogs](#catalogs) | Photometric redshift catalogs |
-| 2 | PHZ | DpdPhzDeepOutputCatalog | [Catalogs](#catalogs) | Photometric redshift catalogs for Deep tiles |
-| 2 | SPE | DpdSpePfOutputCatalog | [Catalogs](#catalogs) | Spectroscopy catalogs |
+| 2 | PHZ | DpdPhzPfOutputForL3 | [Catalogs](#catalogs) | Source classification and physical parameter catalogs |
+| 2 | PHZ | DpdPhzPfOutputCatalog | [Catalogs](#catalogs) | Photometric redshift and spectral energy distribution catalogs |
+| 2 | PHZ | DpdPhzDeepOutputCatalog | [Catalogs](#catalogs) | Photometric redshift, classification, and physical parameter catalogs for Deep Survey tiles |
+| 2 | SPE | DpdSpePfOutputCatalog | [Catalogs](#catalogs) | Spectroscopic redshift, classification, spectral line, and model catalogs |
 | 3 | VMPZ-ID | DpdHealpixBitMaskVMPZ | [VMPZ](#vmpz) | Bitmask maps |
 | 3 | VMPZ-ID | DpdHealpixFootprintMaskVMPZ | [VMPZ](#vmpz) | Survey footprint masks for each band |
 | 3 | VMPZ-ID | DpdHealpixCoverageVMPZ | [VMPZ](#vmpz) | Coverage masks for each band |
 | 3 | VMPZ-ID | DpdHealpixDepthMapVMPZ | [VMPZ](#vmpz) | MER depth maps |
 | 3 | VMPZ-ID | DpdHealpixInfoMapVMPZ | [VMPZ](#vmpz) | Environment and instrument information for each band |
 | 3 | VMPZ-ID | DpdHealpixEffectiveCoverageVMPZ | [VMPZ](#vmpz) | Effective coverage masks |
-| | | MOC | [MOC](#moc) | Multi-Order Coverage maps of the DR1 Wide and Deep surveys |
+:::
+
+:::{table} Euclid Processing Functions
+:label: table-processing-functions
+
+| PF | Description |
+| --- | --- |
+| LE1 | Produces Level 1 raw VIS and NISP images from spacecraft telemetry |
+| VIS | Produces calibrated VIS images and source catalogs |
+| NIR | Produces calibrated NISP near-infrared images and source catalogs |
+| SIR | Produces calibrated NISP spectroscopic images and extracts 1D spectra |
+| MER | Combines imaging data from multiple bands to produce mosaics and source catalogs |
+| PHZ | Computes photometric redshifts, source classifications, and physical parameters |
+| SPE | Computes spectroscopic redshifts, source classifications, and spectral measurements |
+| VMPZ-ID | Produces survey masks, coverage maps, and related information maps |
+
 :::
 
 The fields used to construct filenames and their possible values are:
@@ -64,7 +92,7 @@ The fields used to construct filenames and their possible values are:
 * - `sca_id`
   - Sensor Chip Assembly ID
 * - `dithobs`
-  - Dither number
+  - [FIXME] need a description
 * - `timestamp`
   - Year, month, day, and time of the observation (UTC) using the syntax `[YYYYMMDD]T[HHMMSS.SSSSSS]Z`
 :::
@@ -89,10 +117,9 @@ The path syntax is `MER/[tile]/[instrument]/[filename]`, where `[filename]` for 
   - `EUC_MER_MOSAIC-[instrument]-FLAG_TILE[tile]-*_[timestamp]_*.fits`
 - [Background model](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/merdpd/dpcards/mer_bksmosaic.html#background-fits-file). Backgrounds are subtracted from the input images prior to coaddition. Once the mosaics are produced, any remaining background is subtracted.  The model used for this secondary background subtraction is provided here.
   - `EUC_MER_BGMOD-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
-- [Catalog PSFs](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file) evaluated at the positions of sources in the MER Final Catalog
+- [Catalog point spread function](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file)
   - `EUC_MER_CATALOG-PSF-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
-- [Grid of PSFs](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file) evaluated at fixed positions in the image on a regular grid with 12" spacing.
-  Only produced for VIS and NISP bands.
+- [Grid of point spread functions](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file) (PSFs) for sources in the MER Final Catalog
   - `EUC_MER_GRID-PSF-[VIS or NIR]_TILE[tile]-*_[timestamp]_*.fits`
   - [FIXME] there's two PSF files on disk (ie, in this list) but only one PSF file in the euclid docs, so I currently have both files linked to the same euclid url.
     is this wrong or are the euclid docs wrong?
@@ -116,15 +143,6 @@ This directory is organized by {term}`TILE ID`.
 The path syntax is `MER_SEG/[tile]/EUC_MER_FINAL-SEGMAP_TILE[tile]-*_[timestamp]_*.fits`, where `[tile]` is described in [](#table-filename-fields).
 
 The individual segmentation maps are about 2.7 GB.
-
-(moc)=
-## MOC
-
-The `MOC` directory contains Multi-Order Coverage maps (MOCs) of the DR1 Wide and Deep surveys, each in FITS and binary format.
-
-The path syntax is `MOC/euclid_dr1_[deep or wide].moc.moc.[fits or bin]`.
-
-In Q1, the `MOC` directory contains `euclid_q1.moc.[fits or bin]` and `euclid_planned_coverage.moc.[fits or bin]`.
 
 (nir)=
 ## NIR
@@ -248,8 +266,7 @@ In Q1, these directories are subdirectories of a single `VMPZ` directory (for ex
 (catalogs)=
 ## Catalogs
 
-The `catalogs` directory contains Euclid catalogs from the MER, PHZ, SPE, NIR, and VIS [PFs](#processing-functions).
-The data are packaged as FITS tables.
+The `catalogs` directory contains Euclid catalogs from the MER, PHZ, SPE, NIR, and VIS [PFs](#table-processing-functions).
 
 This directory is organized by data product and then either {term}`TILE ID` or {term}`observation ID`.
 The path syntax is `catalogs/[product]/[tile or obs]/[filename]`, where `[product]` and `[filename]` are given below and the other fields are described in [](#table-filename-fields).
@@ -339,7 +356,106 @@ VIS_STA_CATALOG
 : The `VIS_STA_CATALOG` product ([DpdVisStackedFrameCatalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dm10/visdpd/dpcards/vis_stackedframecatalog.html)) directory is organized by observation ID. It is not provided in Q1.
   - `EUC_VIS_SWL-CAT-000-*_[timestamp]*.fits`
 
-(enhanced-catalogs)=
-### Enhanced Contributed Catalogs
+(irsa-data-products)=
+## IRSA-Generated Data Products
 
-[FIXME] add HATS
+In addition to distributing official Euclid data products, IRSA creates additional products to facilitate data discovery and analysis.
+
+These include Multi-Order Coverage maps (MOCs), which describe the spatial coverage of Euclid data releases, and HATS catalogs, which provide partitioned, analysis-ready representations of Euclid catalogs.
+
+(moc)=
+### MOC
+
+Multi-Order Coverage maps (MOCs) describe the spatial coverage of astronomical datasets using a hierarchical representation of the sky.
+They can be used to visualize survey footprints, determine whether a sky position falls within a survey, and identify overlapping coverage between datasets.
+
+The `MOC` directory contains MOCs describing the spatial coverage of the DR1 Wide and Deep tiles, the four MER catalog subsets (`wide_survey`, `wide_mode`, `deep_survey`, and `deep_mode`), and the planned Euclid survey coverage.
+Each MOC is available in FITS and binary format.
+For DR1, the path syntax is `MOC/[name].moc.moc.[fits or bin]`, where `[name]` is the MOC name without the `.moc` suffix.
+In Q1, the `MOC` directory contains `euclid_q1.moc.[fits or bin]` and `euclid_planned_coverage.moc.[fits or bin]`.
+
+#### Visualizing MOCs in Firefly
+
+The [Euclid Data Explorer](https://irsacloud.ipac.caltech.edu/applications/euclid/) has the Euclid MOCs pre-loaded for visualization.
+
+You can also load MOCs into the [cloud version of Firefly](https://irsacloud.ipac.caltech.edu/firefly/) or the [downloadable version of Firefly](https://github.com/Caltech-IPAC/firefly/blob/dev/README.md).
+Select the **Upload** tab and enter the URL of the desired MOC in FITS format.
+Firefly automatically recognizes the MOC and displays its spatial coverage.
+
+MOCs can also be loaded into Firefly from Python using the `firefly_client` package.
+The `FireflyClient.show_data()` method accepts a URL (e.g., `https://nasa-irsa-euclid-dr1.s3.amazonaws.com/dr1/MOC/euclid_dr1_deep.moc.moc.fits`) or local path to a MOC FITS file.
+See the [Firefly Python API documentation](https://caltech-ipac.github.io/firefly_client/api/firefly_client.FireflyClient.html) for examples and instructions.
+
+The `.bin` files provide a compact binary representation of the same coverage but are not needed for Firefly visualization.
+
+(hats)=
+### HATS Catalogs
+
+IRSA provides Euclid catalogs in the Hierarchical Adaptive Tiling Scheme (HATS) format in the cloud.
+HATS catalogs use spatially partitioned Parquet files to support efficient analysis of large datasets.
+See the [IRSA Cloud Data Access page](https://irsa.ipac.caltech.edu/cloud_access/) for the cloud locations of the catalogs.
+
+For Q1, IRSA created a merged objects catalog by joining information from the MER, PHZ, and SPE catalogs using the MER Object ID.
+
+For DR1, IRSA is making HATS catalogs available incrementally.
+The table below lists the DR1 HATS catalogs currently available.
+
+:::{table} Euclid DR1 HATS catalogs
+:label: table-dr1-hats-catalogs
+
+| Catalog | Rows |
+| --- | ---: |
+| `euclid_dr1_mer_catalogue_deep_survey` | 51,820,952 |
+| `euclid_dr1_mer_catalogue_deep_survey_photometry` | 26,008,743 |
+| `euclid_dr1_mer_cutouts_deep_survey` | 51,820,952 |
+| `euclid_dr1_mer_cutouts_wide_survey` | 888,152,165 |
+| `euclid_dr1_mer_morphology_deep_survey` | 51,820,952 |
+| `euclid_dr1_mer_morphology_wide_survey` | 888,152,165 |
+| `euclid_dr1_phz_classification_deep_survey` | 51,550,740 |
+| `euclid_dr1_phz_classification_wide` | 847,313,811 |
+| `euclid_dr1_phz_galaxy_sed_wide` | 846,826,349 |
+| `euclid_dr1_phz_nir_physical_parameters_deep_survey` | 6,415,078 |
+| `euclid_dr1_phz_nir_physical_parameters_wide` | 187,662,926 |
+| `euclid_dr1_phz_photo_z_deep_survey` | 51,550,740 |
+| `euclid_dr1_phz_physical_parameters_deep_survey` | 51,550,740 |
+| `euclid_dr1_phz_physical_parameters_wide` | 847,313,811 |
+| `euclid_dr1_phz_qso_physical_parameters_deep_survey` | 6,154,637 |
+| `euclid_dr1_phz_qso_physical_parameters_wide` | 116,564,738 |
+| `euclid_dr1_phz_star_sed_wide` | 12,275,216 |
+| `euclid_dr1_phz_star_template_deep_survey` | 7,275,888 |
+| `euclid_dr1_phz_star_template_wide` | 189,466,498 |
+| `euclid_dr1_spectro_line_features_spe_atomic_indices_deep` | 402,756,480 |
+| `euclid_dr1_spectro_line_features_spe_atomic_indices_wide` | 3,329,048,376 |
+| `euclid_dr1_spectro_line_features_spe_atomic_indices_wide_survey` | 3,033,760,428 |
+| `euclid_dr1_spectro_line_features_spe_continuum_features_deep` | 22,375,360 |
+| `euclid_dr1_spectro_line_features_spe_continuum_features_wide` | 184,947,132 |
+| `euclid_dr1_spectro_line_features_spe_continuum_features_wide_survey` | 168,542,246 |
+| `euclid_dr1_spectro_line_features_spe_line_features_deep` | 943,908,942 |
+| `euclid_dr1_spectro_line_features_spe_line_features_wide_survey` | 9,524,030,381 |
+| `euclid_dr1_spectro_line_features_spe_molecular_indices_deep` | 67,126,080 |
+| `euclid_dr1_spectro_line_features_spe_molecular_indices_wide` | 554,841,396 |
+| `euclid_dr1_spectro_line_features_spe_molecular_indices_wide_survey` | 505,626,738 |
+| `euclid_dr1_spectro_model_spe_galaxy_models_deep` | 36,936,097 |
+| `euclid_dr1_spectro_model_spe_galaxy_models_wide` | 848,103,802 |
+| `euclid_dr1_spectro_model_spe_galaxy_models_wide_survey` | 800,701,396 |
+| `euclid_dr1_spectro_model_spe_qso_models_deep` | 36,082,862 |
+| `euclid_dr1_spectro_model_spe_qso_models_wide` | 778,784,939 |
+| `euclid_dr1_spectro_model_spe_qso_models_wide_survey` | 735,094,834 |
+| `euclid_dr1_spectro_model_spe_star_models_deep` | 13,629,798 |
+| `euclid_dr1_spectro_model_spe_star_models_wide` | 293,768,741 |
+| `euclid_dr1_spectro_model_spe_star_models_wide_survey` | 277,559,167 |
+| `euclid_dr1_spectro_z_spe_classification_deep` | 7,456,278 |
+| `euclid_dr1_spectro_z_spe_classification_wide` | 171,046,741 |
+| `euclid_dr1_spectro_z_spe_classification_wide_survey` | 161,471,115 |
+| `euclid_dr1_spectro_z_spe_galaxy_candidates_deep` | 36,910,593 |
+| `euclid_dr1_spectro_z_spe_galaxy_candidates_wide` | 848,016,459 |
+| `euclid_dr1_spectro_z_spe_galaxy_candidates_wide_survey` | 800,614,053 |
+| `euclid_dr1_spectro_z_spe_qso_candidates_deep` | 36,063,712 |
+| `euclid_dr1_spectro_z_spe_qso_candidates_wide` | 778,703,735 |
+| `euclid_dr1_spectro_z_spe_qso_candidates_wide_survey` | 735,013,630 |
+| `euclid_dr1_spectro_z_spe_quality_deep` | 51,930,919 |
+| `euclid_dr1_spectro_z_spe_quality_wide` | 933,172,778 |
+| `euclid_dr1_spectro_z_spe_quality_wide_survey` | 875,837,267 |
+| `euclid_dr1_spectro_z_spe_star_candidates_deep` | 13,622,726 |
+| `euclid_dr1_spectro_z_spe_star_candidates_wide` | 293,737,969 |
+| `euclid_dr1_spectro_z_spe_star_candidates_wide_survey` | 277,528,395 |
