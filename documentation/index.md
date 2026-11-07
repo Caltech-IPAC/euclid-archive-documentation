@@ -45,6 +45,7 @@ The release covers approximately 1,900 square degrees of the Euclid Wide Survey,
 
 Additional DR1 data products for galaxy clustering and weak lensing studies are expected in mid-2027.
 
+(other-data-releases)=
 ## Other Euclid Data Releases
 
 IRSA also provides access to three earlier Euclid data releases:

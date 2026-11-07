@@ -45,44 +45,44 @@ GigaPixel Camera (GPC)
 ## Euclid Processing Functions (PF)
 
 Euclid pipeline Processing Functions (PF) that process and produce Euclid data products.
-[System overview](https://euclid.esac.esa.int/dr/q1/dpdd/system.html) includes a diagram.
+[System overview](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/system.html) includes a diagram.
 
 :::{glossary}
 LE1
-: [LE1](https://euclid.esac.esa.int/dr/q1/dpdd/le1dpd/le1intro.html) produces Level 1 (raw) images from the VIS and NISP instruments
+: [LE1](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le1dpd/le1intro.html) produces Level 1 (raw) images from the VIS and NISP instruments
 
 SIM
-: [SIM](https://euclid.esac.esa.int/dr/q1/dpdd/simdpd/simintro.html) produces simulated data
+: [SIM](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/simdpd/simintro.html) produces simulated data
 
 VIS
-: [VIS](https://euclid.esac.esa.int/dr/q1/dpdd/visdpd/visintro.html) produces calibrated Level 2 images from raw Level 1 VIS images
+: [VIS](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/visdpd/visintro.html) produces calibrated Level 2 images from raw Level 1 VIS images
 
 NIR
-: [NIR](https://euclid.esac.esa.int/dr/q1/dpdd/nirdpd/nirintro.html) produces calibrated Level 2 images from raw Level 1 NISP images
+: [NIR](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/nirdpd/nirintro.html) produces calibrated Level 2 images from raw Level 1 NISP images
 
 SIR
-: [SIR](https://euclid.esac.esa.int/dr/q1/dpdd/sirdpd/sirintro.html) produces calibrated Level 2 spectral images from the raw Level 1 NISP spectral data and extracts 1D spectra from the Level 2 spectral images
+: [SIR](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/sirdpd/sirintro.html) produces calibrated Level 2 spectral images from the raw Level 1 NISP spectral data and extracts 1D spectra from the Level 2 spectral images
 
 MER
-: [MER](https://euclid.esac.esa.int/dr/q1/dpdd/merdpd/merintro.html) merges all Level 2 information to provide mosaics, catalogs, and photometric redshifts based on photometric and spectroscopic data
+: [MER](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/merintro.html) merges all Level 2 information to provide mosaics, catalogs, and photometric redshifts based on photometric and spectroscopic data
 
 EXT
-: [EXT](https://euclid.esac.esa.int/dr/q1/dpdd/extdpd/extintro.html) produces data products from external imaging and spectroscopic data
+: [EXT](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/extdpd/extintro.html) produces data products from external imaging and spectroscopic data
 
 PHZ
-: [PHZ](https://euclid.esac.esa.int/dr/q1/dpdd/phzdpd/phzintro.html) computes photometric redshifts from the multiwavelength imaging data
+: [PHZ](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/phzintro.html) computes photometric redshifts from the multiwavelength imaging data
 
 SPE
-: [SPE](https://euclid.esac.esa.int/dr/q1/dpdd/spedpd/speintro.html) measures spectroscopic redshifts from the Level 2 spectra
+: [SPE](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/spedpd/speintro.html) measures spectroscopic redshifts from the Level 2 spectra
 
 SHE
-: [SHE](https://euclid.esac.esa.int/dr/q1/dpdd/shedpd/sheintro.html) measures shapes on the VIS imaging data
+: [SHE](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/shedpd/sheintro.html) measures shapes on the VIS imaging data
 
 LE3
-: [LE3](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/le3intro.html) produces Level 3 data products
+: [LE3](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le3dpd/le3intro.html) produces Level 3 data products
 
 VMPZ-ID
-: [VMPZ-ID](https://euclid.esac.esa.int/dr/q1/dpdd/le3dpd/id/vmpz-id/vmpz-idintro.html) produces masks for the photometric data
+: [VMPZ-ID](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le3dpd/id/vmpz-id/vmpz-idintro.html) produces masks for the photometric data
 :::
 
 ## Acronyms
@@ -131,7 +131,7 @@ IVOA
 : International Virtual Observatory Alliance
 
 LDN
-: Lynds Dark Nebula (see [](#table-fields-overview))
+: Lynds Dark Nebula
 
 MEF
 : Multi-Extension FITS
@@ -149,7 +149,7 @@ PSF
 : Point Spread Function
 
 Q1
-: [Quick Release 1](#q1)
+: [Quick Release 1](#other-data-releases)
 
 S3
 : {term}`AWS` S3 is an object storage service. S3 cloud storage buckets are roughly similar to file servers.

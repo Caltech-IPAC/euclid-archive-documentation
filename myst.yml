@@ -7,7 +7,7 @@ project:
   # description:
   # keywords: []
   authors: [Caltech/IPAC-IRSA]
-  github: https://github.com/Caltech-IPAC/euclidarchive-documentation
+  github: https://github.com/Caltech-IPAC/euclid-archive-documentation
   license:
     id: BSD-3-Clause
     url: https://github.com/Caltech-IPAC/euclid-archive-documentation/blob/main/LICENSE
