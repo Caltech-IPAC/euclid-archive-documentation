@@ -1,7 +1,8 @@
 (data-access)=
-# Data Access
+# Euclid Data Access
 
-IRSA serves the Q1 data products from both on premises and on the cloud ({term}`AWS S3 <S3>` bucket).
+IRSA serves the DR1 data products from the cloud ({term}`AWS S3 <S3>` bucket).
+The Q1 data products are served from both on premises and the cloud.
 The data is provided in layered access to support a variety of use cases and users, as summarized in [](#table-data-access-overview).
 Each data access layer is described in greater detail in the following subsections.
 
@@ -10,13 +11,13 @@ Each data access layer is described in greater detail in the following subsectio
 
 | Data Access Mechanism | Images Available | Catalogs Available | Spectra Available |
 | --- | --- | --- | --- |
-| [Browsable Directories](#browsable-directories) | All Q1 | All Q1 and HATS | All Q1 |
-| [Euclid Data Explorer](#euclid-data-explorer) | MER mosaics via direct image search, associated NIR and VIS calibrated frames upon download. | All Q1 | All Q1 |
-| [Catalog Search Tool](#catalog-search-tool) | N/A | All Q1 | N/A |
-| [Application Program Interfaces (APIs)](#apis) | MER mosaics | All Q1 | Coming soon! |
-| [Python Libraries](#python-libraries) | MER mosaics | All Q1 and HATS | Coming Soon! |
-| [Cloud Access](#cloud-access) | All Q1 | All Q1 and HATS | All Q1 |
-| [Bulk Downloads](#bulk-downloads) | All Q1 | All Q1 and HATS | All Q1 |
+| [Browsable Directories](#browsable-directories) | DR1 and Q1 | DR1 and Q1 | DR1 and Q1 |
+| [Euclid Data Explorer](#euclid-data-explorer) | MER mosaics via direct image search, associated NIR and VIS calibrated frames upon download. | Q1 | Q1 |
+| [Catalog Search Tool](#catalog-search-tool) | N/A | Q1 | N/A |
+| [Application Program Interfaces (APIs)](#apis) | DR1 and Q1 MER mosaics, NISP and VIS frames | Select DR1, Q1 | Q1 combined spectra |
+| [Python Libraries](#python-libraries) | DR1 and Q1 MER mosaics, NISP and VIS frames | Select DR1, Q1 | Q1 combined spectra |
+| [Cloud Access](#cloud-access) | DR1 and Q1 | DR1 and Q1 | DR1 and Q1 |
+| [Bulk Downloads](#bulk-downloads) | DR1 and Q1 | DR1 and Q1 | DR1 and Q1 |
 :::
 
 (browsable-directories)=
@@ -27,11 +28,11 @@ This is convenient for users to get a quick sense of the types of data products 
 
 URLs to the root directories are:
 
-- IRSA Q1: https://irsa.ipac.caltech.edu/ibe/data/euclid/q1/
-- IRSA HATS: https://irsa.ipac.caltech.edu/data/download/parquet/euclid/q1/merged_objects/hats/
-- S3: https://nasa-irsa-euclid-q1.s3.us-east-1.amazonaws.com/index.html
+- DR1 at S3: https://nasa-irsa-euclid-dr1.s3.us-east-1.amazonaws.com/index.html
+- Q1 at S3: https://nasa-irsa-euclid-q1.s3.us-east-1.amazonaws.com/index.html
+- Q1 at IRSA: https://irsa.ipac.caltech.edu/ibe/data/euclid/q1/
 
-Users can also browse the S3 bucket in Python, as demonstrated in the [Euclid Q1: Cloud Access](https://caltech-ipac.github.io/irsa-tutorials/euclid-cloud-access/) tutorial.
+Users can also browse the S3 bucket in Python, as demonstrated in the [Euclid Cloud Access](https://caltech-ipac.github.io/irsa-tutorials/euclid-cloud-access/) tutorial.
 
 The contents and organization relative to the root directory is described in [](#data-products).
 It is the same at IRSA and S3.
@@ -56,9 +57,8 @@ The “**Euclid Catalogs**” search allows users to search select Q1 catalogs v
 (catalog-search-tool)=
 ## Catalog Search Tool
 
-[FIXME] this needs a description.
-
-https://irsa.ipac.caltech.edu/applications/Gator
+IRSA’s [Catalog Search Tool](https://irsa.ipac.caltech.edu/applications/Gator) enables users to search hundreds of astronomical catalogs by position, object name, or other catalog properties.
+Search results can be explored through interactive tables, plots, and image overlays, or accessed programmatically through an API for use in scripts and automated workflows.
 
 (apis)=
 ## Application Program Interfaces (APIs)
@@ -77,9 +77,18 @@ IRSA’s SIA2 endpoint is:
 https://irsa.ipac.caltech.edu/SIA?
 ```
 
+The Euclid DR1 data collections available from this endpoint are:
+
+- `euclid_dr1_wide_DpdMerBksMosaic`
+- `euclid_dr1_deep_DpdMerBksMosaic`
+- `euclid_dr1_DpdNirStackedFrame`
+- `euclid_dr1_DpdVisStackedFrame`
+
 The Euclid Q1 data collections available from this endpoint are:
 
 - `euclid_DpdMerBksMosaic`
+- `euclid_DpdNirCalibratedFrame`
+- `euclid_DpdVisCalibratedQuadFrame`
 
 The list returned by the SIA2 service includes data access URLs and URIs, which can be used to retrieve some or all of the images in the list using `wget` or `curl` (URLs) or `aws s3 cp` (URIs; see [](#cloud-access)).
 
@@ -96,7 +105,28 @@ https://irsa.ipac.caltech.edu/TAP/async?
 https://irsa.ipac.caltech.edu/SCS?
 ```
 
-The available catalogs are:
+The available DR1 catalogs are:
+
+- `euclid_dr1_mer_catalogue_wide_survey`
+- `euclid_dr1_mer_catalogue_wide_mode`
+- `euclid_dr1_mer_catalogue_deep_survey`
+- `euclid_dr1_mer_catalogue_deep_survey_photometry`
+- `euclid_dr1_mer_catalogue_deep_mode`
+- `euclid_dr1_mer_catalogue_deep_mode_photometry`
+- `euclid_dr1_phz_classification_wide`
+- `euclid_dr1_phz_classification_deep_survey`
+- `euclid_dr1_phz_photo_z_wide`
+- `euclid_dr1_phz_photo_z_deep_survey`
+- `euclid_dr1_spectro_line_features_spe_line_features_wide_survey`
+- `euclid_dr1_spectro_line_features_spe_line_features_deep`
+- `euclid_dr1_spectro_z_spe_classification_wide_survey`
+- `euclid_dr1_spectro_z_spe_classification_deep`
+- `euclid_dr1_spectro_z_spe_galaxy_candidates_wide_survey`
+- `euclid_dr1_spectro_z_spe_galaxy_candidates_deep`
+- `euclid_dr1_spectro_z_spe_quality_wide_survey`
+- `euclid_dr1_spectro_z_spe_quality_deep`
+
+The available Q1 catalogs are:
 
 - `euclid_q1_mer_catalogue`
 - `euclid_q1_mer_cutouts`
@@ -123,6 +153,11 @@ The available catalogs are:
 IRSA also provides additional tables that are not part of the official Euclid data release.
 These provide metadata associations that may be helpful to users.
 
+- `euclid.euclid_dr1_objectid_tileid`: Euclid DR1 Object ID to Tile ID Association Table
+- `euclid.objectid_spectrafile_association_dr1`: Euclid DR1 Object ID to Spectral File Association Table
+- `euclid.observation_euclid_dr1`: Euclid DR1 CAOM Observation Table
+- `euclid.plane_euclid_dr1`: Euclid DR1 CAOM Plane Table
+- `euclid.artifact_euclid_dr1`: Euclid DR1 CAOM Artifact Table
 - `euclid.tileid_association_q1`: Euclid Q1 TILEID to Observation ID Association Table
 - `euclid.objectid_spectrafile_association_q1`: Euclid Q1 Object ID to Spectral File Association Table
 - `euclid.observation_euclid_q1`: Euclid Q1 CAOM Observation Table
@@ -131,27 +166,39 @@ These provide metadata associations that may be helpful to users.
 
 ### Spectra
 
-The spectral products included in Euclid Q1 include:
+The spectral products included in Euclid DR1 and Q1 are:
 
 - DpdSirScienceFrame
 - DpdSirCombinedSpectra
 
 The SIR science frames will eventually be available through SIA2, as they are 2D images.
-The SIR Combined Spectra are multi-object packages of 1D spectra, which will eventually be queryable via the VO Simple Spectral Access (SSA) protocol.
+The SIR Combined Spectra are multi-object packages of 1D spectra.
+The Q1 combined spectra can be queried with the VO Simple Spectral Access (SSA) protocol, using the collection `euclid_DpdSirCombinedSpectra`.
+The SSA service can also be [accessed in Python](#python-libraries).
+
+IRSA’s SSA endpoint is:
+
+```
+https://irsa.ipac.caltech.edu/SSA?
+```
+
+The DR1 spectra are not available through SSA at this time.
+They can be accessed from the [browsable directories](#browsable-directories), the [cloud](#cloud-access), by [bulk download](#bulk-downloads), or as [](#hats).
+The `euclid.objectid_spectrafile_association_dr1` table (listed under Catalogs above) associates DR1 Object IDs with spectral files.
 
 (python-libraries)=
 ## Python Packages
 
-For Python access to IRSA’s VO-compliant [API services](#apis), we recommend the following libraries.
-IRSA’s [Python Tutorial Notebooks: Euclid](https://caltech-ipac.github.io/irsa-tutorials/euclid) contain many examples.
+IRSA’s [Python Tutorial Notebooks: Euclid](https://caltech-ipac.github.io/irsa-tutorials/euclid) contain many examples of how to access and analyze Euclid data.
 
-[FIXME] the descriptions below were just copied from pyvo and astroquery docs and should be rewritten to blend with the rest of this page better.
+For Python access to IRSA’s VO-compliant [API services](#apis), we recommend the following libraries:
 
-- [PyVO](https://pyvo.readthedocs.io/en/latest/): PyVO lets you find and retrieve astronomical data available from archives that support standard IVOA virtual observatory service protocols.
-- [Astroquery](https://astroquery.readthedocs.io/en/latest/ipac/irsa/irsa.html): This module provides access to the public astrophysics catalogs, images, and spectra curated by the NASA/IPAC Infrared Science Archive (IRSA) at Caltech.
-  IRSA hosts data from many missions, including Euclid, Spitzer, WISE/NEOWISE, SOFIA, IRTF, 2MASS, Herschel, IRAS, and ZTF.
+- [Astroquery](https://astroquery.readthedocs.io/en/latest/ipac/irsa/irsa.html): The `astroquery.ipac.irsa` module provides convenient functions for searching IRSA’s images (SIA2), catalogs (TAP), and spectra (SSA), including the Euclid collections and catalogs listed in [APIs](#apis).
+  We recommend it for most users.
+- [PyVO](https://pyvo.readthedocs.io/en/latest/): PyVO is a general-purpose library for VO services at IRSA and at any other archive that supports the standard IVOA protocols.
+  Use PyVO when you want lower-level access to the services than Astroquery provides, or want to use the same code to query several archives.
 
-For Python access to the [Merged Objects HATS Catalog](#enhanced-catalogs), we recommend:
+For Python access to the [HATS Catalogs](#hats), we recommend the following libraries:
 
 - [LSDB](https://docs.lsdb.io/en/latest/index.html): LSDB is a bespoke library for HATS catalogs and is especially good for spatial searches and cross matches or users who prefer parallelizing with Dask.
   See the tutorial [Access HATS Collections Using LSDB: Euclid Q1 and ZTF DR24](https://caltech-ipac.github.io/irsa-tutorials/irsa-hats-with-lsdb/) for examples.
@@ -168,8 +215,9 @@ Several access methods are available, including:
 
 - [Browse the bucket](#browsable-directories)
 - Python libraries can be used to browse the bucket and read data without downloading it first.
-  IRSA's [Euclid Q1: Cloud Access](https://caltech-ipac.github.io/irsa-tutorials/euclid-cloud-access/) tutorial gives more in-depth information and examples.
+  IRSA's [Euclid Cloud Access](https://caltech-ipac.github.io/irsa-tutorials/euclid-cloud-access/) tutorial gives more in-depth information and examples.
 - [AWS Command Line Interface (CLI)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+  - Example: `aws s3 ls --no-sign-request s3://nasa-irsa-euclid-dr1/dr1/`
   - Example: `aws s3 ls --no-sign-request s3://nasa-irsa-euclid-q1/q1/`
 
 The data are provided in the AWS S3 standard storage class, which is their general purpose storage for frequently accessed data.
@@ -182,40 +230,16 @@ A small number of individual files can be downloaded from those browsable direct
 Note that the data can be [read from S3](#cloud-access) without downloading it first, even in massively parallel workflows.
 
 We recommend users download full directories or a large number of files from S3 to avoid interfering with IRSA's data services (which rely on the on-premises copy of the data).
-Download scripts for both `wget` and the [AWS Command Line Interface (CLI)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) are provided in the bucket.
+For Q1, download scripts for both `wget` and the [AWS Command Line Interface (CLI)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) are provided in the bucket.
 The AWS CLI will be faster.
 An example command that downloads all Q1 SIR data is:
 
 ```bash
-# Download all Q1 SIR data. Beware, this is 1 TB and may take several hours.
+# Download all Q1 SIR data. Beware, this is about 850 GB and may take several hours.
 aws s3 cp --recursive --no-sign-request "s3://nasa-irsa-euclid-q1/q1/SIR/" .
 ```
 
-The entire Q1 data set is approximately 35 TB.
+The entire DR1 data set is approximately 1.8 PB, and the entire Q1 data set is approximately 35 TB.
 Users interested in downloading significant fractions should plan for long download times and substantial local storage.
 Download times will depend on many factors.
 One factor is the networking capability available to the user, which can vary substantially.
-[](#table-download-times) shows computed download times given representative download speeds, neglecting all other factors.
-These times are meant to provide users with a sense of scale, and do not represent actual measured download times, which may also depend on the activities of other users and on whether the on-premises or cloud copies are being accessed.
-IRSA is in the process of measuring download speeds over time, and will update the nominal estimates as measurements are collected.
-[FIXME] can we remove that last sentence?
-
-:::{table} Download time estimates
-:label: table-download-times
-
-| Data Product or Directory    | Volume  | Download time at 250 Mbps | Download time at 1 Gbps |
-| ---------------------------- | :-----: | :-----------------------: | :---------------------: |
-| single MER mosaic            | 1.5 GB  |         1 minute          |          14 s           |
-| single calibrated VIS frame  | 7.5 GB  |        4.5 minutes        |        1 minute         |
-| single calibrated NISP frame | 0.8 GB  |        30 seconds         |        7 seconds        |
-| Q1 MER                       | 19.4 TB |          8 days           |         2 days          |
-| Q1 MER_SEG                   | 970 GB  |          9 hours          |         2 hours         |
-| Q1 NIR                       | 2.35 TB |         23 hours          |         6 hours         |
-| Q1 RAW                       | 1.47 TB |         14 hours          |         4 hours         |
-| Q1 SIR                       | 848 GB  |          8 hours          |         2 hours         |
-| Q1 VIS                       | 9.27 TB |          4 days           |        23 hours         |
-| Q1 VMPZ                      |  5 GB   |         3 minutes         |        1 minute         |
-| Q1 catalogs                  | 573 GB  |          6 hours          |         1 hour          |
-| contributed                  | 355 GB  |          4 hours          |         1 hour          |
-| Total Q1 and contributed     | 35.2 TB |          15 days          |         3 days          |
-:::
