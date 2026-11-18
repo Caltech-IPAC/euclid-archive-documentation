@@ -1,4 +1,4 @@
-# Glossaries
+# Glossary
 
 ## Euclid Terms
 
@@ -15,14 +15,13 @@ TILE ID
 :::
 
 (instruments)=
-
 ## Instruments
 
 Instruments on board the Euclid spacecraft and "external" (EXT) ground-based instruments that also contribute to Euclid data sets.
 
 :::{glossary}
 Visible Instrument (VIS)
-: [Visible instrument (VIS)](https://sci.esa.int/web/euclid/-/euclid-vis-instrument) instrument on board the Euclid spacecraft
+: [Visible Instrument](https://sci.esa.int/web/euclid/-/euclid-vis-instrument) on board the Euclid spacecraft
 
 Near-Infrared Spectrometer and Photometer (NISP)
 : [Near-Infrared Spectrometer and Photometer](https://sci.esa.int/web/euclid/-/euclid-nisp-instrument) instrument on board the Euclid spacecraft
@@ -41,48 +40,47 @@ GigaPixel Camera (GPC)
 :::
 
 (processing-functions)=
-
 ## Euclid Processing Functions (PF)
 
 Euclid pipeline Processing Functions (PF) that process and produce Euclid data products.
-[System overview](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/system.html) includes a diagram.
+[System overview](https://euclid.esac.esa.int/dr/dr1/dpdd/system.html) includes a diagram.
 
 :::{glossary}
 LE1
-: [LE1](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le1dpd/le1intro.html) produces Level 1 (raw) images from the VIS and NISP instruments
+: [LE1](https://euclid.esac.esa.int/dr/dr1/dpdd/le1dpd/le1intro.html) produces Level 1 (raw) images from the VIS and NISP instruments
 
 SIM
-: [SIM](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/simdpd/simintro.html) produces simulated data
+: [SIM](https://euclid.esac.esa.int/dr/dr1/dpdd/simdpd/simintro.html) produces simulated data
 
 VIS
-: [VIS](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/visdpd/visintro.html) produces calibrated Level 2 images from raw Level 1 VIS images
+: [VIS](https://euclid.esac.esa.int/dr/dr1/dpdd/visdpd/visintro.html) produces calibrated Level 2 images from raw Level 1 VIS images
 
 NIR
-: [NIR](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/nirdpd/nirintro.html) produces calibrated Level 2 images from raw Level 1 NISP images
+: [NIR](https://euclid.esac.esa.int/dr/dr1/dpdd/nirdpd/nirintro.html) produces calibrated Level 2 images from raw Level 1 NISP images
 
 SIR
-: [SIR](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/sirdpd/sirintro.html) produces calibrated Level 2 spectral images from the raw Level 1 NISP spectral data and extracts 1D spectra from the Level 2 spectral images
+: [SIR](https://euclid.esac.esa.int/dr/dr1/dpdd/sirdpd/sirintro.html) produces calibrated Level 2 spectral images from the raw Level 1 NISP spectral data and extracts 1D spectra from the Level 2 spectral images
 
 MER
-: [MER](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/merintro.html) merges all Level 2 information to provide mosaics, catalogs, and photometric redshifts based on photometric and spectroscopic data
+: [MER](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/merintro.html) merges all Level 2 information to provide mosaics, catalogs, and photometric redshifts based on photometric and spectroscopic data
 
 EXT
-: [EXT](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/extdpd/extintro.html) produces data products from external imaging and spectroscopic data
+: [EXT](https://euclid.esac.esa.int/dr/dr1/dpdd/extdpd/extintro.html) produces data products from external imaging and spectroscopic data
 
 PHZ
-: [PHZ](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/phzintro.html) computes photometric redshifts from the multiwavelength imaging data
+: [PHZ](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/phzintro.html) computes photometric redshifts from the multiwavelength imaging data
 
 SPE
-: [SPE](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/spedpd/speintro.html) measures spectroscopic redshifts from the Level 2 spectra
+: [SPE](https://euclid.esac.esa.int/dr/dr1/dpdd/spedpd/speintro.html) measures spectroscopic redshifts from the Level 2 spectra
 
 SHE
-: [SHE](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/shedpd/sheintro.html) measures shapes on the VIS imaging data
+: [SHE](https://euclid.esac.esa.int/dr/dr1/dpdd/shedpd/sheintro.html) measures shapes on the VIS imaging data
 
 LE3
-: [LE3](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le3dpd/le3intro.html) produces Level 3 data products
+: [LE3](https://euclid.esac.esa.int/dr/dr1/dpdd/le3dpd/le3intro.html) produces Level 3 data products
 
 VMPZ-ID
-: [VMPZ-ID](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le3dpd/id/vmpz-id/vmpz-idintro.html) produces masks for the photometric data
+: [VMPZ-ID](https://euclid.esac.esa.int/dr/dr1/dpdd/le3dpd/id/vmpz-id/vmpz-idintro.html) produces masks for the photometric data
 :::
 
 ## Acronyms
@@ -96,6 +94,15 @@ API
 
 AWS
 : Amazon Web Services
+
+CAOM
+: Common Archive Observation Model
+
+CLI
+: Command Line Interface
+
+DR1
+: [Data Release 1](#dr1)
 
 EDF
 : Euclid Deep Field (see [](#table-fields-overview))
@@ -112,6 +119,9 @@ EDF-S
 ENSCI
 : Euclid NASA Science Center
 
+ERO
+: [Early Release Observations](#other-data-releases)
+
 ESA
 : European Space Agency
 
@@ -124,6 +134,9 @@ FITS
 GUI
 : Graphical User Interface
 
+HATS
+: [Hierarchical Adaptive Tiling Scheme](#hats)
+
 IRSA
 : NASA/IPAC Infrared Science Archive
 
@@ -135,6 +148,9 @@ LDN
 
 MEF
 : Multi-Extension FITS
+
+MOC
+: [Multi-Order Coverage map](#moc)
 
 NASA
 : National Aeronautics and Space Administration
@@ -151,14 +167,23 @@ PSF
 Q1
 : [Quick Release 1](#other-data-releases)
 
+Q2
+: [Quick Release 2](#other-data-releases)
+
 S3
 : {term}`AWS` S3 is an object storage service. S3 cloud storage buckets are roughly similar to file servers.
+
+SCS
+: Simple Cone Search
 
 SED
 : Spectral Energy Distribution
 
 SIA2
 : Simple Image Access version 2
+
+SSA
+: Simple Spectral Access
 
 TAP
 : Table Access Protocol

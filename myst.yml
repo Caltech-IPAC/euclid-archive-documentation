@@ -1,9 +1,9 @@
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
-  title: Euclid Archive at IRSA
-  subject: Euclid Archive at IRSA
-  date: 2026-11-12
+  title: Euclid Archive User Guide
+  subject: Euclid Archive at IRSA User Guide
+  date: 2026-11-18
   # description:
   # keywords: []
   authors: [Caltech/IPAC-IRSA]
@@ -19,6 +19,7 @@ project:
     - file: documentation/index.md
     - file: documentation/data_products.md
     - file: documentation/data_access.md
+    - file: documentation/additional_resources.md
     - file: documentation/glossary.md
 
 site:
