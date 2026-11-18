@@ -92,7 +92,7 @@ ADQL
 : Astronomical Data Query Language
 
 API
-: Application Program Interface
+: Application Programming Interface
 
 AWS
 : Amazon Web Services

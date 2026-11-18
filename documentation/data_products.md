@@ -8,11 +8,15 @@ The Processing Level indicates the stage of data processing, from raw observatio
 A Processing Function is a component of the Euclid data processing system responsible for producing specific data products.
 [](#table-processing-functions) describes the Processing Functions used in the table.
 
-Euclid DR1 and Q1 data products are stored on the cloud in {term}`AWS S3<S3>` buckets.
+Euclid DR1 and Q1 data products are stored on the cloud in {term}`AWS S3<S3>` buckets and are accessible via HTTPS or S3.
+Both access methods use the same directory structure.
 The directory paths and filename patterns on this page are relative to the following locations:
 
-- **DR1:** `s3://nasa-irsa-euclid-dr1/dr1/`
-- **Q1:** `s3://nasa-irsa-euclid-q1/q1/`
+- **DR1 (HTTPS):** `https://nasa-irsa-euclid-dr1.s3.amazonaws.com/dr1/`
+- **DR1 (S3):** `s3://nasa-irsa-euclid-dr1/dr1/`
+- **Q1 (S3):** `s3://nasa-irsa-euclid-q1/q1/`
+
+You can also [browse the DR1 directories](https://nasa-irsa-euclid-dr1.s3.us-east-1.amazonaws.com/index.html#dr1/).
 
 For the IRSA-contributed [](#hats), replace `dr1/` with `contributed/dr1/`, and similar for `q1`.
 See [](#data-access) for additional ways to browse, discover, and access Euclid data.
@@ -390,6 +394,7 @@ The `.bin` files provide a compact binary representation of the same coverage bu
 
 IRSA provides Euclid catalogs in the Hierarchical Adaptive Tiling Scheme (HATS) format in the cloud.
 HATS catalogs use spatially partitioned Parquet files to support efficient analysis of large datasets.
+See the [IRSA Cloud Data Access page](https://irsa.ipac.caltech.edu/cloud_access/) for the cloud locations of the catalogs.
 
 For DR1, IRSA is making HATS catalogs available incrementally.
 The table below lists the DR1 HATS catalogs currently available.
