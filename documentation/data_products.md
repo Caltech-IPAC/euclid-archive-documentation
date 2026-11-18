@@ -8,11 +8,15 @@ The Processing Level indicates the stage of data processing, from raw observatio
 A Processing Function is a component of the Euclid data processing system responsible for producing specific data products.
 [](#table-processing-functions) describes the Processing Functions used in the table.
 
-Euclid DR1 and Q1 data products are stored on the cloud in {term}`AWS S3<S3>` buckets.
+Euclid DR1 and Q1 data products are stored on the cloud in {term}`AWS S3 <S3>` buckets and are accessible via HTTPS or S3.
+Both access methods use the same directory structure.
 The directory paths and filename patterns on this page are relative to the following locations:
 
-- **DR1:** `s3://nasa-irsa-euclid-dr1/dr1/`
-- **Q1:** `s3://nasa-irsa-euclid-q1/q1/`
+- **DR1 (HTTPS):** `https://nasa-irsa-euclid-dr1.s3.amazonaws.com/dr1/`
+- **DR1 (S3):** `s3://nasa-irsa-euclid-dr1/dr1/`
+- **Q1 (S3):** `s3://nasa-irsa-euclid-q1/q1/`
+
+You can also [browse the DR1 directories](https://nasa-irsa-euclid-dr1.s3.us-east-1.amazonaws.com/index.html#dr1/).
 
 For the IRSA-contributed [](#hats), replace `dr1/` with `contributed/dr1/`, and similar for `q1`.
 See [](#data-access) for additional ways to browse, discover, and access Euclid data.
@@ -83,6 +87,8 @@ The fields used to construct filenames and their possible values are:
   - {term}`Observation ID`
 * - `instrument`
   - `VIS`, `NISP`, `DECAM`, `MEGACAM`, `HSC`, `GPC` (see [](#instruments))
+* - `filter`
+  - `VIS`; `NIR-Y`, `NIR-J`, `NIR-H` (NISP); or an {term}`EXT <EXT (disambiguate)>` filter
 * - `band`
   - `Y`, `H`, `J` (NISP); `G`, `R`, `I`, `Z` (DECAM); `I` (GPC); `G`, `R`, `R2`, `I`, `I2`, `Z` (HSC); `R`, `U` (MEGACAM)
 * - `gwa_pos`
@@ -98,7 +104,7 @@ The fields used to construct filenames and their possible values are:
 (mer)=
 ## MER
 
-The `MER` directory contains the [DpdMerBksMosaic](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_bksmosaic.html) data products.
+The `MER` directory contains the [DpdMerBksMosaic](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_bksmosaic.html) data products.
 All mosaics share the same pixel scale (0.1 arcsec) for all bands.
 
 This directory is organized by {term}`TILE ID` and then [instrument](#instruments).
@@ -107,55 +113,55 @@ Some tiles have additional subdirectories representing external (EXT) ground-bas
 
 The path syntax is `MER/[tile]/[instrument]/[filename]`, where `[filename]` for individual products is given below and the other fields are described in [](#table-filename-fields).
 
-- [Background-subtracted mosaic image](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_bksmosaic.html#image-fits-file)
-  - `EUC_MER_BGSUB-MOSAIC-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
-- [Root Mean Square](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_bksmosaic.html#rms-fits-file) associated with the background-subtracted mosaic
-  - `EUC_MER_MOSAIC-[instrument]-RMS_TILE[tile]-*_[timestamp]_*.fits`
-- [Bit flags](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_bksmosaic.html#flag-fits-file) associated with the background-subtracted mosaic
-  - `EUC_MER_MOSAIC-[instrument]-FLAG_TILE[tile]-*_[timestamp]_*.fits`
-- [Background model](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_bksmosaic.html#background-fits-file). Backgrounds are subtracted from the input images prior to coaddition. Once the mosaics are produced, any remaining background is subtracted.  The model used for this secondary background subtraction is provided here.
-  - `EUC_MER_BGMOD-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
-- [Catalog PSFs](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file) evaluated at the positions of sources in the MER Final Catalog
-  - `EUC_MER_CATALOG-PSF-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
-- [Grid of PSFs](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file) evaluated at fixed positions in the image on a regular grid with 12" spacing.
+- [Background-subtracted mosaic image](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_bksmosaic.html#image-fits-file)
+  - `EUC_MER_BGSUB-MOSAIC-[filter]_TILE[tile]-*_[timestamp]_*.fits`
+- [Root Mean Square](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_bksmosaic.html#rms-fits-file) associated with the background-subtracted mosaic
+  - `EUC_MER_MOSAIC-[filter]-RMS_TILE[tile]-*_[timestamp]_*.fits`
+- [Bit flags](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_bksmosaic.html#flag-fits-file) associated with the background-subtracted mosaic
+  - `EUC_MER_MOSAIC-[filter]-FLAG_TILE[tile]-*_[timestamp]_*.fits`
+- [Background model](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_bksmosaic.html#background-fits-file). Backgrounds are subtracted from the input images prior to coaddition. Once the mosaics are produced, any remaining background is subtracted.  The model used for this secondary background subtraction is provided here.
+  - `EUC_MER_BGMOD-[filter]_TILE[tile]-*_[timestamp]_*.fits`
+- [Catalog PSFs](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_bksmosaic.html#psf-fits-file) evaluated at the positions of sources in the MER Final Catalog
+  - `EUC_MER_CATALOG-PSF-[filter]_TILE[tile]-*_[timestamp]_*.fits`
+- [Grid of PSFs](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_detectionmosaic.html#psf-fits-file) evaluated at fixed positions in the image on a regular grid with 12" spacing.
   Only produced for VIS and NISP bands.
-  - `EUC_MER_GRID-PSF-[VIS or NIR]_TILE[tile]-*_[timestamp]_*.fits`
-- [Filter transmission](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_bksmosaic.html#filter-transmission-fits-file), EXT instruments only
-  - `EUC_MER_FILTER-TRANSMISSION-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
-- [Detector layering](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_bksmosaic.html#layers-fits-file), `VIS` and `NISP` only
-  - `EUC_MER_DETECTOR-LAYERING-[instrument]_TILE[tile]-*_[timestamp]_*.fits`
-- [Bright star masks](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_bksmosaic.html#bright-star-masks-json-file), `VIS` and `NISP` only
-  - `EUC_MER_STAR-MASKS-[instrument]_TILE[tile]-*_[timestamp]_*.json`
+  - `EUC_MER_GRID-PSF-[filter]_TILE[tile]-*_[timestamp]_*.fits`
+- [Filter transmission](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_bksmosaic.html#filter-transmission-fits-file), EXT instruments only
+  - `EUC_MER_FILTER-TRANSMISSION-[filter]_TILE[tile]-*_[timestamp]_*.fits`
+- [Detector layering](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_bksmosaic.html#layers-fits-file), `VIS` and `NISP` only
+  - `EUC_MER_DETECTOR-LAYERING-[filter]_TILE[tile]-*_[timestamp]_*.fits`
+- [Bright star masks](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_bksmosaic.html#bright-star-masks-json-file), `VIS` and `NISP` only
+  - `EUC_MER_STAR-MASKS-[filter]_TILE[tile]-*_[timestamp]_*.json`
 
 In Q1, the filter transmission, detector layering, and bright star mask files are not provided.
 
 (mer-seg)=
 ## MER_SEG
 
-The `MER_SEG` directory contains the [DpdMerSegmentationMap](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_segmentationmap.html) data products.
+The `MER_SEG` directory contains the [DpdMerSegmentationMap](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_segmentationmap.html) data products.
 Each MER segmentation map shows the connected pixels of the detected objects in a {term}`tile`, and is a combination of the associated VIS and NIR segmentation maps.
 The Object IDs in the MER segmentation maps correspond to the `SEGMENTATION_MAP_ID` column values in the [MER Final Catalog](#catalogs).
 
 This directory is organized by {term}`TILE ID`.
-The path syntax is `MER_SEG/[tile]/EUC_MER_FINAL-SEGMAP_TILE[tile]-*_[timestamp]_*.fits`, where `[tile]` is described in [](#table-filename-fields).
+The path syntax is `MER_SEG/[tile]/EUC_MER_FINAL-SEGMAP_TILE[tile]-*_[timestamp]_*.fits`, where the fields are described in [](#table-filename-fields).
 
 The individual segmentation maps are about 2.7 GB.
 
 (nir)=
 ## NIR
 
-The `NIR` directory contains the near-infrared imaging data taken by the Euclid NISP instrument, specifically the [DpdNirCalibratedFrame](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/nirdpd/dpcards/nir_calibratedframe.html) and [DpdNirStackedFrame](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/nirdpd/dpcards/nir_stackedframe.html) data products.
+The `NIR` directory contains the near-infrared imaging data taken by the Euclid NISP instrument, specifically the [DpdNirCalibratedFrame](https://euclid.esac.esa.int/dr/dr1/dpdd/nirdpd/dpcards/nir_calibratedframe.html) and [DpdNirStackedFrame](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/nirdpd/dpcards/nir_stackedframe.html) data products.
 
 This directory is organized by {term}`Observation ID`.
 The path syntax is `NIR/[obs]/[filename]`, where `[filename]` for individual products is given below and the other fields are described in [](#table-filename-fields).
 
-- [Scientific image](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/nirdpd/dpcards/nir_calibratedframe.html#scientific-image-fits-file) is a multi-extension FITS (MEF) file with three extensions for each of 16 detectors: calibrated science image (SCI), RMS, and Data Quality flags (DQ).
+- [Scientific image](https://euclid.esac.esa.int/dr/dr1/dpdd/nirdpd/dpcards/nir_calibratedframe.html#scientific-image-fits-file) is a multi-extension FITS (MEF) file with three extensions for each of 16 detectors: calibrated science image (SCI), RMS, and Data Quality flags (DQ).
   - `EUC_NIR_W-CAL-IMAGE_[band]-[obs]-*_[timestamp].fits`
-- [Estimated background](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/nirdpd/dpcards/nir_calibratedframe.html#background-fits-file) MEF file with the same structure as the scientific image.
+- [Estimated background](https://euclid.esac.esa.int/dr/dr1/dpdd/nirdpd/dpcards/nir_calibratedframe.html#background-fits-file) MEF file with the same structure as the scientific image.
   - `EUC_NIR_W-CAL-IMAGE-BKG_[band]-[obs]-*_[timestamp].fits`
-- [PSF image](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/nirdpd/dpcards/nir_calibratedframe.html#psf-model-and-image-files) associated with the science image.
+- [PSF image](https://euclid.esac.esa.int/dr/dr1/dpdd/nirdpd/dpcards/nir_calibratedframe.html#psf-model-and-image-files) associated with the science image.
   - `EUC_NIR_W-CAL-PSF-I_[band]-[obs]-*_[timestamp].fits`
-- [PSF model](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/nirdpd/dpcards/nir_calibratedframe.html#psf-model-and-image-files) created by combining all the pipeline input images, as provided by PSFEx software.
+- [PSF model](https://euclid.esac.esa.int/dr/dr1/dpdd/nirdpd/dpcards/nir_calibratedframe.html#psf-model-and-image-files) created by combining all the pipeline input images, as provided by PSFEx software.
   - `EUC_NIR_W-CAL-PSF-M_[band]-[obs]-*_[timestamp].psf`
 - [Stacked image](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/nirdpd/dpcards/nir_stackedframe.html#scientific-image-fits-file)
   - `EUC_NIR_W-STK-IMAGE_[band]-[obs]_[timestamp].fits`
@@ -179,9 +185,9 @@ The `RAW` directory contains the raw VIS and NISP data products.
 This directory is organized by {term}`observation ID`.
 The path syntax is `RAW/[obs]/[filename]`, where `[filename]` for individual products is given below and the other fields are described in [](#table-filename-fields).
 
-- [DpdVisRawFrame](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le1dpd/dpcards/le1_visrawframe.html)
+- [DpdVisRawFrame](https://euclid.esac.esa.int/dr/dr1/dpdd/le1dpd/dpcards/le1_visrawframe.html)
   - `EUC_LE1_VIS-*-1-[C, D, or W]_[timestamp]*.fits`
-- [DpdNispRawFrame](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le1dpd/dpcards/le1_nisprawframe.html)
+- [DpdNispRawFrame](https://euclid.esac.esa.int/dr/dr1/dpdd/le1dpd/dpcards/le1_nisprawframe.html)
   - `EUC_LE1_NISP-*-1-[C, D, or W]_[timestamp]*.fits`
 
 (sir)=
@@ -192,9 +198,9 @@ The science frames are organized by {term}`observation ID` while the combined sp
 
 Fields in the paths below are described in [](#table-filename-fields).
 
-- [DpdSirScienceFrame](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/sirdpd/dpcards/sir_scienceframe.html), organized by {term}`observation ID`
+- [DpdSirScienceFrame](https://euclid.esac.esa.int/dr/dr1/dpdd/sirdpd/dpcards/sir_scienceframe.html), organized by {term}`observation ID`
   - Path syntax: `SIR_SCIENCE_FRAME/[obs]/EUC_SIR_W-SCIFRM_BKGSUB_[obs]_[sca_id]_[dithobs]_[gwa_pos]_*_[timestamp].fits`
-- [DpdSirCombinedSpectra](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/sirdpd/dpcards/sir_combinedspectra.html), organized by {term}`TILE ID`
+- [DpdSirCombinedSpectra](https://euclid.esac.esa.int/dr/dr1/dpdd/sirdpd/dpcards/sir_combinedspectra.html), organized by {term}`TILE ID`
   - Path syntax: `SIR_COMBINED_SPECTRA/[tile]/EUC_SIR_W-COMBSPEC_[tile]_[timestamp].fits`
 
 In Q1, both products are in a single `SIR` directory: `SIR/[obs]/` and `SIR/[tile]/`.
@@ -219,19 +225,19 @@ In Q1, stacked VIS images are not provided, and the `VIS` directory contains the
 (vis-quad)=
 ## VIS_QUAD
 
-The `VIS_QUAD` directory contains imaging data ([DpdVisCalibratedQuadFrame](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/visdpd/dpcards/vis_calibratedquadframe.html)) taken with the VIS instrument.
+The `VIS_QUAD` directory contains imaging data ([DpdVisCalibratedQuadFrame](https://euclid.esac.esa.int/dr/dr1/dpdd/visdpd/dpcards/vis_calibratedquadframe.html)) taken with the VIS instrument.
 
 This directory is organized by {term}`observation ID`.
 The path syntax is `VIS_QUAD/[obs]/[filename]`, where `[filename]` for individual products is given below and the other fields are described in [](#table-filename-fields).
 
-- [Calibrated VIS individual exposure](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/visdpd/dpcards/vis_calibratedquadframe.html#calibrated-vis-individual-exposure)
-  - `EUC_VIS_SWL-DET-[obs]-[dither]_[timestamp]*.fits`
-- [Background map](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/visdpd/dpcards/vis_calibratedquadframe.html#background-map) for calibrated VIS individual exposure
-  - `EUC_VIS_SWL-BKG-[obs]-[dither]_[timestamp]*.fits`
-- [Weight map](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/visdpd/dpcards/vis_calibratedquadframe.html#weight-map) for calibrated VIS individual exposure
-  - `EUC_VIS_SWL-WGT-[obs]-[dither]_[timestamp]*.fits`
+- [Calibrated VIS individual exposure](https://euclid.esac.esa.int/dr/dr1/dpdd/visdpd/dpcards/vis_calibratedquadframe.html#calibrated-vis-individual-exposure)
+  - `EUC_VIS_SWL-DET-[obs]-[dithobs]-*__[timestamp].fits`
+- [Background map](https://euclid.esac.esa.int/dr/dr1/dpdd/visdpd/dpcards/vis_calibratedquadframe.html#background-map) for calibrated VIS individual exposure
+  - `EUC_VIS_SWL-BKG-[obs]-[dithobs]-*__[timestamp].fits`
+- [Weight map](https://euclid.esac.esa.int/dr/dr1/dpdd/visdpd/dpcards/vis_calibratedquadframe.html#weight-map) for calibrated VIS individual exposure
+  - `EUC_VIS_SWL-WGT-[obs]-[dithobs]-*__[timestamp].fits`
 - [Quality control files](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/visdpd/dpcards/vis_analysisresults.html) for calibrated VIS individual exposure
-  - `EUC_VIS_QC-SCI-PERI-[obs]-[dither]-*__[timestamp].json`
+  - `EUC_VIS_QC-SCI-PERI-[obs]-[dithobs]-*__[timestamp].json`
 - Point spread function, a single file in the `VIS_QUAD/shared_files/` directory
   - `EUC_VIS_GRD-PSF*[timestamp].fits`
 
@@ -245,17 +251,17 @@ The `VMPZ_*` directories contain a number of “Visibility Mask Photo-Z” produ
 Each data product has its own directory, which is organized by {term}`TILE ID` unless noted below.
 Fields in the paths below are described in [](#table-filename-fields).
 
-- [DpdHealpixBitMaskVMPZ](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_bitmask.html)
+- [DpdHealpixBitMaskVMPZ](https://euclid.esac.esa.int/dr/dr1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_bitmask.html)
   - Path syntax: `VMPZ_HEALPIX_BIT_MASK/[tile]/EUC_LE3_VMPZ-ID_HPBITMASK-[tile]_[timestamp]_*.fits`
-- [DpdHealpixFootprintMaskVMPZ](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_footprint.html)
+- [DpdHealpixFootprintMaskVMPZ](https://euclid.esac.esa.int/dr/dr1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_footprint.html)
   - Path syntax: `VMPZ_HEALPIX_FOOTPRINT_MASK/[tile]/EUC_LE3_VMPZ-ID_HPFOOTPRINTMASK-[tile]_[timestamp]_*.fits`
-- [DpdHealpixCoverageVMPZ](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_coverage.html)
+- [DpdHealpixCoverageVMPZ](https://euclid.esac.esa.int/dr/dr1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_coverage.html)
   - Path syntax: `VMPZ_HEALPIX_COVERAGE_MASK/[tile]/EUC_LE3_VMPZ-ID_HPCOVERAGE-[tile]_[timestamp]_*.fits`
-- [DpdHealpixDepthMapVMPZ](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_depthmap.html)
+- [DpdHealpixDepthMapVMPZ](https://euclid.esac.esa.int/dr/dr1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_depthmap.html)
   - Path syntax: `VMPZ_HEALPIX_DEPTH_MAP/[tile]/EUC_LE3_VMPZ-ID_HPDEPTHMAP-[tile]_[timestamp]_*.fits`
-- [DpdHealpixInfoMapVMPZ](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_infomap.html)
+- [DpdHealpixInfoMapVMPZ](https://euclid.esac.esa.int/dr/dr1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_infomap.html)
   - Path syntax: `VMPZ_HEALPIX_INFO_MAP/[tile]/EUC_LE3_VMPZ-ID_HP[map]-[tile]_[timestamp]_*.fits`, where `[map]` is one of `AA`, `BA`, `EXPOSURES`, `GALACTICEXTINCTION`, `NIRPRMS`, `NOISE`, `PERSISTENCE`, `PSART`, `PSF`, `SAA`, `STARBRIGHTNESSMEAN`, `STARBRIGHTNESSRMS`, `STARBRIGHTNESSSTD`, `STARNUMBERDENSITY`, `TILE`, or `ZODIACALLIGHT`. Some `PSART` files write `[timestamp]` as `[YYYY-MM-DD]T[HH:MM:SS.SSS]Z`.
-- [DpdHealpixEffectiveCoverageVMPZ](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_effectivecoverage.html), organized by processing run rather than {term}`TILE ID`
+- [DpdHealpixEffectiveCoverageVMPZ](https://euclid.esac.esa.int/dr/dr1/dpdd/le3dpd/id/vmpz-id/dpcards/vmpzid_healpix_effectivecoverage.html), organized by processing run rather than {term}`TILE ID`
   - Path syntax: `VMPZ_EFFECTIVE_COVERAGE/DpdHealpixEffectiveCoverageVMPZ/*/EUC_LE3_VMPZ-ID_HPEFFECTIVECOVERAGE-[CL or WL]_[timestamp]_*.fits`
 
 In Q1, these directories are subdirectories of a single `VMPZ` directory (for example, `VMPZ/VMPZ_HEALPIX_BIT_MASK/[tile]/`), and the effective coverage masks are not provided.
@@ -269,18 +275,18 @@ This directory is organized by data product and then either {term}`TILE ID` or {
 The path syntax is `catalogs/[product]/[tile or obs]/[filename]`, where `[product]` and `[filename]` are given below and the other fields are described in [](#table-filename-fields).
 
 MER_FINAL_CATALOG
-: The `MER_FINAL_CATALOG` product ([DpdMerFinalCatalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_finalcatalog.html)) directory is organized by TILE ID.
-  - [Main MER catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_finalcatalog.html#main-catalog-fits-file) contains 470 columns (469 in Q1), including position, flux, and morphology measurements of detected sources.
+: The `MER_FINAL_CATALOG` product ([DpdMerFinalCatalog](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_finalcatalog.html)) directory is organized by TILE ID.
+  - [Main MER catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_finalcatalog.html#main-catalog-fits-file) contains 470 columns (469 in Q1), including position, flux, and morphology measurements of detected sources.
     - `EUC_MER_FINAL-CAT_TILE[tile]-*_[timestamp]_*.fits`
-  - [Morphology catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_finalcatalog.html#morphology-catalog-fits-file) has 106 columns (104 in Q1), including morphology measurements such as concentration, asymmetry, smoothness, Gini, moment, Sersic indices, bulge sizes, clump counts, orientation, Hubble type, and more.
+  - [Morphology catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_finalcatalog.html#morphology-catalog-fits-file) has 106 columns (104 in Q1), including morphology measurements such as concentration, asymmetry, smoothness, Gini, moment, Sersic indices, bulge sizes, clump counts, orientation, Hubble type, and more.
     - `EUC_MER_FINAL-MORPH-CAT_TILE[tile]-*_[timestamp]_*.fits`
-  - [Cutouts catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_finalcatalog.html#cutouts-catalog-fits-file) has 25 columns, including the coordinates of the corners of the source cutouts for each object detected in the MER Final Catalog.
+  - [Cutouts catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_finalcatalog.html#cutouts-catalog-fits-file) has 25 columns, including the coordinates of the corners of the source cutouts for each object detected in the MER Final Catalog.
     - `EUC_MER_FINAL-CUTOUTS-CAT_TILE[tile]-*_[timestamp]_*.fits`
-  - [Deep field photometry catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/merdpd/dpcards/mer_finalcatalog.html#deep-field-photometry-catalog-fits-file) has 713 columns and is provided for some tiles only. It is not provided in Q1.
+  - [Deep field photometry catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/merdpd/dpcards/mer_finalcatalog.html#deep-field-photometry-catalog-fits-file) has 713 columns and is provided for some tiles only. It is not provided in Q1.
     - `EUC_MER_FINAL-DEEP-PHOTO-CAT_TILE[tile]-*_[timestamp]_*.fits`
 
 NIR_CAL_CATALOG
-: The `NIR_CAL_CATALOG` product ([DpdNirCalibratedFrameCatalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/nirdpd/dpcards/nir_calibratedframecatalog.html)) directory is organized by observation ID.
+: The `NIR_CAL_CATALOG` product ([DpdNirCalibratedFrameCatalog](https://euclid.esac.esa.int/dr/dr1/dpdd/nirdpd/dpcards/nir_calibratedframecatalog.html)) directory is organized by observation ID.
   - The NIR Calibrated catalog is extracted from the NIR Calibrated Frames.
     The main header contains metadata that applies to all 16 NIR detectors.
     An additional 16 extensions represent catalogs extracted from each detector.
@@ -293,8 +299,8 @@ NIR_STA_CATALOG
     - `EUC_NIR_W-STACK-CAT_[obs]-[band]_[timestamp].fits`
 
 PHZ_DEEP_OUTPUT_CATALOG
-: The `PHZ_DEEP_OUTPUT_CATALOG` product ([DpdPhzDeepOutputCatalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzdeepoutputcatalog.html)) directory is organized by TILE ID. It is not provided in Q1.
-  - [Photo Z catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzdeepoutputcatalog.html#photo-z-catalog) files contain two tables: the PHOTOZ CATALOG (41 columns) and the ZERO_POINT table.
+: The `PHZ_DEEP_OUTPUT_CATALOG` product ([DpdPhzDeepOutputCatalog](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzdeepoutputcatalog.html)) directory is organized by TILE ID. It is not provided in Q1.
+  - [Photo Z catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzdeepoutputcatalog.html#photo-z-catalog) files contain two tables: the `PHOTOZ CATALOG` table (41 columns) and the `ZERO_POINT` table.
     - `EUC_PHZ_PHZCAT_TILE[tile]_[timestamp]_*.fits`
   - Classification catalog (13 columns)
     - `EUC_PHZ_CLASSCAT_TILE[tile]_[timestamp]_*.fits`
@@ -304,49 +310,49 @@ PHZ_DEEP_OUTPUT_CATALOG
     - `EUC_PHZ_PHYSPARAMQSO_*_[timestamp]_*.fits`
   - Star Template catalog (63 columns)
     - `EUC_PHZ_STARCLASS_*_[timestamp]_*.fits`
-  - [Sampled physical parameters](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzdeepoutputcatalog.html#sampled-physical-parameters), as a sampling file (21 columns) and an index file (5 columns)
+  - [Sampled physical parameters](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzdeepoutputcatalog.html#sampled-physical-parameters), as a sampling file (21 columns) and an index file (5 columns)
     - `EUC_PHZ_PPSAMPLINGFILE_TILE[tile]_[timestamp]_*.fits`
     - `EUC_PHZ_PPSAMPLINGINDEX_TILE[tile]_[timestamp]_*.fits`
 
 PHZ_PF_OUTPUT_CATALOG
-: The `PHZ_PF_OUTPUT_CATALOG` product ([DpdPhzPfOutputCatalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzpfoutputcatalog.html)) directory is organized by TILE ID.
-  - [Photo Z catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzpfoutputcatalog.html#photo-z-catalog) files contain two tables.
-    The first is the PHOTOZ CATALOG, which contains 61 columns describing the photometric redshift probability distribution, fluxes, and classification.
-    The second is the ZERO_POINT table, which contains the correction for each filter.
-    - `EUC_PHZ_PHZCAT_[timestamp]*.fits`
-  - [Galaxy SED](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzpfoutputcatalog.html#galaxy-sed-catalog) catalog contains 120 columns describing the spectral energy distributions for MER objects classified as galaxies.
-    - `EUC_PHZ_GALAXYSED_[timestamp]*.fits`
-  - [Star SED catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzpfoutputcatalog.html#star-sed-catalog) contains 120 columns describing the spectral energy distributions for MER objects classified as stars.
-    - `EUC_PHZ_STARSED_[timestamp]*.fits`
+: The `PHZ_PF_OUTPUT_CATALOG` product ([DpdPhzPfOutputCatalog](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzpfoutputcatalog.html)) directory is organized by TILE ID.
+  - [Photo Z catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzpfoutputcatalog.html#photo-z-catalog) files contain two tables.
+    The first is the `PHOTOZ CATALOG` table, which contains 61 columns describing the photometric redshift probability distribution, fluxes, and classification.
+    The second is the `ZERO_POINT` table, which contains the correction for each filter.
+    - `EUC_PHZ_PHZCAT__[timestamp]_*.fits`
+  - [Galaxy SED](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzpfoutputcatalog.html#galaxy-sed-catalog) catalog contains 120 columns describing the spectral energy distributions for MER objects classified as galaxies.
+    - `EUC_PHZ_GALAXYSED__[timestamp]_*.fits`
+  - [Star SED catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzpfoutputcatalog.html#star-sed-catalog) contains 120 columns describing the spectral energy distributions for MER objects classified as stars.
+    - `EUC_PHZ_STARSED__[timestamp]_*.fits`
 
 PHZ_PF_OUTPUT_FOR_L3
-: The `PHZ_PF_OUTPUT_FOR_L3` product ([DpdPhzPfOutputForL3](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzpfoutputforl3.html)) directory is organized by TILE ID.
-  - [Classification catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzpfoutputforl3.html#classification-catalog) contains 13 columns describing the object classification (star, galaxy, QSO, globular cluster).
+: The `PHZ_PF_OUTPUT_FOR_L3` product ([DpdPhzPfOutputForL3](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzpfoutputforl3.html)) directory is organized by TILE ID.
+  - [Classification catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzpfoutputforl3.html#classification-catalog) contains 13 columns describing the object classification (star, galaxy, QSO, globular cluster).
     - `EUC_PHZ_CLASSCAT_*_[timestamp]_*.fits`
-  - [Physical Parameters catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzpfoutputforl3.html#physical-parameters-catalog) contains 74 columns (93 in Q1) describing physical parameters such as redshift, luminosity, extinction, dust law parameters, absolute magnitudes, stellar mass, metallicity.
+  - [Physical Parameters catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzpfoutputforl3.html#physical-parameters-catalog) contains 74 columns (93 in Q1) describing physical parameters such as redshift, luminosity, extinction, dust law parameters, absolute magnitudes, stellar mass, metallicity.
     - `EUC_PHZ_PHYSPARAM_*_[timestamp]_*.fits`
-  - [QSO Physical Parameters catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzpfoutputforl3.html#qso-physical-parameters-catalog) contains 56 columns describing physical parameters for objects classified as QSOs.
+  - [QSO Physical Parameters catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzpfoutputforl3.html#qso-physical-parameters-catalog) contains 56 columns describing physical parameters for objects classified as QSOs.
     Parameters include the best-fit SED, reddening, redshift, and corrected fluxes.
     - `EUC_PHZ_PHYSPARAMQSO_[timestamp]_*.fits`
-  - [NIR Physical Parameters catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzpfoutputforl3.html#nir-physical-parameters-catalog) contains 57 columns.
+  - [NIR Physical Parameters catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzpfoutputforl3.html#nir-physical-parameters-catalog) contains 57 columns.
     - `EUC_PHZ_PHYSPARAMNIR_[timestamp]_*.fits`
-  - [Star Template catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/phzdpd/dpcards/phz_phzpfoutputforl3.html#star-template) contains 55 columns describing physical parameters for objects classified as stars.
+  - [Star Template catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/phzdpd/dpcards/phz_phzpfoutputforl3.html#star-template) contains 55 columns describing physical parameters for objects classified as stars.
     Parameters include the best-fit SED, reddening, redshift, and corrected fluxes.
     - `EUC_PHZ_STARCLASS_[timestamp]_*.fits`
 
 SPE_PF_OUTPUT_CATALOG
-: The `SPE_PF_OUTPUT_CATALOG` product ([DpdSpePfOutputCatalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/spedpd/dpcards/spe_spepfoutputcatalog.html)) directory is organized by TILE ID.
-  - [Redshift catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/spedpd/dpcards/spe_spepfoutputcatalog.html#redshift-catalog) files have 5 table extensions: `SPE_QUALITY` (31 columns, 25 in Q1, including data quality flags), `SPE_CLASSIFICATION` (5 columns, including the probabilities of an object being classified as a star, galaxy, or QSO), `SPE_GALAXY_CANDIDATES` (18 columns, 12 in Q1, including the spectroscopic redshift estimate, uncertainty, and reliability), `SPE_STAR_CANDIDATES` (11 columns, 8 in Q1, including the radial velocity estimate, uncertainty, and reliability), `SPE_QSO_CANDIDATES` (15 columns, 12 in Q1, including the spectroscopic redshift estimate, uncertainty, and reliability).
+: The `SPE_PF_OUTPUT_CATALOG` product ([DpdSpePfOutputCatalog](https://euclid.esac.esa.int/dr/dr1/dpdd/spedpd/dpcards/spe_spepfoutputcatalog.html)) directory is organized by TILE ID.
+  - [Redshift catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/spedpd/dpcards/spe_spepfoutputcatalog.html#redshift-catalog) files have 5 table extensions: `SPE_QUALITY` (31 columns, 25 in Q1, including data quality flags), `SPE_CLASSIFICATION` (5 columns, including the probabilities of an object being classified as a star, galaxy, or QSO), `SPE_GALAXY_CANDIDATES` (18 columns, 12 in Q1, including the spectroscopic redshift estimate, uncertainty, and reliability), `SPE_STAR_CANDIDATES` (11 columns, 8 in Q1, including the radial velocity estimate, uncertainty, and reliability), `SPE_QSO_CANDIDATES` (15 columns, 12 in Q1, including the spectroscopic redshift estimate, uncertainty, and reliability).
     - `EUC_SPE_[WIDE or DEEP]-CAT-Z-[tile]_N_[timestamp]_*.fits`
-  - [Lines catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/spedpd/dpcards/spe_spepfoutputcatalog.html#lines-catalog) files have 4 table extensions: `SPE_LINE_FEATURES_CAT` (35 columns, 34 in Q1, including the detected spectral line), `SPE_ATOMIC_INDICES` (6 columns, including the atomic Lick index), `SPE_MOLECULAR_INDICES` (6 columns, including the molecular Lick index), `SPE_CONTINUUM_FEATURES` (6 columns).
+  - [Lines catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/spedpd/dpcards/spe_spepfoutputcatalog.html#lines-catalog) files have 4 table extensions: `SPE_LINE_FEATURES_CAT` (35 columns, 34 in Q1, including the detected spectral line), `SPE_ATOMIC_INDICES` (6 columns, including the atomic Lick index), `SPE_MOLECULAR_INDICES` (6 columns, including the molecular Lick index), `SPE_CONTINUUM_FEATURES` (6 columns).
     - `EUC_SPE_[WIDE or DEEP]-CAT-LIN-[tile]_N_[timestamp]_*.fits`
-  - [Models catalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/spedpd/dpcards/spe_spepfoutputcatalog.html#models-catalog) files have 4 table extensions: `SPE_LINES_CATALOG` (4 columns, including the type of spectral line), `SPE_GALAXY_MODELS` (21 columns, including the spectroscopic redshift estimate), `SPE_STAR_MODELS` (8 columns, including the spectroscopic redshift estimate), SPE_QSO_MODELS (21 columns, including the spectroscopic redshift estimate).
+  - [Models catalog](https://euclid.esac.esa.int/dr/dr1/dpdd/spedpd/dpcards/spe_spepfoutputcatalog.html#models-catalog) files have 4 table extensions: `SPE_LINES_CATALOG` (4 columns, including the type of spectral line), `SPE_GALAXY_MODELS` (21 columns, including the spectroscopic redshift estimate), `SPE_STAR_MODELS` (8 columns, including the spectroscopic redshift estimate), `SPE_QSO_MODELS` (21 columns, including the spectroscopic redshift estimate).
     - `EUC_SPE_[WIDE or DEEP]-CAT-MOD-[tile]_N_[timestamp]_*.fits`
 
   In Q1, only `WIDE` files are provided.
 
 VIS_CAL_CATALOG
-: The `VIS_CAL_CATALOG` product ([DpdVisCalibratedFrameCatalog](http://st-dm.pages.euclid-sgs.uk/data-product-doc/dmdr1/visdpd/dpcards/vis_calibratedframecatalog.html)) directory is organized by observation ID.
+: The `VIS_CAL_CATALOG` product ([DpdVisCalibratedFrameCatalog](https://euclid.esac.esa.int/dr/dr1/dpdd/visdpd/dpcards/vis_calibratedframecatalog.html)) directory is organized by observation ID.
   - `EUC_VIS_SWL-CAT-[obs]-*_[timestamp]*.fits`
 
 VIS_STA_CATALOG
@@ -368,7 +374,7 @@ They can be used to visualize survey footprints, determine whether a sky positio
 
 The `MOC` directory contains MOCs describing the spatial coverage of the DR1 Wide and Deep tiles, the four MER catalog subsets (`wide_survey`, `wide_mode`, `deep_survey`, and `deep_mode`), and the planned Euclid survey coverage.
 Each MOC is available in FITS and binary format.
-For DR1, the path syntax is `MOC/[name].moc.moc.[fits or bin]`, where `[name]` is the MOC name without the `.moc` suffix.
+For DR1, the path syntax is `MOC/[name].moc.[fits or bin]`, where `[name]` is the MOC name (e.g., `euclid_dr1_mer_catalogue_deep_survey`), except for the DR1 Wide and Deep tile MOCs, which are `MOC/euclid_dr1_wide.moc.moc.[fits or bin]` and `MOC/euclid_dr1_deep.moc.moc.[fits or bin]`.
 In Q1, the `MOC` directory contains `euclid_q1.moc.[fits or bin]` and `euclid_planned_coverage.moc.[fits or bin]`.
 
 #### Visualizing MOCs in Firefly
@@ -390,6 +396,7 @@ The `.bin` files provide a compact binary representation of the same coverage bu
 
 IRSA provides Euclid catalogs in the Hierarchical Adaptive Tiling Scheme (HATS) format in the cloud.
 HATS catalogs use spatially partitioned Parquet files to support efficient analysis of large datasets.
+See the [IRSA Cloud Data Access page](https://irsa.ipac.caltech.edu/cloud_access/) for the cloud locations of the catalogs.
 
 For DR1, IRSA is making HATS catalogs available incrementally.
 The table below lists the DR1 HATS catalogs currently available.
